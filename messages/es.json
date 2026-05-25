@@ -1,0 +1,376 @@
+{
+  "metadata": {
+    "title": "Hotel Boutique cerca de Bogotá · La Palma y El Tucán",
+    "description": "Hotel boutique entre cafetales sostenibles, a 90 minutos de Bogotá. 10 cabañas privadas, coffee tour incluido, bosque de niebla y gastronomía farm-to-table."
+  },
+  "nav": {
+    "home": "Inicio",
+    "experiences": "Experiencias",
+    "accommodation": "Cabañas",
+    "weddings": "Matrimonios",
+    "events": "Eventos",
+    "contact": "Contacto",
+    "book": "Reservar"
+  },
+  "hero": {
+    "eyebrow": "",
+    "title": "LA PALMA Y EL TUCÁN",
+    "subtitle": "Hotel boutique cerca de Bogotá",
+    "lead": "",
+    "cta_primary": "Reserva Directa",
+    "cta_secondary": ""
+  },
+  "intro": {
+    "eyebrow": "",
+    "title": "La Palma y El Tucán Hotel",
+    "p1": "Descubre una nueva forma de conectar con la naturaleza y vivir una aventura inolvidable en el corazón de una finca cafetera orgánica. A tan solo 90 minutos de Bogotá, La Palma y El Tucán te ofrece la tranquilidad del entorno rural sin renunciar a la comodidad y conectividad que necesitas.",
+    "p2": "Nuestro hotel cuenta con instalaciones completamente equipadas para eventos, además de alojamientos con altos estándares de calidad. Todo ello en un ambiente prístino, diseñado bajo principios de sostenibilidad y respeto por el entorno natural."
+  },
+  "cabanas": {
+    "eyebrow": "",
+    "title": "Nuestras\ncabañas",
+    "lead": "En La Palma y El Tucán Hotel, contamos con 10 cabañas construidas en medio de cafetales y rodeadas de naturaleza, brindando privacidad y tranquilidad. Puedes elegir entre ocupaciones doble, triple o familiar. Cada cabaña es totalmente independiente y cuenta con un área de dormitorio, baño privado, ducha al aire libre y un balcón desde donde podrás disfrutar de espectaculares vistas.",
+    "intro_extra": "Nuestro entorno único combina comodidad y el encanto de la naturaleza para ofrecerte una experiencia inolvidable en el corazón del café colombiano.",
+    "cta": "Ver cabañas",
+    "double": { "title": "Doble", "desc": "Hasta 2 personas. Cama matrimonial o twin. Baño privado y ducha al aire libre." },
+    "triple": { "title": "Triple", "desc": "Hasta 3 personas. Configuración flexible. Balcón privado con vista al cafetal." },
+    "family": { "title": "Familiar", "desc": "Hasta 4 personas. Ideal para escapadas familiares. Espacio social interior." }
+  },
+  "experiences": {
+    "eyebrow": "",
+    "title": "Nuestros espacios",
+    "lead": "Nuestro entorno único combina comodidad y el encanto de la naturaleza para ofrecerte una experiencia inolvidable en el corazón del café colombiano.",
+    "cta": "Ver más",
+    "spaces": [
+      {
+        "label": "Restaurante",
+        "image": "/img/hab-02.jpg",
+        "detail": "Inspirado en el concepto farm-to-table, aquí disfrutarás de un menú elaborado con productos frescos y locales, mucho de ellos provenientes de nuestra propia huerta orgánica."
+      },
+      {
+        "label": "Eventos corporativos",
+        "image": "/img/eventos.jpg",
+        "detail": "Recorre nuestra finca cafetera y sumérgete en un viaje único, donde aprenderás sobre los procesos de cultivo y beneficio que dan vida a nuestro reconocido café de especialidad."
+      },
+      {
+        "label": "Áreas sociales",
+        "image": "/img/cabana-4.jpg",
+        "detail": "En este área con espacios cerrados y abiertos, con terraza al aire libre, podrás tomar una relajante sesión de hatha yoga."
+      }
+    ]
+  },
+  "events": {
+    "eyebrow": "",
+    "title": "Eventos corporativos",
+    "lead": "Nuestro hotel cuenta con instalaciones completamente equipadas para eventos, además de alojamientos con altos estándares de calidad. Todo ello en un ambiente prístino, diseñado bajo principios de sostenibilidad y respeto por el entorno natural.",
+    "cta_weddings": "Matrimonios",
+    "cta_corporate": "Eventos empresariales"
+  },
+  "community": {
+    "title": "Impacto en la comunidad",
+    "lead": "Nos impulsa el compromiso de generar un impacto social significativo en la comunidad local, promoviendo su desarrollo y el crecimiento personal y profesional de nuestro equipo.",
+    "cta": "Instrucciones de llegada"
+  },
+  "sustainability": {
+    "eyebrow": "",
+    "title": "Nuestra sostenibilidad",
+    "p1": "En cada rincón de nuestra finca se respiran prácticas regenerativas y un fuerte compromiso con la educación y la transformación. Ofrecemos experiencias inmersivas que van más allá del turismo, invitándote a ser parte activa del cuidado de nuestro entorno.",
+    "p2": "Nos impulsa el compromiso de generar un impacto social significativo en la comunidad local, promoviendo su desarrollo y el crecimiento personal y profesional de nuestro equipo."
+  },
+  "newsletter": {
+    "eyebrow": "",
+    "title_part1": "¿Listo para visitar La Palma y El Tucán Hotel? ¡Suscríbete y obtén un ",
+    "title_highlight": "10% de descuento",
+    "title_part2": "!",
+    "title": "¿Listo para visitar La Palma y El Tucán Hotel? ¡Suscríbete y obtén un 10% de descuento!",
+    "lead": "Regístrate para recibir ofertas exclusivas para alojamiento o eventos en nuestro hotel.",
+    "name_placeholder": "Nombre - Name",
+    "email_placeholder": "E-mail *",
+    "terms": "Acepto los Términos de Uso",
+    "cta_label": "Newsletter",
+    "report_abuse": "Reportar un abuso",
+    "placeholder": "tu@correo.com",
+    "cta": "Suscribirme"
+  },
+  "faq": {
+    "eyebrow": "",
+    "title": "Preguntas frecuentes",
+    "lead": "Resolvemos las dudas más comunes de nuestros huéspedes para que llegues a La Palma y el Tucán con todo claro.",
+    "items": [
+      { "q": "¿Dónde queda el hotel? ¿Cómo llegar?", "a": "Entre Zipacón y Cachipay, Cundinamarca, a ~90 minutos de Bogotá. Una vez confirmada tu reserva, te enviamos las indicaciones de llegada." },
+      { "q": "¿Qué incluye la reserva?", "a": "Alojamiento en cabaña con baño privado, tina y ducha al aire libre. Desayuno. Coffee tour guiado. Degustación de cafés. Bebida de bienvenida. Senderos en bosque de niebla (3.3 km). Áreas comunes." },
+      { "q": "¿Cómo son las cabañas?", "a": "Doble (2 personas) con cama matrimonial o twin. Triple hasta 3 personas. Familiar hasta 4. Todas con privacidad total y conexión con la naturaleza." },
+      { "q": "¿Cuáles son los horarios de check-in y check-out?", "a": "Check-in desde 3:00 PM. Check-out hasta 11:00 AM. Puedes llegar desde las 9:00 AM a disfrutar del hotel." },
+      { "q": "¿Hay restaurante en el hotel?", "a": "Sí, restaurante propio con propuesta farm-to-table, ingredientes frescos de nuestra huerta. Desayuno incluido, almuerzos y cenas opcionales." },
+      { "q": "¿Puedo ir con mi mascota?", "a": "Sí, somos pet friendly. Hasta 2 mascotas por cabaña, con un cargo de 60.000 COP." }
+    ]
+  },
+  "reviews": {
+    "eyebrow": "",
+    "title": "Lo que dicen nuestros huéspedes",
+    "lead": "Reseñas verificadas en las plataformas de viajes más reconocidas. Cada experiencia en La Palma y el Tucán es nuestra mejor carta de presentación.",
+    "ratings": [
+      { "platform": "Booking.com", "score": "9.5", "extra": "81 reseñas verificadas" },
+      { "platform": "Tripadvisor", "score": "5.0", "extra": "#1 entre hoteles en Zipacón" }
+    ],
+    "items": [
+      { "text": "Vinimos por una escapada y nos quedamos por todo lo demás. Las cabañas, el desayuno, el silencio del bosque. Ya estamos planeando volver.", "author": "Pareja · USA", "source": "Booking" },
+      { "text": "La combinación de café y naturaleza es única. El coffee tour, los senderos al amanecer, el bosque de niebla. No existe otro lugar así cerca de Bogotá.", "author": "Viajero · Cali", "source": "Tripadvisor" }
+    ]
+  },
+  "contacto_page": {
+    "metadata": {
+      "title": "Contacto · La Palma y El Tucán Hotel",
+      "description": "Diseñemos juntos tu próximo evento o estadía en una finca cafetera reconocida a 90 minutos de Bogotá. Escríbenos o contáctanos por WhatsApp."
+    },
+    "hero": {
+      "title": "LA PALMA Y EL TUCÁN",
+      "subtitle": "Diseñemos juntos tu próxima experiencia"
+    },
+    "title": "Organiza tu Próximo Evento en un Entorno Único",
+    "body_1": "En La Palma y El Tucán Hotel, transformamos reuniones y eventos corporativos en experiencias memorables. Nuestro hotel, ubicado en una plantación de café de especialidad y rodeado de naturaleza, es el escenario perfecto para reuniones estratégicas, actividades de team building y eventos empresariales que inspiran. Espacios diseñados para conectar y potenciar a tu equipo a solo 90 minutos de Bogotá. Un ambiente exclusivo en el corazón de la naturaleza.",
+    "body_2": "Contáctanos y diseñemos juntos una experiencia a la medida de tu empresa.",
+    "body_3_prefix": "Completa el formulario o escríbenos a ",
+    "email": "reservations@lapalmayeltucan.com",
+    "body_3_mid": " o a nuestro WhatsApp ",
+    "whatsapp_display": "(+57) 318 9565617",
+    "whatsapp_link": "https://wa.me/573189565617",
+    "body_3_suffix": " y nuestro equipo te responderá a la mayor brevedad.",
+    "form": {
+      "first_name": "Nombre *",
+      "last_name": "Apellido *",
+      "email": "Email *",
+      "subject": "Asunto",
+      "message": "Mensaje *",
+      "submit": "Enviar",
+      "success": "¡Gracias! Recibimos tu mensaje y te responderemos a la brevedad.",
+      "error": "Hubo un problema enviando el mensaje. Intenta de nuevo o escríbenos directamente."
+    }
+  },
+  "matrimonios_page": {
+    "metadata": {
+      "title": "Matrimonios entre cafetales · La Palma y El Tucán Hotel",
+      "description": "Celebra tu boda en una finca cafetera reconocida mundialmente, rodeada de montañas y bosque de niebla a 90 minutos de Bogotá. Hasta 40 personas, escenario natural e íntimo."
+    },
+    "hero": {
+      "title": "LA PALMA Y EL TUCÁN",
+      "subtitle": "Matrimonios entre cafetales y bosque de niebla"
+    },
+    "blocks": [
+      {
+        "variant": "light",
+        "title": "Celebra tu matrimonio en medio del bosque y el café",
+        "body": "En una finca cafetera reconocida mundialmente. Rodeados de montañas, cafetales y bosque de niebla, a solo 90 minutos de Bogotá. Un escenario natural e íntimo para celebrar tu historia con calma, conexión y propósito.",
+        "footnote": "Hasta 40 personas | Zipacón, Cundinamarca",
+        "image": "/img/intro-hotel.jpg",
+        "imageSide": "left"
+      },
+      {
+        "variant": "dark",
+        "title": "¿Por qué elegir La Palma & El Tucán Hotel?",
+        "subtitle": "Espacios que se integran con la naturaleza",
+        "body": "Rincones entre cafetales, montañas y bosque de niebla donde cada celebración se vive en armonía con el entorno.",
+        "image": "/img/cabana-2.jpg",
+        "imageSide": "right"
+      },
+      {
+        "variant": "light",
+        "title": "Momentos",
+        "body": "Momentos que se sienten, no solo se viven. Cada instante fluye en armonía con la naturaleza para crear recuerdos auténticos y memorables.",
+        "image": "/img/sostenibilidad.jpg",
+        "imageSide": "left"
+      },
+      {
+        "variant": "soft",
+        "title": "Ceremonia en la Naturaleza",
+        "body": "Un «sí, acepto» rodeado de montañas, cafetales y bosque de niebla.",
+        "image": "/img/eventos.jpg",
+        "imageSide": "right"
+      }
+    ]
+  },
+  "experiencias_page": {
+    "metadata": {
+      "title": "Experiencias de café cerca de Bogotá · La Palma y El Tucán Hotel",
+      "description": "Tour de café, degustación sensorial, avistamiento de aves, caminatas, meliponario, mariposario, yoga y masajes en finca cafetera regenerativa a 90 minutos de Bogotá."
+    },
+    "hero": {
+      "title": "LA PALMA Y EL TUCÁN",
+      "subtitle": "Experiencias de café cerca de Bogotá"
+    },
+    "intro": {
+      "body_1": "Nuestras experiencias de café cerca de Bogotá convierten tu visita a La Palma y El Tucán Hotel en mucho más que un destino de descanso. A través de ellas te invitamos a conectar con la esencia de lo que hacemos: cultivar, transformar y disfrutar el mejor café de forma sostenible y respetuosa con el entorno.",
+      "body_2": "Disfruta dos experiencias incluidas en tu estadía; si prefieres visitarnos por el día, también puedes reservar el Day Tour."
+    },
+    "tour_cafe": {
+      "title": "Tour de café: nuestra experiencia de café cerca de Bogotá",
+      "body": "Sumérgete en la esencia de nuestra agricultura regenerativa con nuestro Tour de Café. Durante este recorrido, descubrirás cada etapa del proceso cafetero: desde los cultivos agroecológicos en nuestro bosque de niebla, hasta la degustación de una taza recién preparada con dedicación.",
+      "caption": "El tour de café está incluido en tu estadía.",
+      "images": ["/img/sostenibilidad.jpg", "/img/intro-hotel.jpg", "/img/cabana-3.jpg"]
+    },
+    "tour_grid": {
+      "title": "¿Qué encontrarás en nuestro Tour de Café?",
+      "items": [
+        {
+          "label": "Cultivo",
+          "image": "/img/sostenibilidad.jpg",
+          "detail": "Recorre cafetales con diferentes variedades y conoce cómo nuestros métodos de siembra y manejo sostenible contribuyen a la salud de la tierra y a la protección de la biodiversidad."
+        },
+        {
+          "label": "Fermentación y secado",
+          "image": "/img/eventos.jpg",
+          "detail": "Visita nuestro Beneficiadero, donde se procesan microlotes de café altamente valorados en el mercado internacional. Explora las camas elevadas de secado y la estación de selección manual de café verde, esenciales para garantizar la calidad de cada grano."
+        },
+        {
+          "label": "Análisis sensorial",
+          "image": "/img/eventos-2.jpg",
+          "detail": "Descubre cómo esta fase fundamental del proceso garantiza que cada microlote conserve y exprese plenamente la esencia de su origen y variedad, brindando una experiencia de sabor única en cada taza."
+        }
+      ],
+      "cta": "Ver más",
+      "footer": "Además, si nos visitas en época de cosecha, podrás ver de cerca la recolección manual de cerezas maduras, el despulpado, las evaluaciones sensoriales y todo el «maravilloso caos» que rodea esta labor. Cada detalle se cuida al máximo para preservar la calidad del café."
+    },
+    "degustacion": {
+      "title": "Degustación de Cafés Especiales",
+      "body": "Complementa tus experiencias de café cerca de Bogotá con una degustación sensorial:",
+      "numbered_list": [
+        "Participa en una degustación guiada donde aprenderás a reconocer las características de un café especial, identificando sus notas de sabor y aroma.",
+        "Deleita tus sentidos con diferentes perfiles de café y recibe valiosos consejos para preparar una gran taza en casa."
+      ],
+      "note": "Tanto el Tour de Café como la Degustación de Cafés Especiales están incluidos en tu estadía.",
+      "images": ["/img/eventos-1.jpg", "/img/hab-02.jpg"]
+    },
+    "day_tour": "Si deseas visitarnos durante el día, te invitamos a reservar nuestro Day Tour: una experiencia de cuatro a cinco horas que combina el Tour de Café, la Degustación de Cafés Especiales y almuerzo completo en nuestro hotel.",
+    "extras": [
+      {
+        "variant": "soft",
+        "image": "/img/sostenibilidad.jpg",
+        "imageSide": "left",
+        "subsections": [
+          {
+            "title": "Avistamiento de Aves",
+            "body": "Un recorrido guiado para explorar nuestro ecosistema y conocer la amplia diversidad de especies de aves del lugar."
+          },
+          {
+            "title": "Caminatas en la naturaleza: experiencias de café cerca de Bogotá al aire libre",
+            "body": "Recorre nuestra región por vías rurales, senderos y caminos reales. Descubre arte rupestre de las comunidades indígenas ancestrales y déjate deslumbrar por el paisaje y la fauna local."
+          }
+        ],
+        "note": "*Sujeto a disponibilidad. Aplican costos adicionales"
+      },
+      {
+        "variant": "light",
+        "image": "/img/cabana-5.jpg",
+        "imageSide": "right",
+        "subsections": [
+          {
+            "title": "Visita al Meliponario",
+            "body": "Conoce El Meliponario, un proyecto liderado por miembros de la comunidad local, que trabajan por la conservación de las abejas nativas sin aguijón, la conservación de los recursos, flora y fauna local. Vive la experiencia de conocer más de 10 especies de abejas en su entorno natural, en un recorrido de 2.5 hrs que te harán enamorar de estos maravillosos polinizadores."
+          },
+          {
+            "title": "Visita al Mariposario",
+            "body": "Conoce El Mariposario, un proyecto liderado por la comunidad local que trabaja por la conservación del agua y las especies de flora del Bosque de Niebla. Conoce poderosas plantas medicinales y las principales especies de mariposas de nuestros bosques en un recorrido de 2.5 hrs."
+          }
+        ],
+        "note": "*Sujeto a disponibilidad. Aplican costos adicionales"
+      },
+      {
+        "variant": "soft",
+        "image": "/img/intro-hotel.jpg",
+        "imageSide": "left",
+        "subsections": [
+          {
+            "title": "Masaje Relajante",
+            "body": "Recibe un masaje con aceites aromáticos en la comodidad de tu cabaña."
+          },
+          {
+            "title": "Yoga",
+            "body": "Clase de Hatha Yoga para conectar con tu cuerpo y mente, y elevar tu energía. Práctica básica de posturas y yoga en el mat."
+          }
+        ],
+        "note": "*Sujeto a disponibilidad. Aplican costos adicionales"
+      }
+    ]
+  },
+  "eventos_page": {
+    "metadata": {
+      "title": "Eventos empresariales · La Palma y El Tucán Hotel",
+      "description": "Espacios privados para encuentros corporativos, retiros y sesiones de innovación entre cafetales y bosque de niebla, a 90 minutos de Bogotá."
+    },
+    "hero": {
+      "title": "Eventos empresariales"
+    },
+    "blocks": [
+      {
+        "variant": "dark",
+        "title": "Conecta, inspira ideas y potencia la productividad",
+        "body": "Nuestros espacios privados y versátiles, complementados con menús a la medida y servicios personalizados, se enmarcan en el aroma de uno de los cafés más reconocidos de Colombia, cultivado con prácticas regenerativas que cuidan la tierra y fortalecen el futuro.",
+        "image": "/img/eventos-1.jpg",
+        "imageSide": "right",
+        "cta": { "label": "Contacto", "href": "/contacto" }
+      },
+      {
+        "variant": "light",
+        "body": "Nuestros espacios para reuniones y eventos están diseñados para potenciar la creatividad y la colaboración. Con abundante luz natural, vistas al cafetal y tecnología preparada para encuentros de alto impacto, ofrecemos un ambiente que combina lo mejor del mundo corporativo con la fuerza renovadora de la naturaleza.",
+        "image": "/img/eventos-2.jpg",
+        "imageSide": "left"
+      },
+      {
+        "variant": "soft",
+        "body": "Imagina un día de trabajo rodeado por la tranquilidad del bosque de niebla. Ya sea para un encuentro estratégico, un retiro corporativo o sesiones de innovación, en La Palma y El Tucán encontrarás un entorno regenerativo que inspira, fortalece equipos y abre espacio a nuevas formas de liderar y crear.",
+        "body_extra": "¡Explora nuestras opciones de alojamiento y descubre una nueva forma de inspirarte!",
+        "image": "/img/sostenibilidad.jpg",
+        "imageSide": "right",
+        "divider": true
+      }
+    ]
+  },
+  "alojamiento": {
+    "metadata": {
+      "title": "Alojamiento · Cabañas boutique en La Palma y El Tucán Hotel",
+      "description": "10 cabañas independientes rodeadas de cafetales y bosque de niebla, a 90 minutos de Bogotá. Opciones doble, triple y familiar con tina, ducha exterior y balcón privado."
+    },
+    "hero": {
+      "title": "LA PALMA Y EL TUCÁN",
+      "subtitle": "Cabañas boutique cerca de Bogotá"
+    },
+    "intro": {
+      "body": "En La Palma y El Tucán Hotel disfrutarás de una estadía con todas las comodidades, rodeado de nuestros cafetales y del encantador bosque de niebla. Ofrecemos diversas opciones de alojamiento —cabañas dobles, triples y familiares— diseñadas para brindarte la calidez de un hogar. Todas nuestras cabañas cuentan con las amenidades necesarias para que vivas al máximo la biodiversidad y la serenidad de las Montañas Andinas Colombianas.",
+      "cta": "Reserva Ahora"
+    },
+    "gallery": [
+      "/img/cabana-1.jpg",
+      "/img/cabana-2.jpg",
+      "/img/cabana-3.jpg",
+      "/img/cabana-4.jpg",
+      "/img/cabana-5.jpg",
+      "/img/hab-02.jpg",
+      "/img/hab-06.jpg"
+    ],
+    "amenidades": {
+      "title": "Amenidades",
+      "items": [
+        { "label": "Vista a la montaña", "icon": "mountain" },
+        { "label": "Tina", "icon": "tub" },
+        { "label": "Ducha exterior", "icon": "shower" },
+        { "label": "Caja de seguridad", "icon": "safe" },
+        { "label": "Deck", "icon": "deck" },
+        { "label": "Malla exterior", "icon": "net" },
+        { "label": "Lencería de lujo", "icon": "towels" },
+        { "label": "Minibar", "icon": "minibar" },
+        { "label": "Alpargatas", "icon": "sandals" },
+        { "label": "Closet / Rack", "icon": "hanger" }
+      ]
+    }
+  },
+  "footer": {
+    "tagline": "Hotel boutique sostenible cerca de Bogotá",
+    "address": "Finca Las Nubes, Vereda San Cayetano, Zipacón, Cundinamarca, Colombia",
+    "explore": "Explorar",
+    "contact_title": "Contacto",
+    "legal_title": "Legal",
+    "terms": "Términos y Condiciones",
+    "privacy": "Política de tratamiento de datos",
+    "rights": "Todos los derechos reservados"
+  }
+}

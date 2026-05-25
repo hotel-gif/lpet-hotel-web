@@ -1,0 +1,376 @@
+{
+  "metadata": {
+    "title": "Boutique Hotel near Bogotá · La Palma y El Tucán",
+    "description": "Boutique hotel set among sustainable coffee plantations, 90 minutes from Bogotá. 10 private cabins, coffee tour included, cloud forest and farm-to-table cuisine."
+  },
+  "nav": {
+    "home": "Home",
+    "experiences": "Experiences",
+    "accommodation": "Cabins",
+    "weddings": "Weddings",
+    "events": "Events",
+    "contact": "Contact",
+    "book": "Book"
+  },
+  "hero": {
+    "eyebrow": "",
+    "title": "LA PALMA Y EL TUCÁN",
+    "subtitle": "Boutique hotel near Bogotá",
+    "lead": "",
+    "cta_primary": "Direct Booking",
+    "cta_secondary": ""
+  },
+  "intro": {
+    "eyebrow": "",
+    "title": "La Palma y El Tucán Hotel",
+    "p1": "Discover a new way to connect with nature and live an unforgettable adventure at the heart of an organic coffee estate. Just 90 minutes from Bogotá, La Palma y El Tucán offers the calm of the countryside without giving up the comfort and connectivity you need.",
+    "p2": "Our hotel features fully equipped facilities for events, along with accommodations of the highest standards. All within a pristine setting, designed around principles of sustainability and respect for the natural environment."
+  },
+  "cabanas": {
+    "eyebrow": "",
+    "title": "Our\nCabins",
+    "lead": "At La Palma y El Tucán Hotel, we have 10 cabins built among coffee plantations and surrounded by nature, offering privacy and tranquility. You can choose between double, triple or family occupancy. Each cabin is fully independent and includes a bedroom area, private bathroom, outdoor shower and a balcony where you can enjoy spectacular views.",
+    "intro_extra": "Our one-of-a-kind setting blends comfort with the charm of nature to offer you an unforgettable experience at the heart of Colombian coffee.",
+    "cta": "View cabins",
+    "double": { "title": "Double", "desc": "Up to 2 guests. King or twin beds. Private bathroom and outdoor shower." },
+    "triple": { "title": "Triple", "desc": "Up to 3 guests. Flexible configuration. Private balcony overlooking the coffee plantation." },
+    "family": { "title": "Family", "desc": "Up to 4 guests. Ideal for family getaways. Indoor living space." }
+  },
+  "experiences": {
+    "eyebrow": "",
+    "title": "Our spaces",
+    "lead": "Our one-of-a-kind setting blends comfort with the charm of nature to offer you an unforgettable experience at the heart of Colombian coffee.",
+    "cta": "Learn more",
+    "spaces": [
+      {
+        "label": "Restaurant",
+        "image": "/img/hab-02.jpg",
+        "detail": "Inspired by the farm-to-table concept, here you'll enjoy a menu crafted with fresh, local produce, much of it grown in our own organic garden."
+      },
+      {
+        "label": "Corporate events",
+        "image": "/img/eventos.jpg",
+        "detail": "Explore our coffee estate and immerse yourself in a unique journey, where you'll learn about the cultivation and processing that bring our renowned specialty coffee to life."
+      },
+      {
+        "label": "Social areas",
+        "image": "/img/cabana-4.jpg",
+        "detail": "In this area of indoor and outdoor spaces, with an open-air terrace, you can unwind with a relaxing hatha yoga session."
+      }
+    ]
+  },
+  "events": {
+    "eyebrow": "",
+    "title": "Corporate events",
+    "lead": "Our hotel features fully equipped facilities for events, along with accommodations of the highest standards. All within a pristine setting, designed around principles of sustainability and respect for the natural environment.",
+    "cta_weddings": "Weddings",
+    "cta_corporate": "Corporate events"
+  },
+  "community": {
+    "title": "Community impact",
+    "lead": "We are driven by a commitment to create meaningful social impact within the local community, fostering its development and the personal and professional growth of our team.",
+    "cta": "Directions"
+  },
+  "sustainability": {
+    "eyebrow": "",
+    "title": "Our sustainability",
+    "p1": "In every corner of our estate you'll find regenerative practices and a strong commitment to education and transformation. We offer immersive experiences that go beyond tourism, inviting you to take an active part in caring for our environment.",
+    "p2": "We are driven by a commitment to create meaningful social impact within the local community, fostering its development and the personal and professional growth of our team."
+  },
+  "newsletter": {
+    "eyebrow": "",
+    "title_part1": "Ready to visit La Palma y El Tucán Hotel? Subscribe and get ",
+    "title_highlight": "10% off",
+    "title_part2": "!",
+    "title": "Ready to visit La Palma y El Tucán Hotel? Subscribe and get 10% off!",
+    "lead": "Sign up to receive exclusive offers for stays or events at our hotel.",
+    "name_placeholder": "Name",
+    "email_placeholder": "E-mail *",
+    "terms": "I accept the Terms of Use",
+    "cta_label": "Newsletter",
+    "report_abuse": "Report abuse",
+    "placeholder": "you@email.com",
+    "cta": "Subscribe"
+  },
+  "faq": {
+    "eyebrow": "",
+    "title": "Frequently asked questions",
+    "lead": "We answer our guests' most common questions so you arrive at La Palma y el Tucán with everything clear.",
+    "items": [
+      { "q": "Where is the hotel? How do I get there?", "a": "Between Zipacón and Cachipay, Cundinamarca, about 90 minutes from Bogotá. Once your reservation is confirmed, we'll send you the directions." },
+      { "q": "What does the reservation include?", "a": "Cabin accommodation with private bathroom, tub and outdoor shower. Breakfast. Guided coffee tour. Coffee tasting. Welcome drink. Cloud forest trails (3.3 km). Common areas." },
+      { "q": "What are the cabins like?", "a": "Double (2 guests) with king or twin beds. Triple for up to 3 guests. Family for up to 4. All offering complete privacy and a connection with nature." },
+      { "q": "What are the check-in and check-out times?", "a": "Check-in from 3:00 PM. Check-out until 11:00 AM. You can arrive from 9:00 AM to enjoy the hotel." },
+      { "q": "Is there a restaurant at the hotel?", "a": "Yes, our own restaurant with a farm-to-table approach and fresh ingredients from our garden. Breakfast included, lunch and dinner optional." },
+      { "q": "Can I bring my pet?", "a": "Yes, we are pet friendly. Up to 2 pets per cabin, with a charge of 60,000 COP." }
+    ]
+  },
+  "reviews": {
+    "eyebrow": "",
+    "title": "What our guests say",
+    "lead": "Verified reviews on the most trusted travel platforms. Every experience at La Palma y el Tucán is our finest introduction.",
+    "ratings": [
+      { "platform": "Booking.com", "score": "9.5", "extra": "81 verified reviews" },
+      { "platform": "Tripadvisor", "score": "5.0", "extra": "#1 among hotels in Zipacón" }
+    ],
+    "items": [
+      { "text": "We came for a getaway and stayed for everything else. The cabins, the breakfast, the silence of the forest. We're already planning our return.", "author": "Couple · USA", "source": "Booking" },
+      { "text": "The blend of coffee and nature is one of a kind. The coffee tour, the trails at dawn, the cloud forest. There's no other place like it near Bogotá.", "author": "Traveler · Cali", "source": "Tripadvisor" }
+    ]
+  },
+  "contacto_page": {
+    "metadata": {
+      "title": "Contact · La Palma y El Tucán Hotel",
+      "description": "Let's design your next event or stay together at a renowned coffee estate 90 minutes from Bogotá. Write to us or reach out via WhatsApp."
+    },
+    "hero": {
+      "title": "LA PALMA Y EL TUCÁN",
+      "subtitle": "Let's design your next experience together"
+    },
+    "title": "Host Your Next Event in a One-of-a-Kind Setting",
+    "body_1": "At La Palma y El Tucán Hotel, we turn meetings and corporate events into memorable experiences. Set on a specialty coffee plantation and surrounded by nature, our hotel is the perfect backdrop for strategic meetings, team-building activities and corporate events that inspire. Spaces designed to connect and empower your team, just 90 minutes from Bogotá. An exclusive setting at the heart of nature.",
+    "body_2": "Get in touch and let's design an experience tailored to your company.",
+    "body_3_prefix": "Fill out the form or write to us at ",
+    "email": "reservations@lapalmayeltucan.com",
+    "body_3_mid": " or via WhatsApp at ",
+    "whatsapp_display": "(+57) 318 9565617",
+    "whatsapp_link": "https://wa.me/573189565617",
+    "body_3_suffix": " and our team will get back to you as soon as possible.",
+    "form": {
+      "first_name": "First name *",
+      "last_name": "Last name *",
+      "email": "Email *",
+      "subject": "Subject",
+      "message": "Message *",
+      "submit": "Send",
+      "success": "Thank you! We've received your message and will get back to you shortly.",
+      "error": "There was a problem sending your message. Please try again or write to us directly."
+    }
+  },
+  "matrimonios_page": {
+    "metadata": {
+      "title": "Weddings among coffee plantations · La Palma y El Tucán Hotel",
+      "description": "Celebrate your wedding on a world-renowned coffee estate, surrounded by mountains and cloud forest 90 minutes from Bogotá. Up to 40 guests, in an intimate natural setting."
+    },
+    "hero": {
+      "title": "LA PALMA Y EL TUCÁN",
+      "subtitle": "Weddings among coffee plantations and cloud forest"
+    },
+    "blocks": [
+      {
+        "variant": "light",
+        "title": "Celebrate your wedding amid the forest and the coffee",
+        "body": "On a world-renowned coffee estate. Surrounded by mountains, coffee plantations and cloud forest, just 90 minutes from Bogotá. An intimate, natural setting to celebrate your story with calm, connection and purpose.",
+        "footnote": "Up to 40 guests | Zipacón, Cundinamarca",
+        "image": "/img/intro-hotel.jpg",
+        "imageSide": "left"
+      },
+      {
+        "variant": "dark",
+        "title": "Why choose La Palma & El Tucán Hotel?",
+        "subtitle": "Spaces that blend into nature",
+        "body": "Corners among coffee plantations, mountains and cloud forest where every celebration unfolds in harmony with its surroundings.",
+        "image": "/img/cabana-2.jpg",
+        "imageSide": "right"
+      },
+      {
+        "variant": "light",
+        "title": "Moments",
+        "body": "Moments that are felt, not merely lived. Each one flows in harmony with nature to create authentic, lasting memories.",
+        "image": "/img/sostenibilidad.jpg",
+        "imageSide": "left"
+      },
+      {
+        "variant": "soft",
+        "title": "A Ceremony in Nature",
+        "body": "A heartfelt «I do» surrounded by mountains, coffee plantations and cloud forest.",
+        "image": "/img/eventos.jpg",
+        "imageSide": "right"
+      }
+    ]
+  },
+  "experiencias_page": {
+    "metadata": {
+      "title": "Coffee experiences near Bogotá · La Palma y El Tucán Hotel",
+      "description": "Coffee tour, sensory tasting, birdwatching, hikes, meliponario, mariposario, yoga and massages on a regenerative coffee estate 90 minutes from Bogotá."
+    },
+    "hero": {
+      "title": "LA PALMA Y EL TUCÁN",
+      "subtitle": "Coffee experiences near Bogotá"
+    },
+    "intro": {
+      "body_1": "Our coffee experiences near Bogotá turn your visit to La Palma y El Tucán Hotel into far more than a place to rest. Through them, we invite you to connect with the essence of what we do: cultivating, transforming and enjoying the finest coffee in a way that is sustainable and respectful of the environment.",
+      "body_2": "Enjoy two experiences included with your stay; if you'd rather visit for the day, you can also book the Day Tour."
+    },
+    "tour_cafe": {
+      "title": "Coffee tour: our coffee experience near Bogotá",
+      "body": "Immerse yourself in the essence of our regenerative agriculture with our Coffee Tour. Along the way, you'll discover every stage of the coffee process: from the agroecological crops in our cloud forest to the tasting of a cup freshly prepared with care.",
+      "caption": "The coffee tour is included with your stay.",
+      "images": ["/img/sostenibilidad.jpg", "/img/intro-hotel.jpg", "/img/cabana-3.jpg"]
+    },
+    "tour_grid": {
+      "title": "What will you find on our Coffee Tour?",
+      "items": [
+        {
+          "label": "Cultivation",
+          "image": "/img/sostenibilidad.jpg",
+          "detail": "Walk through coffee plantations with different varieties and learn how our planting methods and sustainable management contribute to the health of the soil and the protection of biodiversity."
+        },
+        {
+          "label": "Fermentation & Drying",
+          "image": "/img/eventos.jpg",
+          "detail": "Visit our Beneficiadero (wet mill), where we process coffee microlots highly prized on the international market. Explore the raised drying beds and the hand-sorting station for green coffee, essential to guaranteeing the quality of every bean."
+        },
+        {
+          "label": "Sensory Analysis",
+          "image": "/img/eventos-2.jpg",
+          "detail": "Discover how this essential phase of the process ensures that each microlot preserves and fully expresses the essence of its origin and variety, delivering a unique flavor experience in every cup."
+        }
+      ],
+      "cta": "Learn more",
+      "footer": "And if you visit us during harvest season, you'll see up close the hand-picking of ripe cherries, the depulping, the sensory evaluations and all the «wonderful chaos» that surrounds this work. Every detail is tended to with the utmost care to preserve the quality of the coffee."
+    },
+    "degustacion": {
+      "title": "Specialty Coffee Tasting",
+      "body": "Round out your coffee experiences near Bogotá with a sensory tasting:",
+      "numbered_list": [
+        "Take part in a guided tasting where you'll learn to recognize the characteristics of a specialty coffee, identifying its flavor and aroma notes.",
+        "Delight your senses with different coffee profiles and pick up valuable tips for brewing a great cup at home."
+      ],
+      "note": "Both the Coffee Tour and the Specialty Coffee Tasting are included with your stay.",
+      "images": ["/img/eventos-1.jpg", "/img/hab-02.jpg"]
+    },
+    "day_tour": "If you'd like to visit us for the day, we invite you to book our Day Tour: a four-to-five-hour experience that combines the Coffee Tour, the Specialty Coffee Tasting and a full lunch at our hotel.",
+    "extras": [
+      {
+        "variant": "soft",
+        "image": "/img/sostenibilidad.jpg",
+        "imageSide": "left",
+        "subsections": [
+          {
+            "title": "Birdwatching",
+            "body": "A guided walk to explore our ecosystem and discover the rich diversity of bird species that inhabit it."
+          },
+          {
+            "title": "Nature walks: coffee experiences near Bogotá in the open air",
+            "body": "Roam our region along country roads, trails and ancient paths. Discover rock art left by ancestral Indigenous communities and let yourself be dazzled by the landscape and local wildlife."
+          }
+        ],
+        "note": "*Subject to availability. Additional fees apply"
+      },
+      {
+        "variant": "light",
+        "image": "/img/cabana-5.jpg",
+        "imageSide": "right",
+        "subsections": [
+          {
+            "title": "Visit to the Meliponario",
+            "body": "Discover El Meliponario, a project led by members of the local community working to conserve native stingless bees and to protect the area's resources, flora and fauna. Experience getting to know more than 10 species of bees in their natural habitat, on a 2.5-hour tour that will make you fall in love with these wonderful pollinators."
+          },
+          {
+            "title": "Visit to the Mariposario",
+            "body": "Discover El Mariposario, a project led by the local community working to conserve water and the plant species of the Cloud Forest. Encounter powerful medicinal plants and the main butterfly species of our forests on a 2.5-hour tour."
+          }
+        ],
+        "note": "*Subject to availability. Additional fees apply"
+      },
+      {
+        "variant": "soft",
+        "image": "/img/intro-hotel.jpg",
+        "imageSide": "left",
+        "subsections": [
+          {
+            "title": "Relaxing Massage",
+            "body": "Enjoy a massage with aromatic oils in the comfort of your own cabin."
+          },
+          {
+            "title": "Yoga",
+            "body": "A Hatha Yoga class to connect with your body and mind and lift your energy. A gentle practice of postures and yoga on the mat."
+          }
+        ],
+        "note": "*Subject to availability. Additional fees apply"
+      }
+    ]
+  },
+  "eventos_page": {
+    "metadata": {
+      "title": "Corporate events · La Palma y El Tucán Hotel",
+      "description": "Private spaces for corporate gatherings, retreats and innovation sessions among coffee plantations and cloud forest, 90 minutes from Bogotá."
+    },
+    "hero": {
+      "title": "Corporate events"
+    },
+    "blocks": [
+      {
+        "variant": "dark",
+        "title": "Connect, spark ideas and boost productivity",
+        "body": "Our private, versatile spaces, paired with tailored menus and personalized service, are framed by the aroma of one of Colombia's most renowned coffees, grown with regenerative practices that care for the land and strengthen the future.",
+        "image": "/img/eventos-1.jpg",
+        "imageSide": "right",
+        "cta": { "label": "Contact", "href": "/contacto" }
+      },
+      {
+        "variant": "light",
+        "body": "Our meeting and event spaces are designed to fuel creativity and collaboration. With abundant natural light, views of the coffee plantation and technology ready for high-impact gatherings, we offer a setting that brings together the best of the corporate world with the renewing power of nature.",
+        "image": "/img/eventos-2.jpg",
+        "imageSide": "left"
+      },
+      {
+        "variant": "soft",
+        "body": "Picture a workday surrounded by the calm of the cloud forest. Whether for a strategic gathering, a corporate retreat or innovation sessions, at La Palma y El Tucán you'll find a regenerative setting that inspires, strengthens teams and opens space for new ways to lead and create.",
+        "body_extra": "Explore our accommodation options and discover a new way to find inspiration!",
+        "image": "/img/sostenibilidad.jpg",
+        "imageSide": "right",
+        "divider": true
+      }
+    ]
+  },
+  "alojamiento": {
+    "metadata": {
+      "title": "Accommodation · Boutique cabins at La Palma y El Tucán Hotel",
+      "description": "10 independent cabins surrounded by coffee plantations and cloud forest, 90 minutes from Bogotá. Double, triple and family options with tub, outdoor shower and private balcony."
+    },
+    "hero": {
+      "title": "LA PALMA Y EL TUCÁN",
+      "subtitle": "Boutique cabins near Bogotá"
+    },
+    "intro": {
+      "body": "At La Palma y El Tucán Hotel you'll enjoy a stay with every comfort, surrounded by our coffee plantations and the enchanting cloud forest. We offer a range of accommodation options —double, triple and family cabins— designed to give you the warmth of home. All of our cabins come with the amenities you need to fully experience the biodiversity and serenity of the Colombian Andes.",
+      "cta": "Book Now"
+    },
+    "gallery": [
+      "/img/cabana-1.jpg",
+      "/img/cabana-2.jpg",
+      "/img/cabana-3.jpg",
+      "/img/cabana-4.jpg",
+      "/img/cabana-5.jpg",
+      "/img/hab-02.jpg",
+      "/img/hab-06.jpg"
+    ],
+    "amenidades": {
+      "title": "Amenities",
+      "items": [
+        { "label": "Mountain view", "icon": "mountain" },
+        { "label": "Tub", "icon": "tub" },
+        { "label": "Outdoor shower", "icon": "shower" },
+        { "label": "Safe", "icon": "safe" },
+        { "label": "Deck", "icon": "deck" },
+        { "label": "Exterior netting", "icon": "net" },
+        { "label": "Luxury linens", "icon": "towels" },
+        { "label": "Minibar", "icon": "minibar" },
+        { "label": "Espadrilles", "icon": "sandals" },
+        { "label": "Closet / Rack", "icon": "hanger" }
+      ]
+    }
+  },
+  "footer": {
+    "tagline": "Sustainable boutique hotel near Bogotá",
+    "address": "Finca Las Nubes, Vereda San Cayetano, Zipacón, Cundinamarca, Colombia",
+    "explore": "Explore",
+    "contact_title": "Contact",
+    "legal_title": "Legal",
+    "terms": "Terms & Conditions",
+    "privacy": "Data processing policy",
+    "rights": "All rights reserved"
+  }
+}

@@ -1,0 +1,398 @@
+@import "tailwindcss";
+
+/* =============================================================================
+   La Palma y el Tucán Hotel — design system
+   Tailwind v4 CSS-first. Tokens en @theme, componentes via @utility.
+   ========================================================================== */
+
+@theme {
+  /* Paleta del hotel (verde forest + cream + gold) */
+  --color-forest: #1f3a2e;
+  --color-forest-dark: #122218;
+  --color-forest-light: #2d5340;
+  --color-moss: #4a6b5c;
+  --color-sage: #b8c9ba;
+  --color-cream: #f5f0e6;
+  --color-paper: #fbf8f1;
+  --color-gold: #c9a961;
+  --color-gold-soft: #e8d9a8;
+  --color-ink: #1a1a1a;
+  --color-ink-soft: #4a4a4a;
+
+  /* Curvas generosas (modernización) */
+  --radius-pill: 9999px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-2xl: 36px;
+
+  /* Sombras suaves */
+  --shadow-soft: 0 12px 40px -16px rgba(31, 58, 46, 0.18);
+  --shadow-card: 0 18px 60px -24px rgba(31, 58, 46, 0.22);
+  --shadow-lift: 0 24px 70px -28px rgba(31, 58, 46, 0.28);
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  /* ───────────────────────────────────────────────────────────────────────
+     CONTROL GLOBAL DE VELOCIDAD DE ANIMACIONES
+     Todas las animaciones/transiciones se multiplican por --anim-scale.
+       1   = producción (ágil)
+       2   = lento (para revisar y detallar)
+       0.5 = doble de rápido
+     Cambia SOLO este número para ajustar todo el sitio.
+     ─────────────────────────────────────────────────────────────────────── */
+  :root { --anim-scale: 2.5; }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+  }
+  ::selection {
+    background: rgba(74, 107, 92, 0.22);
+    color: var(--color-forest-dark);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif), Baskervville, Georgia, "Times New Roman", serif;
+    color: var(--color-forest-dark);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+}
+
+@utility container-wide {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 48px);
+}
+
+@utility container-prose {
+  max-width: 65ch;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 32px);
+}
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-pill);
+  transition: all 0.25s var(--ease-out-soft);
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+@utility btn-primary {
+  background: var(--color-forest);
+  color: var(--color-paper);
+  box-shadow: 0 4px 14px -4px rgba(31, 58, 46, 0.18);
+}
+
+@utility btn-gold {
+  background: var(--color-gold);
+  color: var(--color-forest-dark);
+  box-shadow: 0 4px 14px -4px rgba(201, 169, 97, 0.45);
+}
+
+@utility btn-outline-light {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.7);
+  color: #ffffff;
+}
+
+@utility btn-outline-dark {
+  background: transparent;
+  border-color: rgba(31, 58, 46, 0.25);
+  color: var(--color-forest);
+}
+
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -8px rgba(31, 58, 46, 0.28); }
+.btn-primary:hover { background: var(--color-forest-dark); }
+.btn-gold:hover { background: #b8985a; }
+.btn-outline-light:hover { background: #ffffff; color: var(--color-forest-dark); }
+.btn-outline-dark:hover { background: var(--color-forest); color: var(--color-paper); border-color: var(--color-forest); }
+.btn:active { transform: translateY(0); }
+
+@utility card-soft {
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.35s var(--ease-out-soft), box-shadow 0.35s var(--ease-out-soft);
+}
+.card-soft:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+@utility img-rounded {
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+}
+
+/* Hojas decorativas — entrada amplia + balanceo natural continuo */
+@keyframes leaf-entrance {
+  0%   { opacity: 0; transform: translate(120px, 50px) rotate(-8deg) scale(0.85); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: translate(0, 0) rotate(0) scale(1); }
+}
+@keyframes leaf-sway {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  25%      { transform: translate(-10px, -18px) rotate(3deg); }
+  50%      { transform: translate(0, -8px) rotate(0); }
+  75%      { transform: translate(10px, -14px) rotate(-2.5deg); }
+}
+.leaf-animated {
+  animation:
+    leaf-entrance calc(2.4s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) both,
+    leaf-sway calc(7s * var(--anim-scale)) ease-in-out calc(2.4s * var(--anim-scale)) infinite;
+  will-change: transform, opacity;
+}
+.leaf-animated-2 {
+  animation:
+    leaf-entrance calc(2.6s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) calc(0.2s * var(--anim-scale)) both,
+    leaf-sway calc(9s * var(--anim-scale)) ease-in-out calc(2.8s * var(--anim-scale)) infinite;
+  will-change: transform, opacity;
+}
+.leaf-animated-3 {
+  animation:
+    leaf-entrance calc(2.8s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) calc(0.4s * var(--anim-scale)) both,
+    leaf-sway calc(8s * var(--anim-scale)) ease-in-out calc(3.2s * var(--anim-scale)) infinite reverse;
+  will-change: transform, opacity;
+}
+.leaf-animated-4 {
+  animation:
+    leaf-entrance calc(2.5s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) calc(0.3s * var(--anim-scale)) both,
+    leaf-sway calc(10s * var(--anim-scale)) ease-in-out calc(3s * var(--anim-scale)) infinite;
+  will-change: transform, opacity;
+}
+@media (prefers-reduced-motion: reduce) {
+  .leaf-animated,
+  .leaf-animated-2,
+  .leaf-animated-3,
+  .leaf-animated-4 { animation: none; opacity: 1; }
+}
+
+/* ─── Animaciones de scroll (fade-in + slide-up) ───────────────────────── */
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.scroll-fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity calc(0.8s * var(--anim-scale)) cubic-bezier(0.16, 1, 0.3, 1),
+              transform calc(0.8s * var(--anim-scale)) cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-fade.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-fade { opacity: 1; transform: none; transition: none; }
+}
+
+/* ─── Skeleton loader (shimmer) ────────────────────────────────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(
+    100deg,
+    #e8e0d0 0%,
+    #f0eadb 30%,
+    #f8f3e6 50%,
+    #f0eadb 70%,
+    #e8e0d0 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+  border-radius: 6px;
+}
+.page-load-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: #fbf8f1;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+.page-load-overlay.fading-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ─── Transiciones entre rutas ─────────────────────────────────────────── */
+@keyframes route-fade-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.route-shell {
+  animation: route-fade-in calc(650ms * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-shell { animation: none; }
+}
+
+/* ─── Stagger Amenidades ───────────────────────────────────────────────── */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(32px);
+  transition-property: opacity, transform;
+  transition-duration: calc(1100ms * var(--anim-scale)), calc(1100ms * var(--anim-scale));
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--stagger-delay, 0ms) * var(--anim-scale));
+}
+.stagger-item.is-shown {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .stagger-item { opacity: 1; transform: none; transition: none; }
+}
+
+/* ─── Hover zoom en imágenes (galerías, marquee, cards) ────────────────── */
+@utility hover-zoom {
+  overflow: hidden;
+}
+.hover-zoom img {
+  transition: transform calc(0.7s * var(--anim-scale)) var(--ease-out-soft), filter calc(0.7s * var(--anim-scale)) var(--ease-out-soft);
+  will-change: transform;
+}
+.hover-zoom:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.05);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hover-zoom img { transition: none; }
+  .hover-zoom:hover img { transform: none; filter: none; }
+}
+
+/* Fade del carrusel autoplay (experiencias) — escala con --anim-scale */
+.carousel-img {
+  transition: opacity calc(1000ms * var(--anim-scale)) ease;
+}
+/* Zoom de las imágenes de "Nuestros espacios" — escala con --anim-scale */
+.exp-zoom {
+  transition: transform calc(700ms * var(--anim-scale)) var(--ease-out-soft);
+}
+@media (prefers-reduced-motion: reduce) {
+  .carousel-img, .exp-zoom { transition: none; }
+}
+
+/* ─── Chevron animado (invita a bajar en los heros) ────────────────────── */
+@keyframes chevron-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.85; }
+  50%      { transform: translateY(10px); opacity: 0.45; }
+}
+.scroll-chevron {
+  animation: chevron-bounce calc(2s * var(--anim-scale)) ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-chevron { animation: none; }
+}
+
+/* ─── Validación del formulario (shake en error + check en éxito) ──────── */
+@keyframes form-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-9px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(4px); }
+}
+.form-shake {
+  animation: form-shake calc(0.5s * var(--anim-scale)) cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+@keyframes success-pop {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.success-check {
+  animation: success-pop calc(0.5s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes check-draw {
+  to { stroke-dashoffset: 0; }
+}
+.check-path {
+  stroke-dasharray: 26;
+  stroke-dashoffset: 26;
+  animation: check-draw calc(0.45s * var(--anim-scale)) calc(0.25s * var(--anim-scale)) ease-out forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .form-shake, .success-check { animation: none; }
+  .check-path { stroke-dashoffset: 0; animation: none; }
+}
+
+/* ─── Modal "Ver más" (overlay + tarjeta) ──────────────────────────────── */
+@keyframes modal-overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes modal-card-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes modal-overlay-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes modal-card-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(24px) scale(0.95); }
+}
+.modal-overlay {
+  animation: modal-overlay-in calc(0.3s * var(--anim-scale)) ease both;
+}
+.modal-card {
+  animation: modal-card-in calc(0.45s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.modal-overlay-out {
+  animation: modal-overlay-out calc(0.35s * var(--anim-scale)) ease both;
+}
+.modal-card-out {
+  animation: modal-card-out calc(0.32s * var(--anim-scale)) cubic-bezier(0.5, 0, 0.75, 0) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay, .modal-card, .modal-overlay-out, .modal-card-out { animation: none; }
+}
+
+/* ─── Botón flotante de WhatsApp ───────────────────────────────────────── */
+@keyframes fab-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.8); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.whatsapp-fab {
+  animation: fab-in calc(0.5s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) calc(0.4s * var(--anim-scale)) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-fab { animation: none; }
+}
+
+/* Marquee auto-scroll continuo (carrusel de cabañas) */
+@keyframes scroll-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: scroll-marquee calc(60s * var(--anim-scale)) linear infinite;
+  width: max-content;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
