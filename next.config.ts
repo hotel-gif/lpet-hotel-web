@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   ...(isStaticExport ? { output: "export", trailingSlash: true } : {}),
   ...(basePath ? { basePath, assetPrefix: basePath } : {}),
   images: isStaticExport
-    ? { unoptimized: true }
+    ? { loader: "custom", loaderFile: "./image-loader.ts" }
     : { formats: ["image/avif", "image/webp"] },
 };
 
