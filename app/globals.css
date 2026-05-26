@@ -43,7 +43,7 @@
        0.5 = doble de rápido
      Cambia SOLO este número para ajustar todo el sitio.
      ─────────────────────────────────────────────────────────────────────── */
-  :root { --anim-scale: 2.5; }
+  :root { --anim-scale: 1; }
 
   html { scroll-behavior: smooth; }
   body {
