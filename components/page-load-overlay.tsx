@@ -11,23 +11,39 @@ export function PageLoadOverlay() {
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    let safetyTimer: NodeJS.Timeout;
+    // Duracion de salida sincronizada con el CSS (0.55s * --anim-scale).
+    const scaleRaw = getComputedStyle(document.documentElement)
+      .getPropertyValue("--anim-scale")
+      .trim();
+    const scale = parseFloat(scaleRaw) || 1;
+    const OUT_MS = 550 * scale;
+
+    let startTimer: ReturnType<typeof setTimeout>;
+    let unmountTimer: ReturnType<typeof setTimeout>;
+
     function startFadeOut() {
       setFading(true);
-      setTimeout(() => setVisible(false), 500);
+      unmountTimer = setTimeout(() => setVisible(false), OUT_MS + 40);
     }
+
     if (document.readyState === "complete") {
-      const t = setTimeout(startFadeOut, 200);
-      return () => clearTimeout(t);
+      startTimer = setTimeout(startFadeOut, 180);
+      return () => {
+        clearTimeout(startTimer);
+        clearTimeout(unmountTimer);
+      };
     }
+
     function onLoad() {
-      setTimeout(startFadeOut, 250);
+      startTimer = setTimeout(startFadeOut, 220);
     }
     window.addEventListener("load", onLoad, { once: true });
-    safetyTimer = setTimeout(startFadeOut, 1500);
+    const safetyTimer = setTimeout(startFadeOut, 1500);
     return () => {
       window.removeEventListener("load", onLoad);
       clearTimeout(safetyTimer);
+      clearTimeout(startTimer);
+      clearTimeout(unmountTimer);
     };
   }, []);
 

@@ -6,7 +6,7 @@ export function HeroEventos({ m }: { m: Dictionary }) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <HeroBackground
-        src="/img/eventos.jpg"
+        src="/img/eventos-hero.jpg"
         gradientClass="bg-gradient-to-b from-forest-dark/35 via-forest-dark/40 to-forest-dark/55"
       />
 

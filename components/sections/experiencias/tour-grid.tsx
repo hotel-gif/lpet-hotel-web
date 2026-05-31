@@ -25,7 +25,7 @@ export function TourGrid({ m }: { m: Dictionary }) {
               >
                 {item.label}
               </h3>
-              <div className="relative aspect-[3/4] overflow-hidden">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
                 <Image
                   src={item.image}
                   alt={item.label}

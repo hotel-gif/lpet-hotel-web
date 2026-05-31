@@ -33,7 +33,7 @@ export function BlockSplit({ block }: { block: Block }) {
       <div className="container-wide">
         <div className="grid md:grid-cols-2 gap-10 md:gap-14 lg:gap-20 items-center">
           <div
-            className={`relative aspect-[4/3] md:aspect-[4/5] ${
+            className={`relative aspect-[4/3] md:aspect-[4/5] overflow-hidden rounded-2xl ${
               isImageLeft ? "md:order-1" : "md:order-2"
             }`}
           >

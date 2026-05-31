@@ -6,7 +6,7 @@ export function HeroExperiencias({ m }: { m: Dictionary }) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <HeroBackground
-        src="/img/hero.webp"
+        src="/img/experiencias-hero.jpg"
         gradientClass="bg-gradient-to-b from-forest-dark/35 via-forest-dark/35 to-forest-dark/55"
       />
 

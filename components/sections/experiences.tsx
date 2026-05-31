@@ -37,7 +37,7 @@ export function Experiences({ m }: { m: Dictionary }) {
               >
                 {space.label}
               </h3>
-              <div className="relative aspect-[3/4] overflow-hidden">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
                 <Image
                   src={space.image}
                   alt={space.label}

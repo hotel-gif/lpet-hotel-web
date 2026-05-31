@@ -19,16 +19,16 @@ export function HomeContent({ m }: { m: Dictionary }) {
       <AnimateOnScroll>
         <Intro m={m} />
       </AnimateOnScroll>
-      <AnimateOnScroll>
+      <AnimateOnScroll softExit>
         <Cabanas m={m} />
       </AnimateOnScroll>
       <AnimateOnScroll>
         <Experiences m={m} />
       </AnimateOnScroll>
-      <AnimateOnScroll>
+      <AnimateOnScroll softExit>
         <Sustainability m={m} />
       </AnimateOnScroll>
-      <AnimateOnScroll>
+      <AnimateOnScroll softExit>
         <Community m={m} />
       </AnimateOnScroll>
       <AnimateOnScroll>

@@ -1,6 +1,7 @@
 import { HeroContacto } from "@/components/sections/contacto/hero-contacto";
 import { ContactoForm } from "@/components/sections/contacto/contacto-form";
 import { AnimateOnScroll } from "@/components/animate-on-scroll";
+import { SOCIAL } from "@/lib/social";
 import type { Dictionary } from "@/lib/i18n";
 
 export function ContactoContent({ m }: { m: Dictionary }) {
@@ -55,6 +56,25 @@ export function ContactoContent({ m }: { m: Dictionary }) {
               <ContactoForm m={m} />
             </AnimateOnScroll>
           </div>
+
+          <AnimateOnScroll>
+            <div className="mt-16 md:mt-20 flex items-center justify-center gap-6">
+              {SOCIAL.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={s.label}
+                  className="text-forest-dark/80 hover:text-forest transition-colors"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path d={s.path} />
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </AnimateOnScroll>
         </div>
       </section>
     </>

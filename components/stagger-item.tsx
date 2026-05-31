@@ -15,17 +15,22 @@ export function StaggerItem({ delay = 0, className = "", children }: Props) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const safety = window.setTimeout(() => setShown(true), 1200);
     const obs = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
           setShown(true);
           obs.disconnect();
+          clearTimeout(safety);
         }
       },
       { threshold: 0.25, rootMargin: "0px 0px -60px 0px" }
     );
     obs.observe(el);
-    return () => obs.disconnect();
+    return () => {
+      obs.disconnect();
+      clearTimeout(safety);
+    };
   }, []);
 
   return (

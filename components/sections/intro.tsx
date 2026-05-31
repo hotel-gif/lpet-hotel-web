@@ -7,7 +7,7 @@ export function Intro({ m }: { m: Dictionary }) {
     <section id="intro" className="py-20 md:py-28 bg-cream">
       <div className="container-wide grid md:grid-cols-2 gap-12 md:gap-16 items-center max-w-6xl mx-auto">
         {/* Imagen izquierda — más pequeña, aspect cuadrado */}
-        <div className="relative aspect-[4/5] max-w-md mx-auto md:max-w-none w-full overflow-hidden rounded-md">
+        <div className="relative aspect-[4/5] max-w-md mx-auto md:max-w-none w-full overflow-hidden rounded-2xl">
           <Image
             src="/img/intro-hotel.jpg"
             alt="La Palma y El Tucán Hotel"

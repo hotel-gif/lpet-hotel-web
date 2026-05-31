@@ -5,17 +5,7 @@ import { useState } from "react";
 import type { Dictionary } from "@/lib/i18n";
 
 export function Newsletter({ m }: { m: Dictionary }) {
-  const t = m.newsletter as {
-    title_part1: string;
-    title_highlight: string;
-    title_part2: string;
-    lead: string;
-    name_placeholder: string;
-    email_placeholder: string;
-    terms: string;
-    cta_label: string;
-    report_abuse: string;
-  };
+  const t = m.newsletter;
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -51,18 +41,19 @@ export function Newsletter({ m }: { m: Dictionary }) {
           {/* Modal blanco */}
           <div className="relative z-10 max-w-2xl w-full mx-4 p-10 md:p-16 bg-white shadow-xl">
             <h2 className="text-2xl md:text-3xl lg:text-[2rem] text-center mb-6 leading-snug text-forest-dark">
-              ¿Listo para visitar La Palma y El Tucán Hotel? ¡Suscríbete y obtén un{" "}
-              <strong className="font-bold">10% de descuento</strong>!
+              {t.title_part1}
+              <strong className="font-bold">{t.title_highlight}</strong>
+              {t.title_part2}
             </h2>
             <p className="text-sm md:text-base text-ink-soft text-center mb-10 leading-relaxed max-w-md mx-auto">
-              Regístrate para recibir ofertas exclusivas para alojamiento o eventos en nuestro hotel.
+              {t.lead}
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Nombre — label arriba */}
               <div>
                 <label htmlFor="nl-name" className="block text-sm text-ink-soft mb-2 font-medium">
-                  Nombre - Name
+                  {t.name_placeholder}
                 </label>
                 <input
                   id="nl-name"
@@ -98,28 +89,24 @@ export function Newsletter({ m }: { m: Dictionary }) {
                   required
                 />
                 <span>
-                  Acepto los Términos de Uso <span className="text-red-500">*</span>
+                  {t.terms} <span className="text-red-500">*</span>
                 </span>
               </label>
 
-              <button
-                type="submit"
-                className="w-full mt-2 py-3.5 text-base font-medium text-white rounded-sm transition-colors hover:opacity-90"
-                style={{ backgroundColor: "#1a73e8" }}
-              >
-                Newsletter
+              <button type="submit" className="btn btn-primary w-full mt-2">
+                {t.cta}
               </button>
             </form>
 
             <div className="text-center mt-5">
               <a href="#" className="text-[11px] text-ink-soft/60 hover:text-ink-soft underline">
-                Reportar un abuso
+                {t.report_abuse}
               </a>
             </div>
 
             {sent && (
-              <p className="mt-4 text-sm text-forest text-center">
-                ✓ ¡Gracias! Te enviaremos las ofertas pronto.
+              <p className="mt-4 text-sm text-forest text-center" aria-live="polite">
+                ✓ {t.success}
               </p>
             )}
           </div>

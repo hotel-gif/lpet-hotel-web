@@ -39,6 +39,8 @@ export function ContactoForm({ m }: { m: Dictionary }) {
   if (status === "success") {
     return (
       <div
+        role="status"
+        aria-live="polite"
         className="success-check bg-paper border border-forest-dark/15 p-8 md:p-10 flex flex-col items-center text-center"
         style={{ fontFamily: "var(--font-gotham), sans-serif" }}
       >
@@ -61,7 +63,7 @@ export function ContactoForm({ m }: { m: Dictionary }) {
           onClick={() => setStatus("idle")}
           className="mt-6 text-sm text-forest underline"
         >
-          Enviar otro mensaje
+          {t.send_another}
         </button>
       </div>
     );
@@ -82,12 +84,14 @@ export function ContactoForm({ m }: { m: Dictionary }) {
         <input
           name="first_name"
           required
+          aria-label={t.first_name}
           placeholder={t.first_name}
           className={inputClass}
         />
         <input
           name="last_name"
           required
+          aria-label={t.last_name}
           placeholder={t.last_name}
           className={inputClass}
         />
@@ -96,14 +100,16 @@ export function ContactoForm({ m }: { m: Dictionary }) {
         name="email"
         type="email"
         required
+        aria-label={t.email}
         placeholder={t.email}
         className={inputClass}
       />
-      <input name="subject" placeholder={t.subject} className={inputClass} />
+      <input name="subject" aria-label={t.subject} placeholder={t.subject} className={inputClass} />
       <textarea
         name="message"
         required
         rows={6}
+        aria-label={t.message}
         placeholder={t.message}
         className={`${inputClass} resize-none`}
       />
@@ -112,10 +118,10 @@ export function ContactoForm({ m }: { m: Dictionary }) {
         disabled={status === "submitting"}
         className="inline-flex items-center justify-center bg-forest-dark text-paper px-10 py-3.5 text-sm tracking-[0.05em] hover:bg-forest transition-colors disabled:opacity-60"
       >
-        {status === "submitting" ? "Enviando..." : t.submit}
+        {status === "submitting" ? t.sending : t.submit}
       </button>
       {status === "error" && (
-        <p className="text-sm text-[#a14a5a] mt-2">{t.error}</p>
+        <p className="text-sm text-[#a14a5a] mt-2" role="alert">{t.error}</p>
       )}
     </form>
   );

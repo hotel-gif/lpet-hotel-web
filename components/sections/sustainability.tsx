@@ -63,7 +63,7 @@ export function Sustainability({ m }: { m: Dictionary }) {
 
         <div className="container-wide max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl mb-8 leading-[1.15] text-paper whitespace-pre-line">
-            Nuestra{"\n"}sostenibilidad
+            {t.title}
           </h2>
           <p className="text-cream/90 leading-relaxed mb-5">{t.p1}</p>
           <p className="text-cream/90 leading-relaxed">{t.p2}</p>

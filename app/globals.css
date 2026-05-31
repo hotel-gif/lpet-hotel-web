@@ -57,6 +57,12 @@
     background: rgba(74, 107, 92, 0.22);
     color: var(--color-forest-dark);
   }
+  /* Foco visible global (accesibilidad por teclado) */
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif), Baskervville, Georgia, "Times New Roman", serif;
     color: var(--color-forest-dark);
@@ -88,11 +94,17 @@
   font-weight: 500;
   letter-spacing: 0.02em;
   border-radius: var(--radius-pill);
-  transition: all 0.25s var(--ease-out-soft);
+  transition:
+    transform calc(0.25s * var(--anim-scale)) var(--ease-out-soft),
+    box-shadow calc(0.25s * var(--anim-scale)) var(--ease-out-soft),
+    background-color calc(0.25s * var(--anim-scale)) var(--ease-out-soft),
+    border-color calc(0.25s * var(--anim-scale)) var(--ease-out-soft),
+    color calc(0.25s * var(--anim-scale)) var(--ease-out-soft);
   cursor: pointer;
   border: 1px solid transparent;
   text-decoration: none;
   white-space: nowrap;
+  position: relative;
 }
 
 @utility btn-primary {
@@ -124,7 +136,29 @@
 .btn-gold:hover { background: #b8985a; }
 .btn-outline-light:hover { background: #ffffff; color: var(--color-forest-dark); }
 .btn-outline-dark:hover { background: var(--color-forest); color: var(--color-paper); border-color: var(--color-forest); }
-.btn:active { transform: translateY(0); }
+.btn:active { transform: translateY(0) scale(0.97); transition-duration: calc(0.08s * var(--anim-scale)); }
+
+/* Anillo de foco animado (solo teclado) */
+.btn:focus-visible { outline: none; }
+.btn:focus-visible::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid var(--color-gold);
+  animation: btn-ring-in calc(0.35s * var(--anim-scale)) var(--ease-out-soft) both;
+  pointer-events: none;
+}
+@keyframes btn-ring-in {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+  .btn:hover, .btn:active { transform: none; }
+  .btn:focus-visible::after { animation: none; }
+  .btn:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
+}
 
 @utility card-soft {
   background: white;
@@ -190,19 +224,67 @@
   0% { opacity: 0; transform: translateY(40px); }
   100% { opacity: 1; transform: translateY(0); }
 }
-.scroll-fade {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity calc(0.8s * var(--anim-scale)) cubic-bezier(0.16, 1, 0.3, 1),
-              transform calc(0.8s * var(--anim-scale)) cubic-bezier(0.16, 1, 0.3, 1);
+/* Por defecto NADA se oculta (fallback seguro si el JS no corre).
+   Solo cuando el JS confirma que vive (html.js-ready) aplicamos el estado
+   inicial oculto que luego revela el IntersectionObserver. */
+.scroll-fade { opacity: 1; transform: none; }
+html.js-ready .scroll-fade {
+  /* A2 · Blur-in sutil one-shot: entra apenas desenfocada y enfoca. */
+  opacity: 0.001;
+  transform: translateY(6px) scale(0.992);
+  filter: blur(4px);
+  transition: opacity calc(1s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1),
+              transform calc(1s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1),
+              filter calc(1s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform, filter;
 }
-.scroll-fade.in-view {
+html.js-ready .scroll-fade.in-view {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  filter: blur(0);
 }
 @media (prefers-reduced-motion: reduce) {
-  .scroll-fade { opacity: 1; transform: none; transition: none; }
+  .scroll-fade, html.js-ready .scroll-fade { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
 }
+
+/* SALIDA sutil al abandonar el viewport (modo repeat de AnimateOnScroll).
+   Se atenua sin llegar a 0 para no parpadear; reanima al volver. */
+html.js-ready .scroll-fade[data-repeat="true"].is-leaving {
+  opacity: 0.55;
+  transform: translateY(16px);
+  filter: blur(2px);
+  transition: opacity calc(0.5s * var(--anim-scale)) ease,
+              transform calc(0.5s * var(--anim-scale)) ease,
+              filter calc(0.5s * var(--anim-scale)) ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js-ready .scroll-fade[data-repeat="true"].is-leaving {
+    opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important;
+  }
+}
+
+/* ─── Reveal LIGADO AL SCROLL (entrada + salida continuas segun la posicion
+   del usuario) en navegadores con scroll-driven animations (Edge/Chrome/Safari
+   recientes). Reemplaza el toggle JS donde esta disponible; el resto cae al
+   IntersectionObserver de arriba. El fade va al ritmo del scroll, no de un
+   cronometro, asi que no se siente "rapido". ──────────────────────────────── */
+@keyframes reveal-scroll {
+  entry 0%   { opacity: 0; transform: translateY(44px); }
+  entry 65%  { opacity: 1; transform: translateY(0); }
+  exit 35%   { opacity: 1; transform: translateY(0); }
+  exit 100%  { opacity: 0; transform: translateY(-28px); }
+}
+/* Variante para secciones de fondo a color: misma entrada, pero la SALIDA solo
+   atenua un poco (no se desvanece del todo) para no dejar ver el fondo detras. */
+@keyframes reveal-scroll-soft {
+  entry 0%   { opacity: 0; transform: translateY(44px); }
+  entry 65%  { opacity: 1; transform: translateY(0); }
+  exit 35%   { opacity: 1; transform: translateY(0); }
+  exit 100%  { opacity: 0.72; transform: translateY(-12px); }
+}
+/* Reveal one-shot via IntersectionObserver (blur-in de arriba). El scroll-driven
+   con fase de SALIDA fue eliminado a pedido del usuario: el contenido se revela
+   una sola vez y se queda (sin atenuarse al salir, que era lo que mareaba). */
 
 /* ─── Skeleton loader (shimmer) ────────────────────────────────────────── */
 @keyframes shimmer {
@@ -229,58 +311,121 @@
   background: #fbf8f1;
   overflow: hidden;
   opacity: 1;
-  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1);
+  will-change: opacity, transform;
+  transition:
+    opacity calc(0.55s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1),
+    transform calc(0.55s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1),
+    filter calc(0.55s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: auto;
 }
 .page-load-overlay.fading-out {
   opacity: 0;
+  transform: scale(1.02);
+  filter: blur(4px);
   pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-load-overlay { transition: opacity 0.01ms linear; }
+  .page-load-overlay.fading-out { transform: none; filter: none; }
 }
 
 /* ─── Transiciones entre rutas ─────────────────────────────────────────── */
 @keyframes route-fade-in {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(8px); filter: blur(3px); }
+  60%  { opacity: 1; }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 .route-shell {
+  /* El contenido cruza como grupo propio cuando hay View Transitions
+     (header/footer fijos quedan fuera y no parpadean). */
+  view-transition-name: route-content;
+}
+/* Fallback: navegadores SIN View Transitions -> fade-in del contenido nuevo
+   (el hook anade .vt a <html> cuando la API existe). */
+html:not(.vt) .route-shell {
   animation: route-fade-in calc(650ms * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 @media (prefers-reduced-motion: reduce) {
   .route-shell { animation: none; }
 }
 
+/* View Transitions API — crossfade fino al navegar (C1): poco desplazamiento,
+   micro-blur, y la entrada solapa la salida para un crossfade real. */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none; }
+  ::view-transition-old(route-content) {
+    animation: vt-content-out calc(380ms * var(--anim-scale)) cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  ::view-transition-new(route-content) {
+    animation: vt-content-in calc(560ms * var(--anim-scale)) var(--ease-out-soft) both;
+    animation-delay: calc(120ms * var(--anim-scale));
+  }
+}
+@keyframes vt-content-out {
+  from { opacity: 1; transform: translateY(0); filter: blur(0); }
+  to   { opacity: 0; transform: translateY(-6px); filter: blur(2px); }
+}
+@keyframes vt-content-in {
+  from { opacity: 0; transform: translateY(8px); filter: blur(3px); }
+  60%  { opacity: 1; }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(route-content),
+  ::view-transition-new(route-content),
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none !important; }
+}
+
 /* ─── Stagger Amenidades ───────────────────────────────────────────────── */
-.stagger-item {
+.stagger-item { opacity: 1; transform: none; }
+html.js-ready .stagger-item {
   opacity: 0;
   transform: translateY(32px);
   transition-property: opacity, transform;
   transition-duration: calc(1100ms * var(--anim-scale)), calc(1100ms * var(--anim-scale));
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: calc(var(--stagger-delay, 0ms) * var(--anim-scale));
+  will-change: opacity, transform;
 }
-.stagger-item.is-shown {
+html.js-ready .stagger-item.is-shown {
   opacity: 1;
   transform: translateY(0);
 }
 @media (prefers-reduced-motion: reduce) {
-  .stagger-item { opacity: 1; transform: none; transition: none; }
+  .stagger-item, html.js-ready .stagger-item { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
 
 /* ─── Hover zoom en imágenes (galerías, marquee, cards) ────────────────── */
 @utility hover-zoom {
   overflow: hidden;
+  /* elevacion sutil del marco; vuelta a reposo algo mas lenta */
+  transition: transform calc(0.6s * var(--anim-scale)) var(--ease-out-soft),
+              box-shadow calc(0.6s * var(--anim-scale)) var(--ease-out-soft);
 }
 .hover-zoom img {
-  transition: transform calc(0.7s * var(--anim-scale)) var(--ease-out-soft), filter calc(0.7s * var(--anim-scale)) var(--ease-out-soft);
+  /* SALIDA (vuelta a reposo) mas lenta y suave: la imagen "se asienta" */
+  transition: transform calc(0.8s * var(--anim-scale)) var(--ease-out-soft),
+              filter calc(0.8s * var(--anim-scale)) var(--ease-out-soft);
   will-change: transform;
 }
 .hover-zoom:hover img {
   transform: scale(1.06);
   filter: brightness(1.05);
+  /* ENTRADA un poco mas rapida/punchy que la vuelta */
+  transition-duration: calc(0.55s * var(--anim-scale)), calc(0.55s * var(--anim-scale));
+}
+.hover-zoom:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 50px -24px rgba(0, 0, 0, 0.45);
 }
 @media (prefers-reduced-motion: reduce) {
+  .hover-zoom { transition: none; }
   .hover-zoom img { transition: none; }
   .hover-zoom:hover img { transform: none; filter: none; }
+  .hover-zoom:hover { transform: none; box-shadow: none; }
 }
 
 /* Fade del carrusel autoplay (experiencias) — escala con --anim-scale */
@@ -297,14 +442,23 @@
 
 /* ─── Chevron animado (invita a bajar en los heros) ────────────────────── */
 @keyframes chevron-bounce {
-  0%, 100% { transform: translateY(0); opacity: 0.85; }
-  50%      { transform: translateY(10px); opacity: 0.45; }
+  0%   { transform: translateY(0); opacity: 0.9; }
+  20%  { transform: translateY(0); opacity: 0.9; }
+  55%  { transform: translateY(8px); opacity: 0.45; }
+  100% { transform: translateY(0); opacity: 0.9; }
 }
 .scroll-chevron {
-  animation: chevron-bounce calc(2s * var(--anim-scale)) ease-in-out infinite;
+  animation: chevron-bounce calc(2.2s * var(--anim-scale)) cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  transition: color calc(0.25s * var(--anim-scale)) var(--ease-out-soft);
 }
+.scroll-chevron svg {
+  transition: transform calc(0.3s * var(--anim-scale)) var(--ease-out-soft);
+}
+.scroll-chevron:hover svg { transform: translateY(3px) scale(1.12); }
 @media (prefers-reduced-motion: reduce) {
   .scroll-chevron { animation: none; }
+  .scroll-chevron svg { transition: none; }
+  .scroll-chevron:hover svg { transform: none; }
 }
 
 /* ─── Validación del formulario (shake en error + check en éxito) ──────── */
@@ -354,7 +508,7 @@
 }
 @keyframes modal-card-out {
   from { opacity: 1; transform: translateY(0) scale(1); }
-  to   { opacity: 0; transform: translateY(24px) scale(0.95); }
+  to   { opacity: 0; transform: translateY(14px) scale(0.96); }
 }
 .modal-overlay {
   animation: modal-overlay-in calc(0.3s * var(--anim-scale)) ease both;
@@ -363,10 +517,10 @@
   animation: modal-card-in calc(0.45s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .modal-overlay-out {
-  animation: modal-overlay-out calc(0.35s * var(--anim-scale)) ease both;
+  animation: modal-overlay-out calc(0.3s * var(--anim-scale)) ease both;
 }
 .modal-card-out {
-  animation: modal-card-out calc(0.32s * var(--anim-scale)) cubic-bezier(0.5, 0, 0.75, 0) both;
+  animation: modal-card-out calc(0.34s * var(--anim-scale)) cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 @media (prefers-reduced-motion: reduce) {
   .modal-overlay, .modal-card, .modal-overlay-out, .modal-card-out { animation: none; }
@@ -378,10 +532,20 @@
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 .whatsapp-fab {
-  animation: fab-in calc(0.5s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) calc(0.4s * var(--anim-scale)) both;
+  /* Mostrado/recogido por scroll (clase .is-hidden); transicion suave. */
+  transition:
+    transform calc(0.4s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1),
+    opacity calc(0.4s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Recogido en el tope (solo con JS activo -> sin JS el FAB queda visible). */
+html.js-ready .whatsapp-fab.is-hidden {
+  opacity: 0;
+  transform: translateY(16px) scale(0.85);
+  pointer-events: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  .whatsapp-fab { animation: none; }
+  .whatsapp-fab { transition: none; }
+  html.js-ready .whatsapp-fab.is-hidden { opacity: 1; transform: none; pointer-events: auto; }
 }
 
 /* Marquee auto-scroll continuo (carrusel de cabañas) */
@@ -392,7 +556,67 @@
 .marquee-track {
   animation: scroll-marquee calc(60s * var(--anim-scale)) linear infinite;
   width: max-content;
+  transition: filter calc(0.4s * var(--anim-scale)) var(--ease-out-soft);
+}
+/* Al pasar el cursor o enfocar: realce sutil. La RALENTIZACION suave la hace
+   MarqueeZone via Web Animations API (playbackRate), no el CSS, para evitar saltos. */
+.marquee-zone:hover .marquee-track,
+.marquee-zone:focus-within .marquee-track {
+  filter: saturate(1.06) brightness(1.02);
 }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
+}
+
+/* ═══ Pulido sutil de animaciones ════════════════════════════════════════ */
+/* B1 · Subrayado dorado animado en enlaces inactivos del nav */
+@utility nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 1.5px;
+  width: 100%;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform calc(0.4s * var(--anim-scale)) var(--ease-out-soft);
+  pointer-events: none;
+}
+.nav-underline:hover::after,
+.nav-underline:focus-visible::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .nav-underline::after { transition: none; }
+}
+
+/* B3 · Aparición one-shot del header al cargar (logo, nav, CTA escalonados) */
+@keyframes header-enter {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.header-enter > * {
+  animation: header-enter calc(0.7s * var(--anim-scale)) var(--ease-out-soft) both;
+}
+.header-enter > *:nth-child(1) { animation-delay: calc(0.05s * var(--anim-scale)); }
+.header-enter > *:nth-child(2) { animation-delay: calc(0.14s * var(--anim-scale)); }
+.header-enter > *:nth-child(3) { animation-delay: calc(0.22s * var(--anim-scale)); }
+@media (prefers-reduced-motion: reduce) {
+  .header-enter > * { animation: none; }
+}
+
+/* C2 · Ken-burns muy leve en la imagen del hero (no en video) */
+@keyframes hero-kenburns {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to   { transform: scale(1.045) translate3d(0, -1.2%, 0); }
+}
+.hero-kenburns {
+  animation: hero-kenburns calc(22s * var(--anim-scale)) ease-in-out infinite alternate both;
+  will-change: transform;
+  transform-origin: center 40%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-kenburns { animation: none; transform: none; }
 }

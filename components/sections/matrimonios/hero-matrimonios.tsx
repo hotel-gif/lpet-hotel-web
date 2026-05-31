@@ -6,7 +6,7 @@ export function HeroMatrimonios({ m }: { m: Dictionary }) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <HeroBackground
-        src="/img/hero.webp"
+        src="/img/matrimonios-hero.jpg"
         gradientClass="bg-gradient-to-b from-forest-dark/30 via-forest-dark/35 to-forest-dark/55"
       />
 

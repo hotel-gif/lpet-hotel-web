@@ -85,7 +85,7 @@ export function HeroBackground({
             fill
             priority={priority}
             sizes="100vw"
-            className="object-cover"
+            className="object-cover hero-kenburns"
           />
         )}
       </div>

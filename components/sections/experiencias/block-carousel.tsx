@@ -23,24 +23,35 @@ export function BlockCarousel({
   imageSide,
 }: Props) {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const isImageLeft = imageSide === "left";
 
   useEffect(() => {
-    if (images.length < 2) return;
+    if (images.length < 2 || paused) return;
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return; // sin autoplay si el usuario prefiere menos movimiento
+    }
     const id = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
     }, 5000);
     return () => clearInterval(id);
-  }, [images.length]);
+  }, [images.length, paused]);
 
   return (
     <section className="py-16 md:py-24" style={{ backgroundColor: "#000" }}>
       <div className="container-wide">
         <div className="grid md:grid-cols-2 gap-10 md:gap-14 lg:gap-20 items-center">
           <div
-            className={`relative aspect-[4/3] md:aspect-[4/5] overflow-hidden ${
+            className={`relative aspect-[4/3] md:aspect-[4/5] overflow-hidden rounded-2xl ${
               isImageLeft ? "md:order-1" : "md:order-2"
             }`}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onFocusCapture={() => setPaused(true)}
+            onBlurCapture={() => setPaused(false)}
           >
             {images.map((src, i) => (
               <Image

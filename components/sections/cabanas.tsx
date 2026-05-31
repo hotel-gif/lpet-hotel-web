@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { MarqueeZone } from "@/components/marquee-zone";
 import type { Dictionary } from "@/lib/i18n";
 
 const PHOTOS = [
@@ -80,15 +81,16 @@ export function Cabanas({ m }: { m: Dictionary }) {
       </div>
 
       {/* Carrusel infinito auto-scroll */}
-      <div
+      <MarqueeZone
         id="cabanas-galeria"
         className="relative z-10 pb-20 md:pb-28 pt-8 overflow-hidden"
+        ariaLabel="Galería de cabañas — desplazamiento automático; pasa el cursor o enfoca para ralentizar"
       >
         <div className="marquee-track flex gap-4 md:gap-6">
           {LOOP_PHOTOS.map((src, i) => (
             <div
               key={i}
-              className="hover-zoom shrink-0 w-[280px] sm:w-[340px] md:w-[420px] aspect-[3/4] relative rounded-md overflow-hidden"
+              className="hover-zoom shrink-0 w-[280px] sm:w-[340px] md:w-[420px] aspect-[3/4] relative rounded-2xl overflow-hidden"
             >
               <Image
                 src={src}
@@ -100,7 +102,7 @@ export function Cabanas({ m }: { m: Dictionary }) {
             </div>
           ))}
         </div>
-      </div>
+      </MarqueeZone>
     </section>
   );
 }

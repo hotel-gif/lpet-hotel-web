@@ -1,8 +1,10 @@
-import type { Dictionary } from "@/lib/i18n";
+import Link from "next/link";
+import type { Dictionary, Locale } from "@/lib/i18n";
 
-export function SiteFooter({ m }: { m: Dictionary }) {
+export function SiteFooter({ m, locale }: { m: Dictionary; locale: Locale }) {
   const t = m.footer;
   const nav = m.nav;
+  const prefix = locale === "en" ? "/en" : "";
   return (
     <footer className="bg-forest-dark text-cream mt-24 pt-16 pb-8">
       <div className="container-wide grid md:grid-cols-4 gap-10">
@@ -15,10 +17,10 @@ export function SiteFooter({ m }: { m: Dictionary }) {
         <div>
           <h4 className="text-paper mb-4 text-sm font-medium">{t.explore}</h4>
           <ul className="space-y-2 text-sm">
-            <li><a href="#cabanas" className="text-cream/75 hover:text-cream transition-colors">{nav.accommodation}</a></li>
-            <li><a href="#experiences" className="text-cream/75 hover:text-cream transition-colors">{nav.experiences}</a></li>
-            <li><a href="#weddings" className="text-cream/75 hover:text-cream transition-colors">{nav.weddings}</a></li>
-            <li><a href="#events" className="text-cream/75 hover:text-cream transition-colors">{nav.events}</a></li>
+            <li><Link href={`${prefix}/alojamiento`} className="text-cream/75 hover:text-cream transition-colors">{nav.accommodation}</Link></li>
+            <li><Link href={`${prefix}/experiencias`} className="text-cream/75 hover:text-cream transition-colors">{nav.experiences}</Link></li>
+            <li><Link href={`${prefix}/matrimonios`} className="text-cream/75 hover:text-cream transition-colors">{nav.weddings}</Link></li>
+            <li><Link href={`${prefix}/eventos`} className="text-cream/75 hover:text-cream transition-colors">{nav.events}</Link></li>
           </ul>
         </div>
 
@@ -46,7 +48,7 @@ export function SiteFooter({ m }: { m: Dictionary }) {
 
       <div className="container-wide mt-12 pt-6 border-t border-cream/10 flex justify-between text-xs text-cream/50 flex-wrap gap-3">
         <span>© {new Date().getFullYear()} Coffee and Adventure S.A.S · {t.rights}</span>
-        <span className="text-cream/35">ES · Next.js</span>
+        <span className="text-cream/35">{locale.toUpperCase()}</span>
       </div>
     </footer>
   );

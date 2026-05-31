@@ -1,18 +1,17 @@
 import Image from "next/image";
+import { MarqueeZone } from "@/components/marquee-zone";
 import type { Dictionary } from "@/lib/i18n";
 
 const PHOTOS = [
-  "/img/cabana-1.jpg",
-  "/img/cabana-2.jpg",
-  "/img/cabana-3.jpg",
-  "/img/cabana-4.jpg",
-  "/img/cabana-5.jpg",
-  "/img/cabana-6.jpg",
-  "/img/cabana-7.jpg",
-  "/img/cabana-8.jpg",
-  "/img/cabana-9.jpg",
-  "/img/hab-02.jpg",
-  "/img/hab-06.jpg",
+  "/img/habitacion-1.jpg",
+  "/img/habitacion-2.jpg",
+  "/img/habitacion-3.jpg",
+  "/img/habitacion-4.jpg",
+  "/img/habitacion-5.jpg",
+  "/img/habitacion-6.jpg",
+  "/img/habitacion-7.jpg",
+  "/img/habitacion-8.jpg",
+  "/img/habitacion-9.jpg",
 ];
 
 const LOOP_PHOTOS = [...PHOTOS, ...PHOTOS];
@@ -42,12 +41,15 @@ export function IntroAlojamiento({ m }: { m: Dictionary }) {
         </div>
       </div>
 
-      <div className="relative overflow-hidden pb-16 md:pb-20">
+      <MarqueeZone
+        className="relative overflow-hidden pb-16 md:pb-20"
+        ariaLabel="Galería de cabañas — desplazamiento automático; pasa el cursor o enfoca para ralentizar"
+      >
         <div className="marquee-track flex gap-4 md:gap-6">
           {LOOP_PHOTOS.map((src, i) => (
             <div
               key={i}
-              className="hover-zoom shrink-0 w-[280px] sm:w-[340px] md:w-[420px] aspect-[3/4] relative rounded-md overflow-hidden"
+              className="hover-zoom shrink-0 w-[280px] sm:w-[340px] md:w-[420px] aspect-[3/4] relative rounded-2xl overflow-hidden"
             >
               <Image
                 src={src}
@@ -59,7 +61,7 @@ export function IntroAlojamiento({ m }: { m: Dictionary }) {
             </div>
           ))}
         </div>
-      </div>
+      </MarqueeZone>
     </section>
   );
 }
