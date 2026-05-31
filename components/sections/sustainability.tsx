@@ -12,7 +12,7 @@ export function Sustainability({ m }: { m: Dictionary }) {
       {/* Hojas decorativas — izquierda grande */}
       <div
         aria-hidden
-        className="absolute top-1/2 -translate-y-1/2 -left-24 md:-left-28 w-[400px] md:w-[600px] h-[400px] md:h-[600px] pointer-events-none z-0"
+        className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-24 md:-left-28 w-[400px] md:w-[600px] h-[400px] md:h-[600px] pointer-events-none z-0"
         style={{ transform: "translateY(-50%) rotate(45deg)" }}
       >
         <Image
@@ -27,7 +27,7 @@ export function Sustainability({ m }: { m: Dictionary }) {
       {/* Hojas decorativas — derecha (más sutil) */}
       <div
         aria-hidden
-        className="absolute top-1/2 -translate-y-1/2 -right-24 md:-right-28 w-[400px] md:w-[600px] h-[400px] md:h-[600px] pointer-events-none z-0 opacity-50"
+        className="hidden md:block absolute top-1/2 -translate-y-1/2 -right-24 md:-right-28 w-[400px] md:w-[600px] h-[400px] md:h-[600px] pointer-events-none z-0 opacity-50"
         style={{ transform: "translateY(-50%) rotate(-135deg) scaleX(-1)" }}
       >
         <Image

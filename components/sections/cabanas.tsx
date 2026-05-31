@@ -33,7 +33,7 @@ export function Cabanas({ m }: { m: Dictionary }) {
       {/* Hojas decorativas — derecha grande */}
       <div
         aria-hidden
-        className="absolute top-32 -right-20 md:top-40 md:-right-24 w-[450px] md:w-[700px] h-[450px] md:h-[700px] pointer-events-none z-0"
+        className="hidden md:block absolute top-32 -right-20 md:top-40 md:-right-24 w-[450px] md:w-[700px] h-[450px] md:h-[700px] pointer-events-none z-0"
         style={{ transform: "rotate(-127deg)" }}
       >
         <Image
@@ -48,7 +48,7 @@ export function Cabanas({ m }: { m: Dictionary }) {
       {/* Hojas decorativas — izquierda grande (espejada) */}
       <div
         aria-hidden
-        className="absolute top-32 -left-20 md:top-40 md:-left-24 w-[450px] md:w-[700px] h-[450px] md:h-[700px] pointer-events-none z-0"
+        className="hidden md:block absolute top-32 -left-20 md:top-40 md:-left-24 w-[450px] md:w-[700px] h-[450px] md:h-[700px] pointer-events-none z-0"
         style={{ transform: "rotate(53deg) scaleX(-1)" }}
       >
         <Image
