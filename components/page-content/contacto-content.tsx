@@ -52,7 +52,9 @@ export function ContactoContent({ m }: { m: Dictionary }) {
               </div>
             </AnimateOnScroll>
 
-            <AnimateOnScroll>
+            {/* Form interactivo -> softExit: el atenuado al salir es apenas
+                perceptible sobre los inputs con texto (no se pierde nada). */}
+            <AnimateOnScroll softExit>
               <ContactoForm m={m} />
             </AnimateOnScroll>
           </div>

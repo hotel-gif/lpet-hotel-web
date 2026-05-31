@@ -43,7 +43,13 @@
        0.5 = doble de rápido
      Cambia SOLO este número para ajustar todo el sitio.
      ─────────────────────────────────────────────────────────────────────── */
-  :root { --anim-scale: 1; }
+  :root {
+    --anim-scale: 1;
+    /* Ritmo de las animaciones de scroll (entrada/salida de secciones).
+       Sube --reveal-dur para una entrada mas lenta y elegante; baja para mas agil. */
+    --reveal-dur: 1.5s;  /* entrada: fade + blur-in */
+    --leave-dur: 0.8s;   /* salida: atenuado suave al irse por arriba */
+  }
 
   html { scroll-behavior: smooth; }
   body {
@@ -229,13 +235,13 @@
    inicial oculto que luego revela el IntersectionObserver. */
 .scroll-fade { opacity: 1; transform: none; }
 html.js-ready .scroll-fade {
-  /* A2 · Blur-in sutil one-shot: entra apenas desenfocada y enfoca. */
+  /* Blur-in: entra desenfocada y sube ~24px, luego enfoca. Duracion via --reveal-dur. */
   opacity: 0.001;
-  transform: translateY(6px) scale(0.992);
-  filter: blur(4px);
-  transition: opacity calc(1s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1),
-              transform calc(1s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1),
-              filter calc(1s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(24px) scale(0.985);
+  filter: blur(7px);
+  transition: opacity calc(var(--reveal-dur) * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1),
+              transform calc(var(--reveal-dur) * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1),
+              filter calc(var(--reveal-dur) * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform, filter;
 }
 html.js-ready .scroll-fade.in-view {
@@ -247,44 +253,31 @@ html.js-ready .scroll-fade.in-view {
   .scroll-fade, html.js-ready .scroll-fade { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
 }
 
-/* SALIDA sutil al abandonar el viewport (modo repeat de AnimateOnScroll).
-   Se atenua sin llegar a 0 para no parpadear; reanima al volver. */
+/* SALIDA suave cuando la seccion ya casi se fue por arriba (repeat es el default).
+   SOLO opacidad: nada de blur (desenfocaba el texto) ni movimiento. El contenido
+   queda NITIDO, solo se atenua la cola que se va; reanima al volver a bajar.
+   `transform: none` anula el translateY del estado base. Duracion via --leave-dur. */
 html.js-ready .scroll-fade[data-repeat="true"].is-leaving {
-  opacity: 0.55;
-  transform: translateY(16px);
-  filter: blur(2px);
-  transition: opacity calc(0.5s * var(--anim-scale)) ease,
-              transform calc(0.5s * var(--anim-scale)) ease,
-              filter calc(0.5s * var(--anim-scale)) ease;
+  opacity: 0.72;
+  transform: none;
+  filter: none;
+  transition: opacity calc(var(--leave-dur) * var(--anim-scale)) var(--ease-out-soft),
+              transform calc(var(--leave-dur) * var(--anim-scale)) var(--ease-out-soft);
+}
+/* Variante softExit (secciones de fondo a color): atenua aun menos. */
+html.js-ready .scroll-fade[data-repeat="true"][data-reveal="soft"].is-leaving {
+  opacity: 0.85;
 }
 @media (prefers-reduced-motion: reduce) {
-  html.js-ready .scroll-fade[data-repeat="true"].is-leaving {
+  html.js-ready .scroll-fade[data-repeat="true"].is-leaving,
+  html.js-ready .scroll-fade[data-repeat="true"][data-reveal="soft"].is-leaving {
     opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important;
   }
 }
 
-/* ─── Reveal LIGADO AL SCROLL (entrada + salida continuas segun la posicion
-   del usuario) en navegadores con scroll-driven animations (Edge/Chrome/Safari
-   recientes). Reemplaza el toggle JS donde esta disponible; el resto cae al
-   IntersectionObserver de arriba. El fade va al ritmo del scroll, no de un
-   cronometro, asi que no se siente "rapido". ──────────────────────────────── */
-@keyframes reveal-scroll {
-  entry 0%   { opacity: 0; transform: translateY(44px); }
-  entry 65%  { opacity: 1; transform: translateY(0); }
-  exit 35%   { opacity: 1; transform: translateY(0); }
-  exit 100%  { opacity: 0; transform: translateY(-28px); }
-}
-/* Variante para secciones de fondo a color: misma entrada, pero la SALIDA solo
-   atenua un poco (no se desvanece del todo) para no dejar ver el fondo detras. */
-@keyframes reveal-scroll-soft {
-  entry 0%   { opacity: 0; transform: translateY(44px); }
-  entry 65%  { opacity: 1; transform: translateY(0); }
-  exit 35%   { opacity: 1; transform: translateY(0); }
-  exit 100%  { opacity: 0.72; transform: translateY(-12px); }
-}
-/* Reveal one-shot via IntersectionObserver (blur-in de arriba). El scroll-driven
-   con fase de SALIDA fue eliminado a pedido del usuario: el contenido se revela
-   una sola vez y se queda (sin atenuarse al salir, que era lo que mareaba). */
+/* Reveal y salida se manejan via IntersectionObserver (AnimateOnScroll):
+   blur-in al entrar + atenuado suave al salir, calibrado arriba. Los antiguos
+   keyframes scroll-driven (reveal-scroll/-soft) se eliminaron por innecesarios. */
 
 /* ─── Skeleton loader (shimmer) ────────────────────────────────────────── */
 @keyframes shimmer {

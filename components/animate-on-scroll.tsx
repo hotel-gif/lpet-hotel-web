@@ -7,59 +7,95 @@ interface Props {
   delay?: number; // ms
   className?: string;
   /**
-   * Si true (default), re-anima al volver al viewport y se atenua sutilmente al
-   * salir (salida + re-entrada). Si false, es one-shot (revela una sola vez).
+   * Si true (default): al entrar al viewport revela (fade + blur-in) y, mientras
+   * SALE por el borde superior (aun parcialmente visible), se atenua suave (~70%,
+   * no desaparece) y reanima al volver a bajar. Si false, one-shot.
    */
   repeat?: boolean;
-  /** Salida suave (no se desvanece del todo): para secciones de fondo a color. */
+  /** Salida aun mas sutil (secciones de fondo a color): atenua menos. */
   softExit?: boolean;
 }
 
 /**
- * Envuelve cualquier sección. Al entrar al viewport agrega `in-view` (fade-in +
- * slide-up, definido en globals.css). En modo repeat, al salir COMPLETAMENTE del
- * viewport agrega `is-leaving` (atenuado sutil) y reanima al volver.
- * Tiene red de seguridad: si el observer nunca dispara, revela igual.
+ * Envuelve cualquier seccion. Dos IntersectionObservers:
+ *  - Entrada: al asomar ~12% desde abajo agrega `in-view` (fade + blur-in).
+ *  - Salida VISIBLE (modo repeat, default): cuando el borde superior de la seccion
+ *    cruza una linea ~12% desde arriba del viewport (es decir, mientras se va por
+ *    arriba y AUN se ve), agrega `is-leaving` (atenuado suave). Al bajar de vuelta,
+ *    reanima. Solo atenua si la seccion ya se habia revelado.
+ * Sin IntersectionObserver, revela igual (red de seguridad).
  */
 export function AnimateOnScroll({
   children,
   delay = 0,
   className = "",
-  repeat = false,
+  repeat = true,
   softExit = false,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
   const [leaving, setLeaving] = useState(false);
+  // Persiste entre callbacks sin recrear el efecto: marca si llego a revelarse.
+  const hasShown = useRef(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    // Red de seguridad: si el observer nunca dispara (JS lento/error), revela.
-    const safety = window.setTimeout(() => setShown(true), 1200);
-    const obs = new IntersectionObserver(
+    if (typeof IntersectionObserver === "undefined") {
+      setShown(true);
+      return;
+    }
+
+    // ── Observer de ENTRADA: revela al asomar desde abajo (o al volver desde arriba).
+    const reveal = () => {
+      hasShown.current = true;
+      setShown(true);
+      setLeaving(false);
+    };
+    const obsIn = new IntersectionObserver(
       (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          clearTimeout(safety);
-          const reveal = () => {
-            setShown(true);
-            setLeaving(false);
-          };
+        if (entries[0].isIntersecting) {
           if (delay > 0) setTimeout(reveal, delay);
           else reveal();
-          if (!repeat) obs.disconnect(); // one-shot solo si repeat=false
-        } else if (repeat && entry.intersectionRatio === 0) {
-          // Solo al salir COMPLETAMENTE del viewport (evita parpadeo en bordes).
-          setLeaving(true);
+          if (!repeat) obsIn.disconnect(); // one-shot solo si repeat=false
         }
       },
-      { threshold: [0, 0.12], rootMargin: "0px 0px -50px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -12% 0px" }
     );
-    obs.observe(el);
+    obsIn.observe(el);
+
+    // ── Observer de SALIDA (solo repeat): atenua SOLO cuando la seccion ya casi se
+    //    fue por arriba, es decir cuando su borde INFERIOR sube por encima del centro
+    //    del viewport (la seccion ocupa <50% superior). Asi el contenido que lees
+    //    sigue nitido; el atenuado es solo de la "cola" que se va. Linea = centro.
+    let obsOut: IntersectionObserver | null = null;
+    if (repeat) {
+      obsOut = new IntersectionObserver(
+        (entries) => {
+          const e = entries[0];
+          if (!hasShown.current) return; // aun no revelada: no atenuar
+          const center = (window.innerHeight || 0) * 0.5;
+          if (e.isIntersecting) {
+            // La seccion cruza el centro -> aun ocupa buena parte: nitida.
+            setLeaving(false);
+            setShown(true);
+          } else if (e.boundingClientRect.bottom < center) {
+            // Su parte baja ya subio por encima del centro -> casi fuera: atenua.
+            setLeaving(true);
+          } else {
+            // Esta por debajo del centro (entrando / totalmente visible): nitida.
+            setLeaving(false);
+          }
+        },
+        // Linea de disparo en el centro vertical del viewport (root de altura ~0).
+        { threshold: 0, rootMargin: "-50% 0px -50% 0px" }
+      );
+      obsOut.observe(el);
+    }
+
     return () => {
-      obs.disconnect();
-      clearTimeout(safety);
+      obsIn.disconnect();
+      obsOut?.disconnect();
     };
   }, [delay, repeat]);
 

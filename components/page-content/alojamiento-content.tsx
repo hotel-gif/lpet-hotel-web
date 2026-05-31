@@ -11,7 +11,10 @@ export function AlojamientoContent({ m }: { m: Dictionary }) {
       <AnimateOnScroll>
         <IntroAlojamiento m={m} />
       </AnimateOnScroll>
-      <Amenidades m={m} />
+      {/* Fondo a color (#dde3e0) -> softExit para atenuar poco al salir */}
+      <AnimateOnScroll softExit>
+        <Amenidades m={m} />
+      </AnimateOnScroll>
     </>
   );
 }
