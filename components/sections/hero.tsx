@@ -24,12 +24,20 @@ export function Hero({ m }: { m: Dictionary }) {
       />
 
       <div className="container-wide text-center text-paper pb-24 md:pb-32 pt-32">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl whitespace-nowrap leading-[1.1] mb-4 text-paper font-normal tracking-[0.03em]">
-          {t.title}
+        {/* Subtitulo dentro del h1 (como span) para que la frase clave
+            "Hotel boutique cerca de Bogota" forme parte del H1 (SEO), sin
+            cambiar el diseno: titulo serif grande + subtitulo sans debajo. */}
+        <h1 className="mb-8 text-paper font-normal">
+          <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl whitespace-nowrap leading-[1.1] mb-4 tracking-[0.03em]">
+            {t.title}
+          </span>
+          <span
+            className="block text-lg md:text-2xl text-paper/95 font-normal"
+            style={{ fontFamily: "var(--font-gotham), system-ui, sans-serif" }}
+          >
+            {t.subtitle}
+          </span>
         </h1>
-        <p className="text-lg md:text-2xl text-paper/95 mb-8 font-normal">
-          {t.subtitle}
-        </p>
         <div className="w-16 h-px bg-paper/60 mx-auto mb-8" />
         <div className="flex flex-wrap items-center justify-center gap-3">
           <a
