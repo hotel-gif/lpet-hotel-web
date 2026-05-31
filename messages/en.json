@@ -76,14 +76,14 @@
     "cta_corporate": "Corporate events"
   },
   "community": {
-    "title": "Community impact",
-    "lead": "We are driven by a commitment to create meaningful social impact within the local community, fostering its development and the personal and professional growth of our team.",
+    "title": "How to get here",
     "cta": "Directions"
   },
   "sustainability": {
     "eyebrow": "",
     "title": "Our sustainability",
     "p1": "In every corner of our estate you'll find regenerative practices and a strong commitment to education and transformation. We offer immersive experiences that go beyond tourism, inviting you to take an active part in caring for our environment.",
+    "impactTitle": "Community impact",
     "p2": "We are driven by a commitment to create meaningful social impact within the local community, fostering its development and the personal and professional growth of our team."
   },
   "newsletter": {

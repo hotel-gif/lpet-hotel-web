@@ -4,7 +4,6 @@ import type { Dictionary } from "@/lib/i18n";
 export function Community({ m }: { m: Dictionary }) {
   const t = m.community as {
     title: string;
-    lead: string;
     cta: string;
   };
 
@@ -22,11 +21,6 @@ export function Community({ m }: { m: Dictionary }) {
 
         {/* Línea decorativa horizontal larga */}
         <div className="w-32 md:w-48 h-px bg-paper/40 mx-auto mb-12" />
-
-        {/* Texto descriptivo */}
-        <p className="max-w-3xl mx-auto text-cream/90 leading-relaxed mb-12">
-          {t.lead}
-        </p>
 
         {/* Botón Instrucciones de llegada */}
         <a
