@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { SmartLink as Link } from "@/components/smart-link";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
 export function SiteFooter({ m, locale }: { m: Dictionary; locale: Locale }) {
