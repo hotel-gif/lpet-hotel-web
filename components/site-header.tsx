@@ -23,6 +23,11 @@ export function SiteHeader({ m, locale }: { m: Dictionary; locale: Locale }) {
   const prefix = locale === "en" ? "/en" : "";
   const home = prefix || "/";
 
+  // Normaliza el slash final: en el export estatico (GitHub Pages, trailingSlash)
+  // usePathname() devuelve "/eventos/" pero los href son "/eventos" -> sin esto el
+  // subrayado dorado de "pagina actual" no coincide en las subpaginas.
+  const norm = (p: string) => p.replace(/\/+$/, "") || "/";
+
   const NAV = [
     { href: home, label: m.nav.home },
     { href: `${prefix}/alojamiento`, label: m.nav.accommodation },
@@ -78,7 +83,7 @@ export function SiteHeader({ m, locale }: { m: Dictionary; locale: Locale }) {
 
         <nav className="hidden lg:flex items-center gap-7 text-[15px]">
           {NAV.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive = norm(pathname) === norm(item.href);
             return (
               <Link
                 key={item.href}
@@ -141,7 +146,7 @@ export function SiteHeader({ m, locale }: { m: Dictionary; locale: Locale }) {
       {open && (
         <nav className="lg:hidden bg-paper border-t border-forest/8 px-6 py-6 flex flex-col gap-4 shadow-soft">
           {NAV.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive = norm(pathname) === norm(item.href);
             return (
               <Link
                 key={item.href}
