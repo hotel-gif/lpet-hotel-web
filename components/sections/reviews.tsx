@@ -58,7 +58,7 @@ export function Reviews({ m }: { m: Dictionary }) {
 
         {/* Cards de ratings (.scores) — max-width 760px */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 mx-auto"
+          className="score-row grid grid-cols-1 md:grid-cols-2 mx-auto"
           style={{ gap: "24px", maxWidth: "760px", margin: "24px auto 0" }}
         >
           {t.ratings.map((rating) => (
@@ -85,6 +85,8 @@ export function Reviews({ m }: { m: Dictionary }) {
                 {rating.platform}
               </div>
               <div
+                data-count={rating.score}
+                data-dec={String((rating.score.split(".")[1] || "").length)}
                 style={{
                   fontFamily: SERIF,
                   fontSize: "2.5rem",

@@ -613,3 +613,89 @@ html.js-ready .whatsapp-fab.is-hidden {
 @media (prefers-reduced-motion: reduce) {
   .hero-kenburns { animation: none; transform: none; }
 }
+
+/* ============================================================
+   MOTION SYSTEM (rediseño home) — reveal bidireccional, clip-reveal,
+   entrada/salida del hero. Lo activa <MotionSystem/> (añade .in/.out/.loaded
+   y setea --d / --hero-exit). El estado oculto va bajo html.js-ready para no
+   ocultar contenido si el JS no corre (sin JS = todo visible).
+   ============================================================ */
+:root {
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-soft: cubic-bezier(.33, 1, .68, 1);
+}
+
+/* ---------- scroll reveal — bidireccional (in / out) ---------- */
+html.js-ready .reveal {
+  opacity: 0; transform: translateY(38px);
+  transition: opacity .9s var(--ease-soft), transform 1.05s var(--ease-out);
+  transition-delay: var(--d, 0ms);
+  will-change: opacity, transform;
+}
+html.js-ready .reveal[data-anim="left"]  { transform: translateX(-48px); }
+html.js-ready .reveal[data-anim="right"] { transform: translateX(48px); }
+html.js-ready .reveal[data-anim="scale"] { transform: scale(.93); }
+html.js-ready .reveal[data-anim="fade"]  { transform: translateY(22px); }
+html.js-ready .reveal.in { opacity: 1; transform: none; }
+/* SALIDA suavizada (a pedido): solo atenua a ~0.72, SIN movimiento y sin
+   desaparecer del todo (no marea), para cualquier data-anim. */
+html.js-ready .reveal.out,
+html.js-ready .reveal.out[data-anim="left"],
+html.js-ready .reveal.out[data-anim="right"],
+html.js-ready .reveal.out[data-anim="scale"] {
+  opacity: 0.72; transform: none;
+  transition: opacity .6s var(--ease-soft);
+  transition-delay: 0ms;
+}
+
+/* ---------- image clip-reveal (cortina, bidireccional) ---------- */
+html.js-ready .clip-reveal img {
+  clip-path: inset(0 0 100% 0); transform: scale(1.14);
+  transition: clip-path 1.2s var(--ease-out), transform 1.7s var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+html.js-ready .clip-reveal.in img { clip-path: inset(0 0 0% 0); transform: scale(1); }
+html.js-ready .clip-reveal.out img {
+  clip-path: inset(0 0 100% 0); transform: scale(1.14);
+  transition: clip-path .6s var(--ease-soft), transform .8s var(--ease-soft);
+}
+
+/* ---------- hero entrance (al cargar) ---------- */
+html.js-ready .hero .kicker,
+html.js-ready .hero .line > *,
+html.js-ready .hero .hero-sub,
+html.js-ready .hero .hero-actions,
+html.js-ready .hero .hero-meta {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out);
+}
+.hero h1 .line { display: block; overflow: hidden; padding-bottom: .2em; }
+html.js-ready .hero h1 .line > * { display: block; transform: translateY(112%); }
+html.js-ready .hero.loaded .kicker { opacity: 1; transform: none; transition-delay: .15s; }
+html.js-ready .hero.loaded .line:nth-child(1) > * { opacity: 1; transform: none; transition-delay: .32s; }
+html.js-ready .hero.loaded .line:nth-child(2) > * { opacity: 1; transform: none; transition-delay: .46s; }
+html.js-ready .hero.loaded .hero-sub { opacity: 1; transform: none; transition-delay: .66s; }
+html.js-ready .hero.loaded .hero-actions { opacity: 1; transform: none; transition-delay: .80s; }
+html.js-ready .hero.loaded .hero-meta { opacity: 1; transform: none; transition-delay: .94s; }
+
+/* hero content drifts + fades on scroll (exit), driven by --hero-exit (0..1) */
+.hero-inner {
+  transform: translateY(calc(var(--hero-exit, 0) * -70px));
+  opacity: calc(1 - var(--hero-exit, 0) * 1.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js-ready .reveal,
+  html.js-ready .reveal.in,
+  html.js-ready .reveal.out,
+  html.js-ready .clip-reveal img,
+  html.js-ready .hero .line > *,
+  html.js-ready .hero .kicker,
+  html.js-ready .hero .hero-sub,
+  html.js-ready .hero .hero-actions,
+  html.js-ready .hero .hero-meta {
+    opacity: 1 !important; transform: none !important; clip-path: none !important; transition: none !important;
+  }
+  .hero-inner { transform: none !important; opacity: 1 !important; }
+}

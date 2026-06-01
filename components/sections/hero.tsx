@@ -13,7 +13,7 @@ export function Hero({ m }: { m: Dictionary }) {
     cta_secondary: string;
   };
   return (
-    <section className="relative min-h-screen flex items-end justify-center overflow-hidden">
+    <section className="hero relative min-h-screen flex items-end justify-center overflow-hidden">
       <HeroBackground
         videoSources={[
           { src: `${base}/video/hero.webm`, type: "video/webm" },
@@ -23,23 +23,27 @@ export function Hero({ m }: { m: Dictionary }) {
         gradientClass="bg-gradient-to-b from-forest-dark/15 via-transparent to-forest-dark/45"
       />
 
-      <div className="container-wide text-center text-paper pb-24 md:pb-32 pt-32">
-        {/* Subtitulo dentro del h1 (como span) para que la frase clave
-            "Hotel boutique cerca de Bogota" forme parte del H1 (SEO), sin
-            cambiar el diseno: titulo serif grande + subtitulo sans debajo. */}
+      {/* hero-inner: el rediseño lo desplaza y desvanece al hacer scroll (--hero-exit).
+          El h1 lleva el titulo + la frase clave (SEO) en dos .line con entrada
+          escalonada (line-reveal). */}
+      <div className="hero-inner container-wide text-center text-paper pb-24 md:pb-32 pt-32">
         <h1 className="mb-8 text-paper font-normal">
-          <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl whitespace-nowrap leading-[1.1] mb-4 tracking-[0.03em]">
-            {t.title}
+          <span className="line">
+            <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl whitespace-nowrap leading-[1.1] tracking-[0.03em]">
+              {t.title}
+            </span>
           </span>
-          <span
-            className="block text-lg md:text-2xl text-paper/95 font-normal"
-            style={{ fontFamily: "var(--font-gotham), system-ui, sans-serif" }}
-          >
-            {t.subtitle}
+          <span className="line">
+            <span
+              className="block text-lg md:text-2xl text-paper/95 font-normal"
+              style={{ fontFamily: "var(--font-gotham), system-ui, sans-serif" }}
+            >
+              {t.subtitle}
+            </span>
           </span>
         </h1>
-        <div className="w-16 h-px bg-paper/60 mx-auto mb-8" />
-        <div className="flex flex-wrap items-center justify-center gap-3">
+        <div className="hero-sub w-16 h-px bg-paper/60 mx-auto mb-8" />
+        <div className="hero-actions flex flex-wrap items-center justify-center gap-3">
           <a
             href="https://hotels.cloudbeds.com/reservation/i0wxBO"
             target="_blank"

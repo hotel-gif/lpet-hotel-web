@@ -7,7 +7,7 @@ import { Community } from "@/components/sections/community";
 import { Newsletter } from "@/components/sections/newsletter";
 import { FAQ } from "@/components/sections/faq";
 import { Reviews } from "@/components/sections/reviews";
-import { AnimateOnScroll } from "@/components/animate-on-scroll";
+import { MotionSystem } from "@/components/motion-system";
 import { FaqSchema } from "@/components/structured-data";
 import type { Dictionary } from "@/lib/i18n";
 
@@ -15,31 +15,33 @@ export function HomeContent({ m }: { m: Dictionary }) {
   return (
     <>
       <FaqSchema m={m} />
+      {/* Motor de animaciones del rediseño: hero entrance/exit, reveal, count-up */}
+      <MotionSystem />
       <Hero m={m} />
-      <AnimateOnScroll>
+      <div className="reveal" data-anim="fade">
         <Intro m={m} />
-      </AnimateOnScroll>
-      <AnimateOnScroll softExit>
+      </div>
+      <div className="reveal" data-anim="fade">
         <Cabanas m={m} />
-      </AnimateOnScroll>
-      <AnimateOnScroll>
+      </div>
+      <div className="reveal" data-anim="fade">
         <Experiences m={m} />
-      </AnimateOnScroll>
-      <AnimateOnScroll softExit>
+      </div>
+      <div className="reveal" data-anim="fade">
         <Sustainability m={m} />
-      </AnimateOnScroll>
-      <AnimateOnScroll softExit>
+      </div>
+      <div className="reveal" data-anim="fade">
         <Community m={m} />
-      </AnimateOnScroll>
-      <AnimateOnScroll>
+      </div>
+      <div className="reveal" data-anim="fade">
         <Newsletter m={m} />
-      </AnimateOnScroll>
-      <AnimateOnScroll>
+      </div>
+      <div className="reveal" data-anim="fade">
         <FAQ m={m} />
-      </AnimateOnScroll>
-      <AnimateOnScroll>
+      </div>
+      <div className="reveal" data-anim="fade">
         <Reviews m={m} />
-      </AnimateOnScroll>
+      </div>
     </>
   );
 }
