@@ -69,9 +69,10 @@ fotos nuevas (los reemplazos de fotos y el cambio de logo quedan pendientes):
 
 - **LinkedIn** del footer/header corregido al perfil del **hotel**
   (`la-palma-el-tucán-hotel`), antes apuntaba a la finca.
-- **"Cómo llegar":** el botón *Instrucciones de llegada* ahora **descarga el PDF**
-  (`public/docs/como-llegar-lpet-hotel.pdf`) y el mapa se acotó para caber en una
-  sola pantalla.
+- **"Cómo llegar":** el botón *Instrucciones de llegada* abre el PDF
+  (`public/docs/como-llegar-lpet-hotel.pdf`) **dentro de una ventana** (modal con
+  el PDF embebido + enlace "abrir en pestaña nueva" de respaldo en móviles), en vez
+  de descargarlo (`components/como-llegar-modal.tsx`). El mapa se acotó a una pantalla.
 - **"Ver cabañas"** (home) ahora **navega a `/alojamiento`** (antes era un ancla
   que no llevaba a ninguna parte). Se hiló `locale` Home → `Cabanas`.
 - **Experiencias (textos):** "El Tour de Café está incluido en tu estadía",
