@@ -30,7 +30,7 @@ export function Newsletter({ m }: { m: Dictionary }) {
         <div className="relative min-h-[700px] md:min-h-[800px] overflow-hidden flex items-center justify-center">
           {/* Imagen de fondo panorámica */}
           <Image
-            src="/img/newsletter-bg.webp"
+            src="/img/newsletter-bg.jpg"
             alt=""
             fill
             sizes="100vw"
