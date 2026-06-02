@@ -42,8 +42,13 @@ export function SiteHeader({ m, locale }: { m: Dictionary; locale: Locale }) {
   const esHref = pathNoLocale;
   const enHref = pathNoLocale === "/" ? "/en" : `/en${pathNoLocale}`;
 
-  const linkColor = scrolled ? "text-forest-dark" : "text-white";
-  const bg = scrolled
+  // Paginas SIN hero oscuro (legales): el header debe ir solido desde arriba,
+  // si no el texto blanco queda ilegible sobre el fondo claro.
+  const heroless = /(?:^|\/)(terminos|politica-de-datos)\/?$/.test(pathname);
+  const solid = scrolled || heroless;
+
+  const linkColor = solid ? "text-forest-dark" : "text-white";
+  const bg = solid
     ? "bg-paper/95 backdrop-blur-md shadow-[0_4px_24px_-8px_rgba(31,58,46,0.12)]"
     : "bg-transparent";
 
@@ -72,7 +77,7 @@ export function SiteHeader({ m, locale }: { m: Dictionary; locale: Locale }) {
       <div className="header-enter container-wide flex items-center justify-between py-4">
         <Link href={home} className="flex items-center shrink-0">
           <Image
-            src={scrolled ? "/img/logo-dark.svg" : "/img/logo.svg"}
+            src={solid ? "/img/logo-dark.svg" : "/img/logo.svg"}
             alt="La Palma y El Tucán"
             width={186}
             height={64}
@@ -125,7 +130,7 @@ export function SiteHeader({ m, locale }: { m: Dictionary; locale: Locale }) {
             href="https://hotels.cloudbeds.com/reservation/i0wxBO"
             target="_blank"
             rel="noopener"
-            className={`hidden md:inline-flex btn ${scrolled ? "btn-outline-dark" : "btn-outline-light"}`}
+            className={`hidden md:inline-flex btn ${solid ? "btn-outline-dark" : "btn-outline-light"}`}
           >
             {m.nav.book}
           </a>

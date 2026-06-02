@@ -9,9 +9,9 @@ import { FAQ } from "@/components/sections/faq";
 import { Reviews } from "@/components/sections/reviews";
 import { MotionSystem } from "@/components/motion-system";
 import { FaqSchema } from "@/components/structured-data";
-import type { Dictionary } from "@/lib/i18n";
+import type { Dictionary, Locale } from "@/lib/i18n";
 
-export function HomeContent({ m }: { m: Dictionary }) {
+export function HomeContent({ m, locale }: { m: Dictionary; locale: Locale }) {
   return (
     <>
       <FaqSchema m={m} />
@@ -22,7 +22,7 @@ export function HomeContent({ m }: { m: Dictionary }) {
         <Intro m={m} />
       </div>
       <div className="reveal" data-anim="fade">
-        <Cabanas m={m} />
+        <Cabanas m={m} locale={locale} />
       </div>
       <div className="reveal" data-anim="fade">
         <Experiences m={m} />

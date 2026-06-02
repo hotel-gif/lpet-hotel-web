@@ -64,7 +64,7 @@
       {
         "label": "Áreas sociales",
         "image": "/img/espacio-areas-sociales.jpg",
-        "detail": "En este área con espacios cerrados y abiertos, con terraza al aire libre, podrás tomar una relajante sesión de hatha yoga."
+        "detail": "Espacios diseñados para compartir, descansar y conectar con la naturaleza. Disfruta de terrazas al aire libre, vistas a los cafetales y ambientes ideales para el bienestar y la contemplación."
       }
     ]
   },
@@ -81,7 +81,7 @@
   },
   "sustainability": {
     "eyebrow": "",
-    "title": "Nuestra sostenibilidad",
+    "title": "Sostenibilidad e impacto en la comunidad",
     "p1": "En cada rincón de nuestra finca se respiran prácticas regenerativas y un fuerte compromiso con la educación y la transformación. Ofrecemos experiencias inmersivas que van más allá del turismo, invitándote a ser parte activa del cuidado de nuestro entorno.",
     "impactTitle": "Impacto en la comunidad",
     "p2": "Nos impulsa el compromiso de generar un impacto social significativo en la comunidad local, promoviendo su desarrollo y el crecimiento personal y profesional de nuestro equipo."
@@ -251,7 +251,7 @@
     "tour_cafe": {
       "title": "Tour de café: nuestra experiencia de café cerca de Bogotá",
       "body": "Sumérgete en la esencia de nuestra agricultura regenerativa con nuestro Tour de Café. Durante este recorrido, descubrirás cada etapa del proceso cafetero: desde los cultivos agroecológicos en nuestro bosque de niebla, hasta la degustación de una taza recién preparada con dedicación.",
-      "caption": "",
+      "caption": "El Tour de Café está incluido en tu estadía.",
       "images": [
         "/img/tour-cafe-1.jpg",
         "/img/tour-cafe-2.jpg",
@@ -283,10 +283,10 @@
       "footer": "Además, si nos visitas en época de cosecha, podrás ver de cerca la recolección manual de cerezas maduras, el despulpado, las evaluaciones sensoriales y todo el «maravilloso caos» que rodea esta labor. Cada detalle se cuida al máximo para preservar la calidad del café."
     },
     "degustacion": {
-      "title": "Degustación de Cafés Especiales",
+      "title": "Degustación de cafés de especialidad",
       "body": "Complementa tus experiencias de café cerca de Bogotá con una degustación sensorial:",
       "numbered_list": [
-        "Participa en una degustación guiada donde aprenderás a reconocer las características de un café especial, identificando sus notas de sabor y aroma.",
+        "Participa en una degustación guiada donde aprenderás a reconocer las características de un café de especialidad, identificando sus notas de sabor y aroma.",
         "Deleita tus sentidos con diferentes perfiles de café y recibe valiosos consejos para preparar una gran taza en casa."
       ],
       "note": "La degustación de cafés de especialidad está incluida en tu reserva.",
@@ -297,7 +297,7 @@
         "/img/degustacion-4.jpg"
       ]
     },
-    "day_tour": "Si deseas visitarnos durante el día, te invitamos a reservar nuestro Day Tour: una experiencia de cuatro a cinco horas que combina el Tour de Café, la Degustación de Cafés Especiales y almuerzo completo en nuestro hotel.",
+    "day_tour": "Si deseas visitarnos durante el día, te invitamos a reservar nuestro Coffee Tour / Tour de café / Day Tour: una experiencia de cuatro a cinco horas que combina el Tour de Café, la Degustación de Cafés de especialidad y almuerzo completo en nuestro hotel.",
     "extras": [
       {
         "variant": "soft",

@@ -51,7 +51,10 @@
     --leave-dur: 0.8s;   /* salida: atenuado suave al irse por arriba */
   }
 
-  html { scroll-behavior: smooth; }
+  /* Escala tipográfica global. Lina: el texto de cuerpo se veía muy pequeño.
+     Subimos la raíz (16 -> 17px ≈ +6%) para agrandar todo el texto de forma
+     uniforme y proporcional; los títulos crecen apenas y siguen dominando. */
+  html { scroll-behavior: smooth; font-size: 106.25%; }
   body {
     background: var(--color-paper);
     color: var(--color-ink);
@@ -96,7 +99,7 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 14px 32px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.02em;
   border-radius: var(--radius-pill);

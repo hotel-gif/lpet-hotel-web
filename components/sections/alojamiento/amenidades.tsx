@@ -36,11 +36,13 @@ const ICONS: Record<string, React.ReactNode> = {
     </svg>
   ),
   deck: (
+    // Baranda de terraza con tablones de madera (un "deck"/balcón).
     <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M10 30 q22 -18 44 0" />
-      <path d="M32 12 v18" />
-      <path d="M32 30 v24" />
-      <path d="M22 54 h20" />
+      <path d="M8 24 h48" />
+      <path d="M8 24 v20 M56 24 v20" />
+      <path d="M18 24 v14 M30 24 v14 M42 24 v14" />
+      <path d="M6 44 h52" />
+      <path d="M12 50 h40 M16 56 h32" />
     </svg>
   ),
   net: (
@@ -66,10 +68,11 @@ const ICONS: Record<string, React.ReactNode> = {
     </svg>
   ),
   sandals: (
+    // Alpargata vista de perfil (calzado de tela slip-on).
     <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14 28 q0 -6 6 -6 h24 q6 0 6 6 v14 q0 6 -6 6 H20 q-6 0 -6 -6 z" />
-      <path d="M22 22 q-1 -6 4 -8 q4 -1 6 2" />
-      <path d="M40 22 q1 -4 4 -4" />
+      <path d="M8 40 q-1 -10 11 -13 q7 -2 12 2 q7 5 19 7 q5 1 5 6 q0 5 -6 5 H16 q-8 0 -8 -7 z" />
+      <path d="M19 29 q9 -3 16 2" />
+      <path d="M8 50 q4 4 12 4 h28 q5 0 6 -4" />
     </svg>
   ),
   hanger: (

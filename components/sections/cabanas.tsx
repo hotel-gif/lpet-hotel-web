@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { MarqueeZone } from "@/components/marquee-zone";
-import type { Dictionary } from "@/lib/i18n";
+import { SmartLink as Link } from "@/components/smart-link";
+import type { Dictionary, Locale } from "@/lib/i18n";
 
 const PHOTOS = [
   "/img/cabana-1.jpg",
@@ -16,7 +17,8 @@ const PHOTOS = [
 
 const LOOP_PHOTOS = [...PHOTOS, ...PHOTOS];
 
-export function Cabanas({ m }: { m: Dictionary }) {
+export function Cabanas({ m, locale }: { m: Dictionary; locale: Locale }) {
+  const prefix = locale === "en" ? "/en" : "";
   const t = m.cabanas as {
     title: string;
     lead: string;
@@ -72,9 +74,9 @@ export function Cabanas({ m }: { m: Dictionary }) {
             {t.intro_extra && (
               <p className="text-cream/90 leading-relaxed mb-10">{t.intro_extra}</p>
             )}
-            <a href="#cabanas-galeria" className="btn btn-outline-light">
+            <Link href={`${prefix}/alojamiento`} className="btn btn-outline-light">
               {t.cta ?? "Ver cabañas"}
-            </a>
+            </Link>
           </div>
           <div className="hidden md:block" />
         </div>

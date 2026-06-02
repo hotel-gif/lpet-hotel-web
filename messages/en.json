@@ -64,7 +64,7 @@
       {
         "label": "Social areas",
         "image": "/img/espacio-areas-sociales.jpg",
-        "detail": "In this area of indoor and outdoor spaces, with an open-air terrace, you can unwind with a relaxing hatha yoga session."
+        "detail": "Spaces designed to share, rest and connect with nature. Enjoy open-air terraces, views over the coffee fields and settings ideal for wellbeing and contemplation."
       }
     ]
   },
@@ -81,7 +81,7 @@
   },
   "sustainability": {
     "eyebrow": "",
-    "title": "Our sustainability",
+    "title": "Sustainability and community impact",
     "p1": "In every corner of our estate you'll find regenerative practices and a strong commitment to education and transformation. We offer immersive experiences that go beyond tourism, inviting you to take an active part in caring for our environment.",
     "impactTitle": "Community impact",
     "p2": "We are driven by a commitment to create meaningful social impact within the local community, fostering its development and the personal and professional growth of our team."
@@ -251,7 +251,7 @@
     "tour_cafe": {
       "title": "Coffee tour: our coffee experience near Bogotá",
       "body": "Immerse yourself in the essence of our regenerative agriculture with our Coffee Tour. Along the way, you'll discover every stage of the coffee process: from the agroecological crops in our cloud forest to the tasting of a cup freshly prepared with care.",
-      "caption": "",
+      "caption": "The Coffee Tour is included with your stay.",
       "images": [
         "/img/tour-cafe-1.jpg",
         "/img/tour-cafe-2.jpg",
@@ -297,7 +297,7 @@
         "/img/degustacion-4.jpg"
       ]
     },
-    "day_tour": "If you'd like to visit us for the day, we invite you to book our Day Tour: a four-to-five-hour experience that combines the Coffee Tour, the Specialty Coffee Tasting and a full lunch at our hotel.",
+    "day_tour": "If you'd like to visit us for the day, we invite you to book our Coffee Tour / Day Tour: a four-to-five-hour experience that combines the Coffee Tour, the Specialty Coffee Tasting and a full lunch at our hotel.",
     "extras": [
       {
         "variant": "soft",

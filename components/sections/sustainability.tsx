@@ -66,9 +66,6 @@ export function Sustainability({ m }: { m: Dictionary }) {
             {t.title}
           </h2>
           <p className="text-cream/90 leading-relaxed mb-5">{t.p1}</p>
-          <h3 className="text-xl md:text-2xl text-gold-soft mt-10 mb-4">
-            {t.impactTitle}
-          </h3>
           <p className="text-cream/90 leading-relaxed">{t.p2}</p>
         </div>
 

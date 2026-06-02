@@ -40,8 +40,8 @@ export function SiteFooter({ m, locale }: { m: Dictionary; locale: Locale }) {
         <div>
           <h4 className="text-paper mb-4 text-sm font-medium">{t.legal_title}</h4>
           <ul className="space-y-2 text-sm">
-            <li><a href="#" className="text-cream/75 hover:text-cream transition-colors">{t.terms}</a></li>
-            <li><a href="#" className="text-cream/75 hover:text-cream transition-colors">{t.privacy}</a></li>
+            <li><Link href={`${prefix}/terminos`} className="text-cream/75 hover:text-cream transition-colors">{t.terms}</Link></li>
+            <li><Link href={`${prefix}/politica-de-datos`} className="text-cream/75 hover:text-cream transition-colors">{t.privacy}</Link></li>
           </ul>
         </div>
       </div>

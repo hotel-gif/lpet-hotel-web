@@ -62,6 +62,36 @@ Automático con **GitHub Actions** (`.github/workflows/deploy-pages.yml`): cada
 
 ## Bitácora de cambios
 
+### 2026-06-01 — Retroalimentación de Lina, parte 1 (sin imágenes)
+
+Primeras 6 páginas del documento *CAMBIOS EN WEB 2*, solo lo que no depende de
+fotos nuevas (los reemplazos de fotos y el cambio de logo quedan pendientes):
+
+- **LinkedIn** del footer/header corregido al perfil del **hotel**
+  (`la-palma-el-tucán-hotel`), antes apuntaba a la finca.
+- **"Cómo llegar":** el botón *Instrucciones de llegada* ahora **descarga el PDF**
+  (`public/docs/como-llegar-lpet-hotel.pdf`) y el mapa se acotó para caber en una
+  sola pantalla.
+- **"Ver cabañas"** (home) ahora **navega a `/alojamiento`** (antes era un ancla
+  que no llevaba a ninguna parte). Se hiló `locale` Home → `Cabanas`.
+- **Experiencias (textos):** "El Tour de Café está incluido en tu estadía",
+  título *Degustación de cafés de especialidad*, "café de especialidad" en el
+  punto 1, y nuevo texto del *Coffee Tour / Day Tour* (ES + EN).
+- **Áreas sociales:** nuevo texto del *Ver más* (ES + EN).
+- **Sostenibilidad:** título unificado *"Sostenibilidad e impacto en la
+  comunidad"* (se quitó el subtítulo separado).
+- **Legales:** nuevas landings **Términos y Condiciones** y **Política de
+  tratamiento de datos** (ES + EN) en `lib/legal.ts` + `LegalContent`, con el
+  texto real del sitio oficial; enlazadas desde el footer. El header va **sólido**
+  en estas páginas sin hero (`heroless`) para que el menú sea legible.
+- **Tipografía:** se subió la raíz (16 → 17px, `html { font-size: 106.25% }`) para
+  agrandar el texto de cuerpo sin tocar los títulos; botones a 15px.
+- **Amenidades (cabañas):** se rediseñaron los iconos de *Deck* (baranda de
+  terraza) y *Alpargatas* (calzado) que no correspondían.
+- **Pendiente** (necesita capturas/fotos): *Reserva directa* "seleccionar fechas
+  desde la web", reemplazos de fotos del Drive, logo de la & rosada, hojas → café,
+  fusión visual de secciones y la nota estadía/reserva de la degustación.
+
 ### 2026-05-31 — Pulido, contenido y correcciones (sesión con Claude Code)
 
 - **Animaciones de scroll:** entrada más lenta y elegante (1.5s) y salida suave
