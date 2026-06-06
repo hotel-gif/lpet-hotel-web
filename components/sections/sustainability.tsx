@@ -9,36 +9,6 @@ export function Sustainability({ m }: { m: Dictionary }) {
       className="relative text-paper overflow-hidden"
       style={{ backgroundColor: "#445f56" }}
     >
-      {/* Hojas decorativas — izquierda grande */}
-      <div
-        aria-hidden
-        className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-24 md:-left-28 w-[400px] md:w-[600px] h-[400px] md:h-[600px] pointer-events-none z-0"
-        style={{ transform: "translateY(-50%) rotate(45deg)" }}
-      >
-        <Image
-          src="/img/hojas.png"
-          alt=""
-          fill
-          sizes="600px"
-          className="object-contain leaf-animated-3"
-        />
-      </div>
-
-      {/* Hojas decorativas — derecha (más sutil) */}
-      <div
-        aria-hidden
-        className="hidden md:block absolute top-1/2 -translate-y-1/2 -right-24 md:-right-28 w-[400px] md:w-[600px] h-[400px] md:h-[600px] pointer-events-none z-0 opacity-50"
-        style={{ transform: "translateY(-50%) rotate(-135deg) scaleX(-1)" }}
-      >
-        <Image
-          src="/img/hojas.png"
-          alt=""
-          fill
-          sizes="600px"
-          className="object-contain leaf-animated-4"
-        />
-      </div>
-
       {/* Contenido centrado */}
       <div className="relative z-10 py-20 md:py-28">
         {/* Ornamento decorativo superior */}
@@ -66,6 +36,9 @@ export function Sustainability({ m }: { m: Dictionary }) {
             {t.title}
           </h2>
           <p className="text-cream/90 leading-relaxed mb-5">{t.p1}</p>
+          <h3 className="text-xl md:text-2xl text-gold-soft mt-10 mb-4">
+            {t.impactTitle}
+          </h3>
           <p className="text-cream/90 leading-relaxed">{t.p2}</p>
         </div>
 

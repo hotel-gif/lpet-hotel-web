@@ -1,7 +1,8 @@
 import { HeroBackground } from "@/components/hero-background";
-import type { Dictionary } from "@/lib/i18n";
+import { BookingBar } from "@/components/booking-bar";
+import type { Dictionary, Locale } from "@/lib/i18n";
 
-export function Hero({ m }: { m: Dictionary }) {
+export function Hero({ m, locale }: { m: Dictionary; locale: Locale }) {
   // Prefijo de assets para GitHub Pages (subpath). Vacío en local/Vercel/Cloudflare.
   const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const t = m.hero as {
@@ -11,6 +12,8 @@ export function Hero({ m }: { m: Dictionary }) {
     lead: string;
     cta_primary: string;
     cta_secondary: string;
+    book_checkin: string;
+    book_checkout: string;
   };
   return (
     <section className="hero relative min-h-screen flex items-end justify-center overflow-hidden">
@@ -43,15 +46,17 @@ export function Hero({ m }: { m: Dictionary }) {
           </span>
         </h1>
         <div className="hero-sub w-16 h-px bg-paper/60 mx-auto mb-8" />
-        <div className="hero-actions flex flex-wrap items-center justify-center gap-3">
-          <a
-            href="https://hotels.cloudbeds.com/reservation/i0wxBO"
-            target="_blank"
-            rel="noopener"
-            className="btn btn-outline-light"
-          >
-            {t.cta_primary}
-          </a>
+        {/* Reserva directa: el huésped elige fechas y el motor de Cloudbeds
+            abre con esas fechas ya seleccionadas (antes era un botón en blanco). */}
+        <div className="hero-actions flex justify-center">
+          <BookingBar
+            locale={locale}
+            labels={{
+              checkin: t.book_checkin,
+              checkout: t.book_checkout,
+              cta: t.cta_primary,
+            }}
+          />
         </div>
       </div>
 

@@ -18,7 +18,9 @@
     "subtitle": "Hotel boutique cerca de Bogotá",
     "lead": "",
     "cta_primary": "Reserva Directa",
-    "cta_secondary": ""
+    "cta_secondary": "",
+    "book_checkin": "Llegada",
+    "book_checkout": "Salida"
   },
   "intro": {
     "eyebrow": "",
@@ -81,7 +83,7 @@
   },
   "sustainability": {
     "eyebrow": "",
-    "title": "Sostenibilidad e impacto en la comunidad",
+    "title": "Nuestra sostenibilidad",
     "p1": "En cada rincón de nuestra finca se respiran prácticas regenerativas y un fuerte compromiso con la educación y la transformación. Ofrecemos experiencias inmersivas que van más allá del turismo, invitándote a ser parte activa del cuidado de nuestro entorno.",
     "impactTitle": "Impacto en la comunidad",
     "p2": "Nos impulsa el compromiso de generar un impacto social significativo en la comunidad local, promoviendo su desarrollo y el crecimiento personal y profesional de nuestro equipo."
@@ -436,7 +438,7 @@
         },
         {
           "label": "Lencería de lujo",
-          "icon": "towels"
+          "icon": "bed"
         },
         {
           "label": "Minibar",

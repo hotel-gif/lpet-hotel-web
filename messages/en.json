@@ -18,7 +18,9 @@
     "subtitle": "Boutique hotel near Bogotá",
     "lead": "",
     "cta_primary": "Direct Booking",
-    "cta_secondary": ""
+    "cta_secondary": "",
+    "book_checkin": "Check-in",
+    "book_checkout": "Check-out"
   },
   "intro": {
     "eyebrow": "",
@@ -81,7 +83,7 @@
   },
   "sustainability": {
     "eyebrow": "",
-    "title": "Sustainability and community impact",
+    "title": "Our sustainability",
     "p1": "In every corner of our estate you'll find regenerative practices and a strong commitment to education and transformation. We offer immersive experiences that go beyond tourism, inviting you to take an active part in caring for our environment.",
     "impactTitle": "Community impact",
     "p2": "We are driven by a commitment to create meaningful social impact within the local community, fostering its development and the personal and professional growth of our team."
@@ -436,7 +438,7 @@
         },
         {
           "label": "Luxury linens",
-          "icon": "towels"
+          "icon": "bed"
         },
         {
           "label": "Minibar",

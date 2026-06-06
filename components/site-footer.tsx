@@ -1,5 +1,6 @@
 import { SmartLink as Link } from "@/components/smart-link";
 import type { Dictionary, Locale } from "@/lib/i18n";
+import { reservationUrl } from "@/lib/booking";
 
 export function SiteFooter({ m, locale }: { m: Dictionary; locale: Locale }) {
   const t = m.footer;
@@ -30,7 +31,7 @@ export function SiteFooter({ m, locale }: { m: Dictionary; locale: Locale }) {
             <li><a href="tel:+573189565617" className="text-cream/75 hover:text-cream transition-colors">+57 318 956 5617</a></li>
             <li><a href="mailto:reservations@lapalmayeltucan.com" className="text-cream/75 hover:text-cream transition-colors">reservations@lapalmayeltucan.com</a></li>
             <li>
-              <a href="https://hotels.cloudbeds.com/reservation/i0wxBO" target="_blank" rel="noopener" className="text-cream/75 hover:text-cream transition-colors">
+              <a href={reservationUrl(locale)} target="_blank" rel="noopener" className="text-cream/75 hover:text-cream transition-colors">
                 {nav.book}
               </a>
             </li>

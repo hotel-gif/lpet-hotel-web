@@ -10,5 +10,5 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
   const m = await getDictionary("es");
-  return <AlojamientoContent m={m} />;
+  return <AlojamientoContent m={m} locale="es" />;
 }

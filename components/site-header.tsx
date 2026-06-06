@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import { SOCIAL } from "@/lib/social";
+import { reservationUrl } from "@/lib/booking";
 
 export function SiteHeader({ m, locale }: { m: Dictionary; locale: Locale }) {
   const [scrolled, setScrolled] = useState(false);
@@ -22,6 +23,8 @@ export function SiteHeader({ m, locale }: { m: Dictionary; locale: Locale }) {
   // Prefijo de idioma: "" para español (raíz), "/en" para inglés.
   const prefix = locale === "en" ? "/en" : "";
   const home = prefix || "/";
+
+  const reservationHref = reservationUrl(locale);
 
   // Normaliza el slash final: en el export estatico (GitHub Pages, trailingSlash)
   // usePathname() devuelve "/eventos/" pero los href son "/eventos" -> sin esto el
@@ -127,10 +130,10 @@ export function SiteHeader({ m, locale }: { m: Dictionary; locale: Locale }) {
           </div>
 
           <a
-            href="https://hotels.cloudbeds.com/reservation/i0wxBO"
+            href={reservationHref}
             target="_blank"
             rel="noopener"
-            className={`hidden md:inline-flex btn ${solid ? "btn-outline-dark" : "btn-outline-light"}`}
+            className="hidden md:inline-flex btn btn-rose"
           >
             {m.nav.book}
           </a>
@@ -169,10 +172,10 @@ export function SiteHeader({ m, locale }: { m: Dictionary; locale: Locale }) {
             );
           })}
           <a
-            href="https://hotels.cloudbeds.com/reservation/i0wxBO"
+            href={reservationHref}
             target="_blank"
             rel="noopener"
-            className="btn btn-primary mt-3 self-start"
+            className="btn btn-rose mt-3 self-start"
           >
             {m.nav.book}
           </a>

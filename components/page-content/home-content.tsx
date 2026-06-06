@@ -17,7 +17,7 @@ export function HomeContent({ m, locale }: { m: Dictionary; locale: Locale }) {
       <FaqSchema m={m} />
       {/* Motor de animaciones del rediseño: hero entrance/exit, reveal, count-up */}
       <MotionSystem />
-      <Hero m={m} />
+      <Hero m={m} locale={locale} />
       <div className="reveal" data-anim="fade">
         <Intro m={m} />
       </div>

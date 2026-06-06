@@ -53,11 +53,13 @@ const ICONS: Record<string, React.ReactNode> = {
       <circle cx="44" cy="44" r="4" fill="currentColor" />
     </svg>
   ),
-  towels: (
+  bed: (
+    // Cama de perfil con almohada (ropa de cama / lencería de lujo).
     <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="12" y="14" width="40" height="36" rx="2" />
-      <path d="M20 14 v36 M28 14 v36 M36 14 v36 M44 14 v36" />
-      <path d="M12 22 h40 M12 42 h40" />
+      <path d="M8 28 V46 H56 V40" />
+      <path d="M8 40 H50 Q56 40 56 46" />
+      <path d="M13 40 v-4 a3 3 0 0 1 3 -3 h7 a3 3 0 0 1 3 3 v4" />
+      <path d="M8 46 v5 M56 46 v5" />
     </svg>
   ),
   minibar: (
@@ -68,11 +70,10 @@ const ICONS: Record<string, React.ReactNode> = {
     </svg>
   ),
   sandals: (
-    // Alpargata vista de perfil (calzado de tela slip-on).
+    // Chancla / flip-flop vista desde arriba (correa en Y).
     <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M8 40 q-1 -10 11 -13 q7 -2 12 2 q7 5 19 7 q5 1 5 6 q0 5 -6 5 H16 q-8 0 -8 -7 z" />
-      <path d="M19 29 q9 -3 16 2" />
-      <path d="M8 50 q4 4 12 4 h28 q5 0 6 -4" />
+      <path d="M32 8 C 21 8 17 18 17 32 C 17 46 23 56 32 56 C 41 56 47 46 47 32 C 47 18 43 8 32 8 Z" />
+      <path d="M32 15 L25 27 M32 15 L39 27 M25 27 Q32 31 39 27" />
     </svg>
   ),
   hanger: (

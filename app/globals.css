@@ -16,6 +16,9 @@
   --color-paper: #fbf8f1;
   --color-gold: #c9a961;
   --color-gold-soft: #e8d9a8;
+  /* Rosado de marca: el de la "&" del logo (La Palma y El Tucán) */
+  --color-rose: #f27b9a;
+  --color-rose-dark: #e85d80;
   --color-ink: #1a1a1a;
   --color-ink-soft: #4a4a4a;
 
@@ -128,6 +131,12 @@
   box-shadow: 0 4px 14px -4px rgba(201, 169, 97, 0.45);
 }
 
+@utility btn-rose {
+  background: var(--color-rose);
+  color: #ffffff;
+  box-shadow: 0 4px 14px -4px rgba(242, 123, 154, 0.5);
+}
+
 @utility btn-outline-light {
   background: transparent;
   border-color: rgba(255, 255, 255, 0.7);
@@ -143,6 +152,7 @@
 .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -8px rgba(31, 58, 46, 0.28); }
 .btn-primary:hover { background: var(--color-forest-dark); }
 .btn-gold:hover { background: #b8985a; }
+.btn-rose:hover { background: var(--color-rose-dark); }
 .btn-outline-light:hover { background: #ffffff; color: var(--color-forest-dark); }
 .btn-outline-dark:hover { background: var(--color-forest); color: var(--color-paper); border-color: var(--color-forest); }
 .btn:active { transform: translateY(0) scale(0.97); transition-duration: calc(0.08s * var(--anim-scale)); }
@@ -183,49 +193,6 @@
 @utility img-rounded {
   border-radius: var(--radius-2xl);
   overflow: hidden;
-}
-
-/* Hojas decorativas — entrada amplia + balanceo natural continuo */
-@keyframes leaf-entrance {
-  0%   { opacity: 0; transform: translate(120px, 50px) rotate(-8deg) scale(0.85); }
-  60%  { opacity: 1; }
-  100% { opacity: 1; transform: translate(0, 0) rotate(0) scale(1); }
-}
-@keyframes leaf-sway {
-  0%, 100% { transform: translate(0, 0) rotate(0); }
-  25%      { transform: translate(-10px, -18px) rotate(3deg); }
-  50%      { transform: translate(0, -8px) rotate(0); }
-  75%      { transform: translate(10px, -14px) rotate(-2.5deg); }
-}
-.leaf-animated {
-  animation:
-    leaf-entrance calc(2.4s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) both,
-    leaf-sway calc(7s * var(--anim-scale)) ease-in-out calc(2.4s * var(--anim-scale)) infinite;
-  will-change: transform, opacity;
-}
-.leaf-animated-2 {
-  animation:
-    leaf-entrance calc(2.6s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) calc(0.2s * var(--anim-scale)) both,
-    leaf-sway calc(9s * var(--anim-scale)) ease-in-out calc(2.8s * var(--anim-scale)) infinite;
-  will-change: transform, opacity;
-}
-.leaf-animated-3 {
-  animation:
-    leaf-entrance calc(2.8s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) calc(0.4s * var(--anim-scale)) both,
-    leaf-sway calc(8s * var(--anim-scale)) ease-in-out calc(3.2s * var(--anim-scale)) infinite reverse;
-  will-change: transform, opacity;
-}
-.leaf-animated-4 {
-  animation:
-    leaf-entrance calc(2.5s * var(--anim-scale)) cubic-bezier(0.22, 1, 0.36, 1) calc(0.3s * var(--anim-scale)) both,
-    leaf-sway calc(10s * var(--anim-scale)) ease-in-out calc(3s * var(--anim-scale)) infinite;
-  will-change: transform, opacity;
-}
-@media (prefers-reduced-motion: reduce) {
-  .leaf-animated,
-  .leaf-animated-2,
-  .leaf-animated-3,
-  .leaf-animated-4 { animation: none; opacity: 1; }
 }
 
 /* ─── Animaciones de scroll (fade-in + slide-up) ───────────────────────── */

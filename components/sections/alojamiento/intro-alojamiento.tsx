@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { MarqueeZone } from "@/components/marquee-zone";
-import type { Dictionary } from "@/lib/i18n";
+import type { Dictionary, Locale } from "@/lib/i18n";
+import { reservationUrl } from "@/lib/booking";
 
 const PHOTOS = [
   "/img/habitacion-1.jpg",
@@ -16,7 +17,7 @@ const PHOTOS = [
 
 const LOOP_PHOTOS = [...PHOTOS, ...PHOTOS];
 
-export function IntroAlojamiento({ m }: { m: Dictionary }) {
+export function IntroAlojamiento({ m, locale }: { m: Dictionary; locale: Locale }) {
   const t = m.alojamiento.intro;
 
   return (
@@ -30,10 +31,10 @@ export function IntroAlojamiento({ m }: { m: Dictionary }) {
             {t.body}
           </p>
           <a
-            href="https://hotels.cloudbeds.com/reservation/i0wxBO"
+            href={reservationUrl(locale)}
             target="_blank"
             rel="noopener"
-            className="inline-flex items-center justify-center bg-forest-dark text-paper px-9 py-3.5 text-sm tracking-[0.05em] hover:bg-forest transition-colors"
+            className="inline-flex items-center justify-center bg-rose text-white px-9 py-3.5 text-sm tracking-[0.05em] hover:bg-rose-dark transition-colors"
             style={{ fontFamily: "var(--font-gotham), sans-serif" }}
           >
             {t.cta}

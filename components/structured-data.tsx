@@ -1,4 +1,5 @@
 import type { Dictionary } from "@/lib/i18n";
+import { reservationUrl } from "@/lib/booking";
 
 const SITE_URL = "https://lapalmayeltucanhotel.com";
 
@@ -52,7 +53,7 @@ export function HotelSchema({ m }: { m: Dictionary }) {
     },
     potentialAction: {
       "@type": "ReserveAction",
-      target: "https://hotels.cloudbeds.com/reservation/i0wxBO",
+      target: reservationUrl(),
     },
   };
 

@@ -32,36 +32,6 @@ export function Cabanas({ m, locale }: { m: Dictionary; locale: Locale }) {
       className="relative text-paper overflow-hidden"
       style={{ backgroundColor: "#445f56" }}
     >
-      {/* Hojas decorativas — derecha grande */}
-      <div
-        aria-hidden
-        className="hidden md:block absolute top-32 -right-20 md:top-40 md:-right-24 w-[450px] md:w-[700px] h-[450px] md:h-[700px] pointer-events-none z-0"
-        style={{ transform: "rotate(-127deg)" }}
-      >
-        <Image
-          src="/img/hojas.png"
-          alt=""
-          fill
-          sizes="700px"
-          className="object-contain leaf-animated"
-        />
-      </div>
-
-      {/* Hojas decorativas — izquierda grande (espejada) */}
-      <div
-        aria-hidden
-        className="hidden md:block absolute top-32 -left-20 md:top-40 md:-left-24 w-[450px] md:w-[700px] h-[450px] md:h-[700px] pointer-events-none z-0"
-        style={{ transform: "rotate(53deg) scaleX(-1)" }}
-      >
-        <Image
-          src="/img/hojas.png"
-          alt=""
-          fill
-          sizes="700px"
-          className="object-contain leaf-animated-2"
-        />
-      </div>
-
       {/* Texto a la izquierda, columna vacía a la derecha */}
       <div className="relative z-10 pt-20 md:pt-28 pb-12 md:pb-16">
         <div className="container-wide grid md:grid-cols-2 gap-10 items-center">
