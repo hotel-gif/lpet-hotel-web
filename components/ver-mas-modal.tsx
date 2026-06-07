@@ -69,7 +69,7 @@ export function VerMasButton({ label, title, detail }: Props) {
       <button
         type="button"
         onClick={onOpen}
-        className="border border-paper text-paper px-8 py-2 text-sm tracking-[0.05em] hover:bg-paper hover:text-forest-dark transition-colors backdrop-blur-sm bg-forest-dark/20"
+        className="rounded-full border border-paper text-paper px-8 py-2 text-sm tracking-[0.05em] hover:bg-paper hover:text-forest-dark transition-colors backdrop-blur-sm bg-forest-dark/20"
         style={{ fontFamily: "var(--font-gotham), sans-serif" }}
       >
         {label}
@@ -86,7 +86,7 @@ export function VerMasButton({ label, title, detail }: Props) {
           onClick={requestClose}
         >
           <div
-            className={`relative w-full max-w-lg bg-white px-8 py-12 md:px-14 md:py-16 text-center shadow-[0_30px_80px_-30px_rgba(18,34,24,0.5)] ${
+            className={`relative w-full max-w-lg rounded-2xl bg-white px-8 py-12 md:px-14 md:py-16 text-center shadow-[0_30px_80px_-30px_rgba(18,34,24,0.5)] ${
               closing ? "modal-card-out" : "modal-card"
             }`}
             onClick={(e) => e.stopPropagation()}
