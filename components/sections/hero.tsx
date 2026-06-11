@@ -32,7 +32,7 @@ export function Hero({ m, locale }: { m: Dictionary; locale: Locale }) {
       <div className="hero-inner container-wide text-center text-paper pb-24 md:pb-32 pt-32">
         <h1 className="mb-8 text-paper font-normal">
           <span className="line">
-            <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl whitespace-nowrap leading-[1.1] tracking-[0.03em]">
+            <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl whitespace-normal md:whitespace-nowrap leading-[1.1] tracking-[0.03em]">
               {t.title}
             </span>
           </span>

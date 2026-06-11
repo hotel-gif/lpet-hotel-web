@@ -655,6 +655,14 @@ html.js-ready .hero.loaded .hero-meta { opacity: 1; transform: none; transition-
   opacity: calc(1 - var(--hero-exit, 0) * 1.15);
 }
 
+/* En celular el contenido del hero va pegado abajo (items-end): el fade ligado
+   al scroll arrancaba desde scrollY=0 y la barra de reservas se desvanecía
+   apenas empezabas a bajar. En móvil dejamos que el hero salga con el scroll
+   normal, sin desvanecimiento prematuro. El drift se conserva en desktop. */
+@media (max-width: 767px) {
+  .hero-inner { transform: none; opacity: 1; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html.js-ready .reveal,
   html.js-ready .reveal.in,
