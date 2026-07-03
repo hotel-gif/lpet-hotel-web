@@ -164,6 +164,12 @@
       }
     ]
   },
+  "travelersChoice": {
+    "eyebrow": "Recognition",
+    "title": "Travelers' Choice 2026",
+    "lead": "La Palma y el Tucán has been honored with the 2026 Travelers' Choice Award, Tripadvisor's recognition of the accommodations most loved by travelers around the world.",
+    "badgeAlt": "Tripadvisor Travelers' Choice 2026 badge"
+  },
   "contacto_page": {
     "metadata": {
       "title": "Contact · La Palma y El Tucán Hotel",

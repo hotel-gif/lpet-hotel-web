@@ -164,6 +164,12 @@
       }
     ]
   },
+  "travelersChoice": {
+    "eyebrow": "Reconocimiento",
+    "title": "Travelers' Choice 2026",
+    "lead": "La Palma y el Tucán fue distinguido con el Travelers' Choice 2026, el reconocimiento que Tripadvisor otorga a los alojamientos mejor valorados por los viajeros de todo el mundo.",
+    "badgeAlt": "Insignia Tripadvisor Travelers' Choice 2026"
+  },
   "contacto_page": {
     "metadata": {
       "title": "Contacto · La Palma y El Tucán Hotel",

@@ -7,6 +7,7 @@ import { Community } from "@/components/sections/community";
 import { Newsletter } from "@/components/sections/newsletter";
 import { FAQ } from "@/components/sections/faq";
 import { Reviews } from "@/components/sections/reviews";
+import { TravelersChoice } from "@/components/sections/travelers-choice";
 import { MotionSystem } from "@/components/motion-system";
 import { FaqSchema } from "@/components/structured-data";
 import type { Dictionary, Locale } from "@/lib/i18n";
@@ -41,6 +42,9 @@ export function HomeContent({ m, locale }: { m: Dictionary; locale: Locale }) {
       </div>
       <div className="reveal" data-anim="fade">
         <Reviews m={m} />
+      </div>
+      <div className="reveal" data-anim="fade">
+        <TravelersChoice m={m} />
       </div>
     </>
   );
