@@ -7,7 +7,7 @@ export function SiteFooter({ m, locale }: { m: Dictionary; locale: Locale }) {
   const nav = m.nav;
   const prefix = locale === "en" ? "/en" : "";
   return (
-    <footer className="bg-forest-dark text-cream mt-24 pt-16 pb-8">
+    <footer className="bg-forest-dark text-cream pt-16 pb-8">
       <div className="container-wide grid md:grid-cols-4 gap-10">
         <div>
           <p className="text-paper text-lg mb-2 font-medium">La Palma y el Tucán</p>
