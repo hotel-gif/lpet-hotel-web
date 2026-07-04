@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Dictionary } from "@/lib/i18n";
+import { submitForm } from "@/lib/forms";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -14,8 +15,10 @@ export function ContactoForm({ m }: { m: Dictionary }) {
     e.preventDefault();
     setStatus("submitting");
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     const payload = {
+      type: "contacto",
       first_name: formData.get("first_name"),
       last_name: formData.get("last_name"),
       email: formData.get("email"),
@@ -23,12 +26,14 @@ export function ContactoForm({ m }: { m: Dictionary }) {
       message: formData.get("message"),
     };
 
-    // TODO: conectar a webhook n8n o Server Action
-    // Por ahora simulamos un envío exitoso tras 600ms
-    console.log("contacto submit", payload);
-    await new Promise((r) => setTimeout(r, 600));
-    setStatus("success");
-    e.currentTarget.reset();
+    // Envío real vía webhook n8n → correo a reservations@lapalmayeltucan.com.
+    const ok = await submitForm(payload);
+    if (ok) {
+      setStatus("success");
+      form.reset();
+    } else {
+      setStatus("error");
+    }
   }
 
   // Dispara el shake cuando el navegador bloquea el submit por campos inválidos.

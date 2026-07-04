@@ -102,7 +102,8 @@
     "report_abuse": "Report abuse",
     "placeholder": "you@email.com",
     "cta": "Subscribe",
-    "success": "Thank you! We'll send you our offers soon."
+    "success": "Thank you! We'll send you our offers soon.",
+    "error": "We couldn't send your subscription. Please try again or write to us at reservations@lapalmayeltucan.com."
   },
   "faq": {
     "eyebrow": "",

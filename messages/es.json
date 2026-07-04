@@ -102,7 +102,8 @@
     "report_abuse": "Reportar un abuso",
     "placeholder": "tu@correo.com",
     "cta": "Suscribirme",
-    "success": "¡Gracias! Te enviaremos las ofertas pronto."
+    "success": "¡Gracias! Te enviaremos las ofertas pronto.",
+    "error": "No pudimos enviar tu suscripción. Intenta de nuevo o escríbenos a reservations@lapalmayeltucan.com."
   },
   "faq": {
     "eyebrow": "",

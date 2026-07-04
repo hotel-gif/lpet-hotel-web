@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import type { Dictionary } from "@/lib/i18n";
+import { submitForm } from "@/lib/forms";
 
 export function Newsletter({ m }: { m: Dictionary }) {
   const t = m.newsletter;
@@ -11,10 +12,21 @@ export function Newsletter({ m }: { m: Dictionary }) {
   const [email, setEmail] = useState("");
   const [accept, setAccept] = useState(false);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!/.+@.+\..+/.test(email) || !accept) return;
+    setError(false);
+    setSending(true);
+    // Envío real vía webhook n8n → aviso a reservations@lapalmayeltucan.com.
+    const ok = await submitForm({ type: "newsletter", email, name });
+    setSending(false);
+    if (!ok) {
+      setError(true);
+      return;
+    }
     setSent(true);
     setName("");
     setEmail("");
@@ -93,20 +105,19 @@ export function Newsletter({ m }: { m: Dictionary }) {
                 </span>
               </label>
 
-              <button type="submit" className="btn btn-primary w-full mt-2">
+              <button type="submit" disabled={sending} className="btn btn-primary w-full mt-2 disabled:opacity-60">
                 {t.cta}
               </button>
             </form>
 
-            <div className="text-center mt-5">
-              <a href="#" className="text-[11px] text-ink-soft/60 hover:text-ink-soft underline">
-                {t.report_abuse}
-              </a>
-            </div>
-
             {sent && (
               <p className="mt-4 text-sm text-forest text-center" aria-live="polite">
                 ✓ {t.success}
+              </p>
+            )}
+            {error && (
+              <p className="mt-4 text-sm text-red-600 text-center" aria-live="polite">
+                {t.error}
               </p>
             )}
           </div>
