@@ -94,17 +94,29 @@ export function MotionSystem() {
     document.querySelectorAll(".score-row").forEach((el) => io.observe(el));
 
     // ---------- hero exit (desvanecido ligado al scroll) ----------
+    // En móvil el hero va pegado abajo (items-end): el desvanecido arrancaba casi
+    // en scrollY=0 y la barra de reservas se esfumaba apenas empezabas a bajar.
+    // En celular lo desactivamos (--hero-exit fijo en 0) para que el hero salga con
+    // scroll normal; el drift/fade se conserva en desktop. (Se hace en JS y no solo
+    // por CSS para no depender de la cascada del @media.)
     let heroScroll: (() => void) | null = null;
+    let heroMq: MediaQueryList | null = null;
+    let heroMqHandler: (() => void) | null = null;
     if (heroEl && !reduce) {
+      const mqMobile = window.matchMedia("(max-width: 767px)");
       let hTick = false;
       const heroUpdate = () => {
         hTick = false;
+        if (mqMobile.matches) { heroEl.style.setProperty("--hero-exit", "0"); return; }
         const h = heroEl.offsetHeight || window.innerHeight;
         const p = Math.min(Math.max(window.scrollY / (h * 0.85), 0), 1);
         heroEl.style.setProperty("--hero-exit", p.toFixed(3));
       };
       heroScroll = () => { if (!hTick) { requestAnimationFrame(heroUpdate); hTick = true; } };
       window.addEventListener("scroll", heroScroll, { passive: true });
+      // Recalcular al cruzar el breakpoint (p. ej. rotar el celular o redimensionar).
+      heroMq = mqMobile; heroMqHandler = heroUpdate;
+      mqMobile.addEventListener("change", heroUpdate);
       heroUpdate();
     }
 
@@ -135,6 +147,7 @@ export function MotionSystem() {
       cancelAnimationFrame(rafId);
       io.disconnect();
       if (heroScroll) window.removeEventListener("scroll", heroScroll);
+      if (heroMq && heroMqHandler) heroMq.removeEventListener("change", heroMqHandler);
       if (pxScroll) window.removeEventListener("scroll", pxScroll);
       if (pxResize) window.removeEventListener("resize", pxResize);
     };

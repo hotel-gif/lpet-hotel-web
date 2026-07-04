@@ -16,7 +16,7 @@ export function Hero({ m, locale }: { m: Dictionary; locale: Locale }) {
     book_checkout: string;
   };
   return (
-    <section className="hero relative min-h-screen flex items-end justify-center overflow-hidden">
+    <section className="hero relative min-h-[80svh] md:min-h-screen flex items-end justify-center overflow-hidden">
       <HeroBackground
         videoSources={[
           { src: `${base}/video/hero.webm`, type: "video/webm" },

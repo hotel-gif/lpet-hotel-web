@@ -4,7 +4,7 @@ import type { Dictionary } from "@/lib/i18n";
 export function HeroExperiencias({ m }: { m: Dictionary }) {
   const t = m.experiencias_page.hero;
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[80svh] md:min-h-screen flex items-center justify-center overflow-hidden">
       <HeroBackground
         src="/img/experiencias-hero.jpg"
         gradientClass="bg-gradient-to-b from-forest-dark/35 via-forest-dark/35 to-forest-dark/55"
