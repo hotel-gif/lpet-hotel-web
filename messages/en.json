@@ -462,6 +462,26 @@
       ]
     }
   },
+  "menu": {
+    "metadata": {
+      "title": "Menu | La Palma y El Tucán Hotel",
+      "description": "Our breakfast, lunch and dinner menu with fresh ingredients from the hotel's organic garden."
+    },
+    "kicker": "La Palma & El Tucán · Hotel",
+    "welcome": {
+      "title": "Welcome to an experience that nourishes both body and soul",
+      "body": "At La Palma & El Tucán, every dish we serve is an extension of our philosophy of wellness, nature, and learning. Our kitchen is fueled by fresh ingredients, many of them grown in our own organic garden and prepared artisanally at the hotel. We believe that food is an act of connection: with the land, with the environment, and with oneself. Our breakfast, lunch, and dinner menus are designed to invite you to disconnect and savor every bite without rush. What would you like to eat today?"
+    },
+    "nav_aria": "Jump to a menu section",
+    "lang": {
+      "es": "ES",
+      "en": "EN",
+      "aria": "Change language"
+    },
+    "priceNote": "Prices in Colombian pesos. Includes impoconsumo tax.",
+    "social": "@lapalmayeltucan_hotel · www.lapalmayeltucanhotel.com",
+    "pdf": "Download / Print PDF"
+  },
   "footer": {
     "tagline": "Sustainable boutique hotel near Bogotá",
     "address": "Finca Las Nubes, Vereda San Cayetano, Zipacón, Cundinamarca, Colombia",

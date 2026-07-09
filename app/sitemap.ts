@@ -17,6 +17,7 @@ const PAGES: Entry[] = [
   { path: "/eventos", changeFrequency: "monthly", priority: 0.9 },
   { path: "/experiencias", changeFrequency: "monthly", priority: 0.9 },
   { path: "/matrimonios", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/menu", changeFrequency: "monthly", priority: 0.7 },
   { path: "/contacto", changeFrequency: "yearly", priority: 0.7 },
 ];
 
