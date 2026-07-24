@@ -11,7 +11,13 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/"],
+        // OJO: aqui NO va "/_next/". Bloquearlo dejaba fuera el CSS, los chunks de
+        // JS y —sobre todo— las 362 imagenes del sitio, que Next sirve por
+        // /_next/image. Google necesita el CSS y el JS para renderizar la pagina
+        // como la ve un huesped, y sin acceso a /_next/image ninguna foto del
+        // hotel puede aparecer en Google Imagenes ni la pueden leer los
+        // rastreadores de IA. Solo se bloquean las rutas sin valor de busqueda.
+        disallow: ["/api/"],
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
