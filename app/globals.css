@@ -677,3 +677,48 @@ html.js-ready .hero.loaded .hero-meta { opacity: 1; transform: none; transition-
   }
   .hero-inner { transform: none !important; opacity: 1 !important; }
 }
+
+/* Campos de fecha de la barra de reservas — fix Safari iOS.
+   En iOS, input[type=date] trae un ancho intrínseco propio (con su icono de
+   calendario) y NO se encoge dentro del flex: los campos blancos se salían del
+   panel de cristal por la derecha. Se ve bien en Chrome/Android y roto en iPhone.
+   Neutralizamos el estilo nativo y forzamos que el ancho lo mande el contenedor. */
+.date-field {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  /* iOS aplica su propio tamaño de fuente al picker; <16px hace que Safari
+     haga zoom automático al enfocar el campo. */
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+/* Sub-partes WebKit del control de fecha: sin ellas el valor se centra y el
+   campo vuelve a estirarse en iPhone. */
+.date-field::-webkit-date-and-time-value {
+  text-align: left;
+  margin: 0;
+}
+
+.date-field::-webkit-datetime-edit {
+  padding: 0;
+}
+
+/* El icono del calendario queda pegado al borde derecho del campo redondeado. */
+.date-field::-webkit-calendar-picker-indicator {
+  margin-left: auto;
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+/* Legibilidad del texto del hero sobre video.
+   El video pasa por frames muy claros (el letrero de madera) donde el texto
+   blanco se perdia. El degradado solo no basta sin oscurecer de mas la imagen:
+   una sombra difusa da contraste local pegada a las letras y deja el video limpio. */
+.hero h1,
+.hero .hero-sub {
+  text-shadow: 0 1px 2px rgba(18, 34, 24, 0.28), 0 2px 20px rgba(18, 34, 24, 0.4);
+}

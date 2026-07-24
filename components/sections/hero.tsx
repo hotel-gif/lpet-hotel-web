@@ -17,13 +17,17 @@ export function Hero({ m, locale }: { m: Dictionary; locale: Locale }) {
   };
   return (
     <section className="hero relative min-h-[80svh] md:min-h-screen flex items-end justify-center overflow-hidden">
+      {/* El overlay era casi transparente en el centro (via-transparent): cuando el
+          video pasa por el frame del letrero de madera claro, el titulo y el
+          subtitulo blancos quedaban ilegibles. Se refuerza sin tapar la imagen:
+          arriba protege al logo del header, abajo al texto y a la barra de reserva. */}
       <HeroBackground
         videoSources={[
           { src: `${base}/video/hero.webm`, type: "video/webm" },
           { src: `${base}/video/hero.mp4`, type: "video/mp4" },
         ]}
         poster={`${base}/video/hero-poster.webp`}
-        gradientClass="bg-gradient-to-b from-forest-dark/15 via-transparent to-forest-dark/45"
+        gradientClass="bg-gradient-to-b from-forest-dark/35 via-forest-dark/20 to-forest-dark/70"
       />
 
       {/* hero-inner: el rediseño lo desplaza y desvanece al hacer scroll (--hero-exit).

@@ -78,14 +78,18 @@ export function SiteHeader({ m, locale }: { m: Dictionary; locale: Locale }) {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${bg}`}>
       <div className="header-enter container-wide flex items-center justify-between py-4">
-        <Link href={home} className="flex items-center shrink-0">
+        <Link href={home} className="flex min-w-0 items-center shrink-0">
+          {/* width/height = proporcion REAL del SVG (viewBox 521.92x153.91). Con los
+              valores viejos (186x64) el navegador usaba igual el ratio del archivo y
+              el logo salia mas ancho de lo previsto: en iPhone se comia media
+              pantalla y quedaba pegado al boton de menu. */}
           <Image
             src={solid ? "/img/logo-dark.svg" : "/img/logo.svg"}
             alt="La Palma y El Tucán"
-            width={186}
-            height={64}
+            width={522}
+            height={154}
             priority
-            className="h-14 md:h-16 w-auto transition-opacity duration-300"
+            className="h-11 sm:h-12 md:h-16 w-auto transition-opacity duration-300"
           />
         </Link>
 

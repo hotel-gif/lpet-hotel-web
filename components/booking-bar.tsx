@@ -37,9 +37,9 @@ export function BookingBar({ labels, locale }: { labels: BookingLabels; locale: 
   return (
     <form
       onSubmit={handleSubmit}
-      className="booking-bar mx-auto flex w-full max-w-2xl flex-col gap-3 rounded-3xl border border-paper/25 bg-paper/12 p-3 text-left backdrop-blur-md sm:flex-row sm:items-end sm:gap-3 sm:rounded-[2rem] sm:p-2.5 sm:pl-5"
+      className="booking-bar mx-auto flex w-full max-w-2xl min-w-0 flex-col gap-3 rounded-3xl border border-paper/25 bg-paper/12 p-3 text-left backdrop-blur-md sm:flex-row sm:items-end sm:gap-3 sm:rounded-[2rem] sm:p-2.5 sm:pl-5"
     >
-      <div className="flex flex-1 flex-col gap-1">
+      <div className="flex min-w-0 flex-1 flex-col gap-1">
         <label htmlFor={inId} className="text-[11px] font-medium uppercase tracking-[0.14em] text-paper/85">
           {labels.checkin}
         </label>
@@ -55,11 +55,11 @@ export function BookingBar({ labels, locale }: { labels: BookingLabels; locale: 
             // Si la salida quedó inválida respecto a la nueva llegada, la limpiamos.
             if (checkout && v && checkout <= v) setCheckout("");
           }}
-          className="w-full rounded-full border-0 bg-paper/95 px-4 py-2.5 text-sm text-forest-dark outline-none focus:ring-2 focus:ring-gold/70"
+          className="date-field w-full min-w-0 max-w-full rounded-full border-0 bg-paper/95 px-4 py-2.5 text-sm text-forest-dark outline-none focus:ring-2 focus:ring-gold/70"
         />
       </div>
 
-      <div className="flex flex-1 flex-col gap-1">
+      <div className="flex min-w-0 flex-1 flex-col gap-1">
         <label htmlFor={outId} className="text-[11px] font-medium uppercase tracking-[0.14em] text-paper/85">
           {labels.checkout}
         </label>
@@ -70,7 +70,7 @@ export function BookingBar({ labels, locale }: { labels: BookingLabels; locale: 
           min={minCheckout}
           value={checkout}
           onChange={(e) => setCheckout(e.target.value)}
-          className="w-full rounded-full border-0 bg-paper/95 px-4 py-2.5 text-sm text-forest-dark outline-none focus:ring-2 focus:ring-gold/70"
+          className="date-field w-full min-w-0 max-w-full rounded-full border-0 bg-paper/95 px-4 py-2.5 text-sm text-forest-dark outline-none focus:ring-2 focus:ring-gold/70"
         />
       </div>
 
