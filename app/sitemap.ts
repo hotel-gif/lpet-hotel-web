@@ -26,6 +26,9 @@ const PAGES: Entry[] = [
 // generaría URLs inexistentes en el hreflang.
 const LANDINGS: Entry[] = [
   { path: "/bodas-en-finca", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/eventos-corporativos-finca", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/birdwatching", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/coffee-tour", changeFrequency: "monthly", priority: 0.9 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

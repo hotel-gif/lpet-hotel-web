@@ -14,6 +14,9 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 // misma búsqueda que la página institucional del sitio (/matrimonios).
 const landings = [
   { slug: "bodas-en-finca", subdomain: "bodas.lapalmayeltucanhotel.com" },
+  { slug: "eventos-corporativos-finca", subdomain: "eventos.lapalmayeltucanhotel.com" },
+  { slug: "birdwatching", subdomain: "birdwatching.lapalmayeltucanhotel.com" },
+  { slug: "coffee-tour", subdomain: "coffee.lapalmayeltucanhotel.com" },
 ];
 
 // Rutas que alcanzaron a estar publicadas con otro nombre. Se mantienen vivas
