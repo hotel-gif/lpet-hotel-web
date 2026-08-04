@@ -29,6 +29,8 @@ const LANDINGS: Entry[] = [
   { path: "/eventos-corporativos-finca", changeFrequency: "monthly", priority: 0.9 },
   { path: "/birdwatching", changeFrequency: "monthly", priority: 0.9 },
   { path: "/coffee-tour", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/escapada-romantica", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/escapadas-cerca-de-bogota", changeFrequency: "monthly", priority: 0.9 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

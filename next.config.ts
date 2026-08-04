@@ -17,6 +17,8 @@ const landings = [
   { slug: "eventos-corporativos-finca", subdomain: "eventos.lapalmayeltucanhotel.com" },
   { slug: "birdwatching", subdomain: "birdwatching.lapalmayeltucanhotel.com" },
   { slug: "coffee-tour", subdomain: "coffee.lapalmayeltucanhotel.com" },
+  { slug: "escapada-romantica", subdomain: "escapadas.lapalmayeltucanhotel.com" },
+  { slug: "escapadas-cerca-de-bogota", subdomain: "cercaabogota.lapalmayeltucanhotel.com" },
 ];
 
 // Rutas que alcanzaron a estar publicadas con otro nombre. Se mantienen vivas
