@@ -25,7 +25,7 @@ const PAGES: Entry[] = [
 // PAGES porque son solo en español: no tienen versión /en y meterlas ahí
 // generaría URLs inexistentes en el hreflang.
 const LANDINGS: Entry[] = [
-  { path: "/bodas", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/bodas-en-finca", changeFrequency: "monthly", priority: 0.9 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

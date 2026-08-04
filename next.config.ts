@@ -10,9 +10,15 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 // del dominio oficial. El build de cada una (repos aparte, Vite) se copia a
 // `public/<slug>/`; aquí solo se resuelve la URL limpia y se redirige el
 // subdominio viejo. Ver README → "Landings".
+// El slug lleva long tail propio a propósito: la landing no debe pelear la
+// misma búsqueda que la página institucional del sitio (/matrimonios).
 const landings = [
-  { slug: "bodas", subdomain: "bodas.lapalmayeltucanhotel.com" },
+  { slug: "bodas-en-finca", subdomain: "bodas.lapalmayeltucanhotel.com" },
 ];
+
+// Rutas que alcanzaron a estar publicadas con otro nombre. Se mantienen vivas
+// para no romper links ya compartidos.
+const legacyPaths = [{ from: "/bodas", to: "/bodas-en-finca" }];
 
 const nextConfig: NextConfig = {
   ...(isStaticExport ? { output: "export", trailingSlash: true } : {}),
@@ -32,12 +38,19 @@ const nextConfig: NextConfig = {
   // redirect va aquí y no en el panel de Vercel porque allí el destino no
   // admite una ruta, solo otro dominio.
   async redirects() {
-    return landings.map(({ slug, subdomain }) => ({
-      source: "/:path*",
-      has: [{ type: "host" as const, value: subdomain }],
-      destination: `https://lapalmayeltucanhotel.com/${slug}`,
-      statusCode: 301,
-    }));
+    return [
+      ...landings.map(({ slug, subdomain }) => ({
+        source: "/:path*",
+        has: [{ type: "host" as const, value: subdomain }],
+        destination: `https://lapalmayeltucanhotel.com/${slug}`,
+        statusCode: 301,
+      })),
+      ...legacyPaths.map(({ from, to }) => ({
+        source: from,
+        destination: to,
+        statusCode: 301,
+      })),
+    ];
   },
 };
 
