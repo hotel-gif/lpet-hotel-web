@@ -193,6 +193,8 @@
       "first_name": "Nombre *",
       "last_name": "Apellido *",
       "email": "Email *",
+      "phone_code": "Indicativo",
+      "phone": "Teléfono / WhatsApp *",
       "subject": "Asunto",
       "message": "Mensaje *",
       "submit": "Enviar",

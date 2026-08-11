@@ -193,6 +193,8 @@
       "first_name": "First name *",
       "last_name": "Last name *",
       "email": "Email *",
+      "phone_code": "Country code",
+      "phone": "Phone / WhatsApp *",
       "subject": "Subject",
       "message": "Message *",
       "submit": "Send",

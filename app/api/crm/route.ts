@@ -94,6 +94,7 @@ async function obtenerOCrearContacto(datos: {
   nombre: string;
   apellido: string;
   email: string;
+  telefono?: string;
   comentario: string;
   responsable: number;
 }): Promise<{ id: number; creado: boolean }> {
@@ -105,6 +106,11 @@ async function obtenerOCrearContacto(datos: {
       NAME: datos.nombre,
       LAST_NAME: datos.apellido,
       EMAIL: [{ VALUE: datos.email, VALUE_TYPE: "WORK" }],
+      // MOBILE y no WORK: el número se pide como "Teléfono / WhatsApp", así que
+      // el equipo va a escribirle por ahí.
+      ...(datos.telefono
+        ? { PHONE: [{ VALUE: datos.telefono, VALUE_TYPE: "MOBILE" }] }
+        : {}),
       TYPE_ID: TIPO_PROSPECTO,
       SOURCE_ID: ORIGEN_WEB,
       SOURCE_DESCRIPTION: datos.comentario,
@@ -176,6 +182,7 @@ export async function POST(req: Request) {
 
     const nombre = limpiar(body.first_name, 100);
     const apellido = limpiar(body.last_name, 100);
+    const telefono = limpiar(body.phone, 40);
     const asunto = limpiar(body.subject, 200);
     const mensaje = limpiar(body.message, 5000);
 
@@ -183,10 +190,15 @@ export async function POST(req: Request) {
       nombre: nombre || email.split("@")[0],
       apellido,
       email,
+      telefono,
       comentario: "Formulario de contacto — lapalmayeltucanhotel.com",
       responsable,
     });
 
+    // El teléfono se repite en el deal a propósito: si el contacto ya existía,
+    // no se toca su ficha (solo tenemos permiso de creación), así que este
+    // sería el único lugar donde el número queda registrado.
+    const cuerpo = telefono ? `Tel: ${telefono}\n\n${mensaje}` : mensaje;
     const titulo = [nombre, apellido].filter(Boolean).join(" ") || email;
     const dealId = await bitrix<number>("crm.deal.add", {
       fields: {
@@ -196,7 +208,7 @@ export async function POST(req: Request) {
         CONTACT_ID: contactId,
         SOURCE_ID: ORIGEN_WEB,
         SOURCE_DESCRIPTION: "Formulario de contacto — lapalmayeltucanhotel.com",
-        COMMENTS: aHtml(mensaje),
+        COMMENTS: aHtml(cuerpo),
         ASSIGNED_BY_ID: responsable,
         OPENED: "Y",
       },

@@ -93,6 +93,12 @@ desarrollo. Ninguna lleva `NEXT_PUBLIC_`: son secretos de servidor.
     un mismo remitente siempre cae en la misma persona.
   - `COMMENTS` en Bitrix es HTML: el mensaje se escapa y los saltos de línea se
     convierten a `<br>`, o se leería como un párrafo corrido.
+  - **Teléfono:** el formulario de contacto lo pide **obligatorio**, con selector
+    de indicativo (`INDICATIVOS` en `contacto-form.tsx`, Colombia por defecto).
+    Viaja unido al número (`+57 300…`) y se guarda como `PHONE`/`MOBILE`. Se
+    repite dentro de `COMMENTS` del deal a propósito: si el correo ya existía,
+    su ficha no se toca —solo hay permiso de creación— y ese sería el único
+    sitio donde quedaría el número.
 
 ## Bitácora de cambios
 

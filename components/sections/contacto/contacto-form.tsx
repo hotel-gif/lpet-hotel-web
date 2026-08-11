@@ -6,6 +6,33 @@ import { submitForm } from "@/lib/forms";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+/**
+ * Indicativos para el selector. Colombia primero (la mayoría de las consultas)
+ * y detrás los mercados de donde llegan los huéspedes extranjeros. La `key` va
+ * aparte del `code` porque EE.UU. y Canadá comparten el +1 y el value de un
+ * <option> tiene que ser único.
+ */
+const INDICATIVOS = [
+  { key: "CO", code: "+57", label: "🇨🇴 Colombia" },
+  { key: "US", code: "+1", label: "🇺🇸 Estados Unidos" },
+  { key: "CA", code: "+1", label: "🇨🇦 Canadá" },
+  { key: "MX", code: "+52", label: "🇲🇽 México" },
+  { key: "ES", code: "+34", label: "🇪🇸 España" },
+  { key: "GB", code: "+44", label: "🇬🇧 Reino Unido" },
+  { key: "DE", code: "+49", label: "🇩🇪 Alemania" },
+  { key: "FR", code: "+33", label: "🇫🇷 Francia" },
+  { key: "IT", code: "+39", label: "🇮🇹 Italia" },
+  { key: "NL", code: "+31", label: "🇳🇱 Países Bajos" },
+  { key: "CH", code: "+41", label: "🇨🇭 Suiza" },
+  { key: "BR", code: "+55", label: "🇧🇷 Brasil" },
+  { key: "AR", code: "+54", label: "🇦🇷 Argentina" },
+  { key: "CL", code: "+56", label: "🇨🇱 Chile" },
+  { key: "PE", code: "+51", label: "🇵🇪 Perú" },
+  { key: "EC", code: "+593", label: "🇪🇨 Ecuador" },
+  { key: "PA", code: "+507", label: "🇵🇦 Panamá" },
+  { key: "AU", code: "+61", label: "🇦🇺 Australia" },
+];
+
 export function ContactoForm({ m }: { m: Dictionary }) {
   const t = m.contacto_page.form;
   const [status, setStatus] = useState<Status>("idle");
@@ -17,11 +44,16 @@ export function ContactoForm({ m }: { m: Dictionary }) {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
+    // El indicativo viaja unido al número: en el CRM se necesita el teléfono
+    // completo para poder marcar o escribir por WhatsApp sin recomponerlo.
+    const phoneCode = String(formData.get("phone_code") || "");
+    const phoneNumber = String(formData.get("phone") || "").trim();
     const payload = {
       type: "contacto",
       first_name: formData.get("first_name"),
       last_name: formData.get("last_name"),
       email: formData.get("email"),
+      phone: phoneNumber ? `${phoneCode} ${phoneNumber}` : "",
       subject: formData.get("subject"),
       message: formData.get("message"),
     };
@@ -109,6 +141,32 @@ export function ContactoForm({ m }: { m: Dictionary }) {
         placeholder={t.email}
         className={inputClass}
       />
+      {/* Indicativo + número. En móvil el selector va arriba y el número debajo;
+          desde md comparten fila con el selector angosto. */}
+      <div className="grid grid-cols-1 md:grid-cols-[minmax(0,11rem)_1fr] gap-4">
+        <select
+          name="phone_code"
+          defaultValue="+57"
+          aria-label={t.phone_code}
+          className={`${inputClass} appearance-none cursor-pointer`}
+        >
+          {INDICATIVOS.map((p) => (
+            <option key={p.key} value={p.code}>
+              {p.label} {p.code}
+            </option>
+          ))}
+        </select>
+        <input
+          name="phone"
+          type="tel"
+          required
+          inputMode="tel"
+          autoComplete="tel"
+          aria-label={t.phone}
+          placeholder={t.phone}
+          className={inputClass}
+        />
+      </div>
       <input name="subject" aria-label={t.subject} placeholder={t.subject} className={inputClass} />
       <textarea
         name="message"
