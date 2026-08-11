@@ -64,15 +64,15 @@ export const MENU: MenuSection[] = [
       {
         name: { es: "Waffles de Choclo", en: "Sweetcorn waffles" },
         desc: {
-          es: "con crema agria, miel y mermelada artesanal.",
-          en: "with sour cream, honey and homemade jam.",
+          es: "con queso crema, miel y mermelada artesanal.",
+          en: "with cream cheese, honey and homemade jam.",
         },
       },
       {
         name: { es: "Waffles de avena y arándanos", en: "Oat and blueberry waffles" },
         desc: {
-          es: "con crema agria, miel y mermelada artesanal.",
-          en: "with sour cream, honey and homemade jam.",
+          es: "con queso crema, miel y mermelada artesanal.",
+          en: "with cream cheese, honey and homemade jam.",
         },
       },
     ],
@@ -85,8 +85,8 @@ export const MENU: MenuSection[] = [
       {
         name: { es: "Protein & Chocolate", en: "Protein & Chocolate" },
         desc: {
-          es: "Leche de almendras, mantequilla de maní, proteína vegana sabor chocolate",
-          en: "Plant-based milk, banana, peanut butter, chocolate-flavored vegan protein",
+          es: "Leche de avena o vegetal, mantequilla de maní, proteína vegana sabor chocolate",
+          en: "Oat or plant-based milk, banana, peanut butter, chocolate-flavored vegan protein",
         },
         price: "$17",
         addon: { es: "Proteína vegana +$3,5", en: "Vegan protein +$3.5" },
@@ -94,8 +94,8 @@ export const MENU: MenuSection[] = [
       {
         name: { es: "Strawberry banana", en: "Strawberry banana" },
         desc: {
-          es: "Leche de almendras, fresa, banano y miel",
-          en: "Plant-based milk, strawberry, banana, honey",
+          es: "Leche de avena o vegetal, fresa, banano y miel",
+          en: "Oat or plant-based milk, strawberry, banana, honey",
         },
         price: "$16",
       },
@@ -117,8 +117,8 @@ export const MENU: MenuSection[] = [
       {
         name: { es: "Sopa Rústica de Tomate", en: "Tomato Rustic soup" },
         desc: {
-          es: "Tomate San Marzano rostizado en horno de leña con costra de parmesano y albahaca fresca de la huerta",
-          en: "Roasted San Marzano tomato with wood-fired oven, parmesan crust, and fresh garden basil",
+          es: "Tomate San Marzano rostizado en horno de leña con costra de parmesano",
+          en: "Roasted San Marzano tomato with wood-fired oven and parmesan crust",
         },
         price: "$21",
       },
@@ -161,8 +161,8 @@ export const MENU: MenuSection[] = [
       {
         name: { es: "Tostada de Aguacate", en: "Avocado toast" },
         desc: {
-          es: "Tostada de pan de masa madre con aguacates de nuestros árboles, aceite de oliva virgen, orégano seco y germinados de la huerta",
-          en: "Sourdough bread toast with avocados from our trees, extra virgin olive oil, dried oregano, and garden sprouts",
+          es: "Tostada de pan de masa madre con aguacates de nuestros árboles, aceite de oliva virgen y orégano seco",
+          en: "Sourdough bread toast with avocados from our trees, extra virgin olive oil and dried oregano",
         },
         price: "$18",
       },
@@ -290,13 +290,16 @@ export const MENU: MenuSection[] = [
       { name: { es: "Limonada natural", en: "Fresh lemonade" }, price: "$8" },
       { name: { es: "Ginger Ale", en: "Ginger Ale" }, price: "$8" },
       { name: { es: "Agua natural", en: "Natural water" }, price: "$6,5" },
-      { name: { es: "Agua con gas", en: "Carbonated water" }, price: "$8,5" },
+      { name: { es: "Bretaña (agua con gas)", en: "Bretaña (sparkling water)" }, price: "$6,1" },
       {
         name: { es: "Cerveza Club Colombia dorada", en: "Club Colombia Beer (golden)" },
         price: "$10",
       },
-      { name: { es: "Gatorade", en: "Gatorade" }, price: "$10,5" },
-      { name: { es: "Cerveza Lateral barril", en: "Lateral Beer (barrel)" }, price: "$14" },
+      {
+        name: { es: "Suero de hidratación", en: "Hydration drink" },
+        price: "$13,6",
+      },
+      { name: { es: "Cerveza Coronita", en: "Coronita Beer" }, price: "$10" },
     ],
   },
   {
