@@ -34,8 +34,24 @@ MSYS_NO_PATHCONV=1 STATIC_EXPORT=true NEXT_PUBLIC_BASE_PATH=/lpet-hotel-web pnpm
 
 ## Despliegue
 
-Automático con **GitHub Actions** (`.github/workflows/deploy-pages.yml`): cada
-**push a `main`** hace el export estático y lo publica en GitHub Pages.
+Automático en **Vercel**: cada **push a `main`** de `hotel-gif/lpet-hotel-web`
+despliega el sitio como **Next.js nativo (SSR)**. El dominio oficial
+`lapalmayeltucanhotel.com` apunta ahí (verificado: responde `Server: Vercel`).
+
+> El export estático a GitHub Pages (`STATIC_EXPORT=true`) quedó como camino de
+> respaldo y ya no tiene workflow de CI. **No sirve para producción:**
+> `output: "export"` no admite handlers POST, así que `/api/crm` —el que
+> registra los formularios en Bitrix24— no existiría en ese build.
+
+## Variables de entorno
+
+En Vercel (Project → Settings → Environment Variables) y en `.env.local` para
+desarrollo. Ninguna lleva `NEXT_PUBLIC_`: son secretos de servidor.
+
+| Variable | Obligatoria | Para qué |
+|---|---|---|
+| `BITRIX_WEBHOOK_URL` | sí | Webhook entrante de Bitrix24 con scope `crm`. **Con barra final.** Se usa el webhook "crm_only", no el "full" que opera Sofía. |
+| `FORM_EMAIL_WEBHOOK` | no | Webhook de n8n que avisa por correo a `reservations@`. Si se quita, solo queda la notificación interna de Bitrix al responsable. |
 
 ## Decisiones de arquitectura / gotchas
 
@@ -60,9 +76,41 @@ Automático con **GitHub Actions** (`.github/workflows/deploy-pages.yml`): cada
 - **i18n:** `Dictionary = typeof esDict` (`lib/i18n.ts`). `messages/en.json` debe
   tener exactamente las mismas claves que `messages/es.json`.
 
+- **Formularios → Bitrix24 (`app/api/crm/route.ts`).** Los dos formularios del
+  sitio (contacto y newsletter) pasan por `lib/forms.ts` → `POST /api/crm`, que
+  corre **en el servidor**. Nunca llamar a Bitrix desde el navegador: esa URL es
+  la llave completa del CRM y en el bundle público quedaría a la vista de
+  cualquiera.
+  - *contacto* → Contacto + **Deal** en el embudo **Prospectos (7)**.
+  - *newsletter* → **solo Contacto** (un suscriptor no es una oportunidad).
+  - ⚠️ **Las etapas del embudo 7 están renombradas.** La primera columna es
+    `C7:PREPAYMENT_INVOICE` = "Validación"; `C7:NEW` **no** es el inicio, es
+    "Casos Especiales". Usar la constante `ETAPA_INICIAL`, no la convención.
+  - Antes de crear un contacto se busca el correo con `crm.duplicate.findbycomm`
+    y se reutiliza el existente: hay ~6.900 contactos y duplicar los ensucia.
+  - Los responsables se reparten entre Diego Velez (1) y Gerwin Gacia (11739)
+    con un hash del correo — en serverless no hay dónde guardar el turno, y así
+    un mismo remitente siempre cae en la misma persona.
+  - `COMMENTS` en Bitrix es HTML: el mensaje se escapa y los saltos de línea se
+    convierten a `<br>`, o se leería como un párrafo corrido.
+
 ## Bitácora de cambios
 
-### 2026-06-06 — Iconos de amenidades: Lencería → cama, Alpargatas → chancla
+### 2026-08-09 — Los formularios entran a Bitrix24 (antes solo mandaban correo)
+
+Contacto y newsletter llegaban únicamente como correo a `reservations@` vía un
+webhook de n8n; en el CRM no quedaba rastro. Ahora se registran en Bitrix24
+desde `app/api/crm/route.ts` (Route Handler, servidor de Vercel) y n8n queda
+fuera del camino: solo se conserva como aviso opcional por correo.
+
+- `lib/forms.ts` apunta a `/api/crm` (mismo origen, ya no depende de CORS).
+  `submitForm()` mantiene su firma, así que los componentes no se tocaron.
+- **Por qué Deal y no Lead:** los 2.008 "leads" del CRM son correos que Bitrix
+  captura solo (Booking, Search Console, publicidad), todos `SOURCE_ID=EMAIL`
+  y ya marcados como convertidos. Leads con fuente `WEB`: 0. Un formulario ahí
+  se entierra. El embudo Prospectos, en cambio, movió 343 deals en dos meses.
+- Probado end-to-end contra el CRM real: alta, deduplicación por correo,
+  reparto de responsable, rechazo de correo inválido y formato multilínea.
 
 - **Lencería de lujo:** icono nuevo de **cama** (`bed`, cama de perfil con almohada);
   antes reusaba el de toallas (`towels`, ya eliminado por quedar sin uso).
