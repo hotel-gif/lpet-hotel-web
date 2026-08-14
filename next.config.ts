@@ -23,7 +23,28 @@ const landings = [
 
 // Rutas que alcanzaron a estar publicadas con otro nombre. Se mantienen vivas
 // para no romper links ya compartidos.
-const legacyPaths = [{ from: "/bodas", to: "/bodas-en-finca" }];
+//
+// Las `*-hotel` / `*-cerca-bogota` vienen del WordPress anterior: Google las
+// tiene indexadas en posiciones 3-4 con ~6.500 impresiones acumuladas, y hasta
+// ahora caían en 404 — la autoridad se perdía en vez de pasar a la página
+// nueva. El 301 la traspasa. Comprobado en Search Console (14-ago-2026); la
+// barra final la normaliza Next por su cuenta.
+const legacyPaths = [
+  { from: "/bodas", to: "/bodas-en-finca" },
+  // WordPress → sitio nuevo (ordenadas por impresiones perdidas)
+  { from: "/experiencias-cafe-naturaleza-hotel", to: "/experiencias" },
+  { from: "/contacto-hotel-cerca-de-bogota", to: "/contacto" },
+  { from: "/alojamiento-cabanas-cerca-bogota", to: "/alojamiento" },
+  { from: "/terminos-y-condiciones", to: "/terminos" },
+  { from: "/eventos-empresariales", to: "/eventos" },
+  { from: "/politica-de-tratamiento-de-datos", to: "/politica-de-datos" },
+  { from: "/en/terminos-y-condiciones", to: "/en/terminos" },
+  { from: "/en/alojamiento-cabanas-cerca-bogota", to: "/en/alojamiento" },
+  { from: "/en/eventos-empresariales", to: "/en/eventos" },
+  // Restos de WordPress sin equivalente: van a la home.
+  { from: "/hello-world", to: "/" },
+  { from: "/wp-content/uploads/2025/03/Como-llegar-LPET-Hotel.pdf", to: "/" },
+];
 
 const nextConfig: NextConfig = {
   ...(isStaticExport ? { output: "export", trailingSlash: true } : {}),
