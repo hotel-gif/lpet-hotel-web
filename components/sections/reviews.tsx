@@ -1,5 +1,6 @@
 import type { Dictionary } from "@/lib/i18n";
 import { getResenasGoogle, type DatosGoogle } from "@/lib/google-reviews";
+import { ReviewsCarousel } from "@/components/sections/reviews-carousel";
 
 interface Rating {
   platform: string;
@@ -167,91 +168,21 @@ export async function Reviews({ m, locale = "es" }: { m: Dictionary; locale?: st
           ))}
         </div>
 
-        {/* Reseñas. Las de Google traen autor real y enlace a su perfil, que es
-            lo que Google exige para poder mostrarlas. */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-2"
-          style={{ gap: "24px", maxWidth: "980px", margin: "24px auto 0" }}
-        >
-          {(google?.resenas.length ? google.resenas : []).map((r, i) => (
-            <article
-              key={`g-${i}`}
-              className="relative flex flex-col"
-              style={{
-                background: "#fff",
-                padding: "34px 28px",
-                borderLeft: `3px solid ${QUOTE_BORDER}`,
-                gap: "16px",
-                boxShadow: "0 6px 20px rgba(53,45,42,0.05)",
-              }}
-            >
-              <span
-                aria-hidden
-                style={{
-                  position: "absolute",
-                  top: "4px",
-                  left: "16px",
-                  fontFamily: SERIF,
-                  fontSize: "3.5rem",
-                  color: BORDER_LIGHT,
-                  lineHeight: 1,
-                }}
-              >
-                &ldquo;
-              </span>
-
-              <p
-                style={{
-                  fontFamily: SERIF,
-                  fontStyle: "italic",
-                  fontSize: "1.05rem",
-                  lineHeight: 1.55,
-                  color: TEXT_DARK,
-                  position: "relative",
-                  zIndex: 1,
-                }}
-              >
-                {r.texto.length > 320 ? `${r.texto.slice(0, 320)}…` : r.texto}
-              </p>
-
-              {/* Atribución exigida por Google: foto, nombre y enlace al perfil. */}
-              <div className="flex items-center gap-3 mt-auto pt-2">
-                {r.foto && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={r.foto}
-                    alt=""
-                    width={36}
-                    height={36}
-                    loading="lazy"
-                    style={{ borderRadius: "50%", flexShrink: 0 }}
-                  />
-                )}
-                <div style={{ minWidth: 0 }}>
-                  <div style={{ fontFamily: SANS, fontSize: "0.9rem", color: TEXT_DARK }}>
-                    {r.perfil ? (
-                      <a href={r.perfil} target="_blank" rel="noopener noreferrer">
-                        {r.autor}
-                      </a>
-                    ) : (
-                      r.autor
-                    )}
-                  </div>
-                  <div style={{ fontFamily: SANS, fontSize: "0.78rem", color: "#666" }}>
-                    <span style={{ color: STARS_GOLD, letterSpacing: "1px" }}>
-                      {"★".repeat(r.estrellas)}
-                    </span>{" "}
-                    · {r.cuando}
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
-
-          {/* Sin datos de Google se muestran las citas de siempre, para que la
-              sección nunca quede vacía. */}
-          {!google?.resenas.length &&
-            t.items.map((review, i) => (
+        {/* Opiniones. Las de Google rotan de dos en dos; si no hay datos
+            de Google se muestran las citas de siempre, para que la sección
+            nunca quede vacía. */}
+        {google?.resenas.length ? (
+          <ReviewsCarousel
+            resenas={google.resenas}
+            textoAnterior={enIngles ? "Previous reviews" : "Opiniones anteriores"}
+            textoSiguiente={enIngles ? "Next reviews" : "Opiniones siguientes"}
+          />
+        ) : (
+          <div
+            className="grid grid-cols-1 md:grid-cols-2"
+            style={{ gap: "24px", maxWidth: "980px", margin: "24px auto 0" }}
+          >
+            {t.items.map((review, i) => (
               <article
                 key={`f-${i}`}
                 className="relative flex flex-col"
@@ -279,7 +210,8 @@ export async function Reviews({ m, locale = "es" }: { m: Dictionary; locale?: st
                 </div>
               </article>
             ))}
-        </div>
+          </div>
+        )}
 
         {/* Logo de Google + enlace a la ficha: ambos exigidos por su licencia. */}
         {google && (
