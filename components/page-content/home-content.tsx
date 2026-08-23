@@ -41,7 +41,7 @@ export function HomeContent({ m, locale }: { m: Dictionary; locale: Locale }) {
         <FAQ m={m} />
       </div>
       <div className="reveal" data-anim="fade">
-        <Reviews m={m} />
+        <Reviews m={m} locale={locale} />
       </div>
       <div className="reveal" data-anim="fade">
         <TravelersChoice m={m} />

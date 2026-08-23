@@ -27,10 +27,13 @@ export function HotelSchema({ m }: { m: Dictionary }) {
       addressRegion: "Cundinamarca",
       addressCountry: "CO",
     },
+    // Coordenadas tomadas de la ficha del hotel en Cloudbeds (la fuente que usa
+    // recepción). Las anteriores —4.7836, -74.3811— caían 2,8 km al norte de la
+    // finca, y en búsquedas locales esa señal cuenta.
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 4.7836,
-      longitude: -74.3811,
+      latitude: 4.75881,
+      longitude: -74.38017,
     },
     numberOfRooms: 10,
     amenityFeature: [
@@ -45,12 +48,13 @@ export function HotelSchema({ m }: { m: Dictionary }) {
       name,
       value: true,
     })),
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: 81,
-      bestRating: "5",
-    },
+    // Sin `aggregateRating` a propósito. El que había (4.9 · 81 reseñas) salía
+    // de las 81 reseñas de Booking.com que muestra la sección de opiniones, y
+    // Google prohíbe declarar reseñas de terceros como calificación propia. La
+    // sanción no son las estrellas: es una acción manual que retira TODOS los
+    // resultados enriquecidos del sitio. Seguir mostrando las opiniones de
+    // Booking y Tripadvisor en la página es correcto; declararlas aquí no.
+    // Para recuperarlo hace falta recoger reseñas propias en el sitio.
     potentialAction: {
       "@type": "ReserveAction",
       target: reservationUrl(),

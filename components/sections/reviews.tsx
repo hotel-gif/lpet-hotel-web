@@ -1,4 +1,5 @@
 import type { Dictionary } from "@/lib/i18n";
+import { getResenasGoogle, type DatosGoogle } from "@/lib/google-reviews";
 
 interface Rating {
   platform: string;
@@ -6,20 +7,14 @@ interface Rating {
   extra: string;
 }
 
-interface Review {
-  text: string;
-  author: string;
-  source: string;
-}
-
 // Colores del original
 const STARS_GOLD = "#c9a227";
 const BOOKING_BLUE = "#003580";
 const TRIPADVISOR_GREEN = "#00aa6c";
+const GOOGLE_BLUE = "#4285f4";
 const TEXT_DARK = "#352d2a"; // var(--secondary-d-1)
 const BORDER_LIGHT = "#e8e3da"; // var(--secondary-l-2)
 const QUOTE_BORDER = "#a14a5a"; // var(--primary-d-2) — burgundy
-
 const SERIF = "var(--font-serif), 'Baskervville', Georgia, serif";
 const SANS = "var(--font-gotham), 'Lato', system-ui, sans-serif";
 
@@ -27,16 +22,105 @@ function getPlatformColor(platform: string): string {
   const p = platform.toLowerCase();
   if (p.includes("booking")) return BOOKING_BLUE;
   if (p.includes("tripadvisor")) return TRIPADVISOR_GREEN;
+  if (p.includes("google")) return GOOGLE_BLUE;
   return TEXT_DARK;
 }
 
-export function Reviews({ m }: { m: Dictionary }) {
+/** Logo de Google. Su guía de marca exige mostrarlo junto a sus reseñas. */
+function LogoGoogle() {
+  return (
+    <svg width="54" height="18" viewBox="0 0 272 92" aria-label="Google" role="img">
+      <path fill="#EA4335" d="M115.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18C71.25 34.32 81.24 25 93.5 25s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44S80.99 39.2 80.99 47.18c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z" />
+      <path fill="#FBBC05" d="M163.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18c0-12.85 9.99-22.18 22.25-22.18s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44s-12.51 5.46-12.51 13.44c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z" />
+      <path fill="#4285F4" d="M209.75 26.34v39.82c0 16.38-9.66 23.07-21.08 23.07-10.75 0-17.22-7.19-19.66-13.07l8.48-3.53c1.51 3.61 5.21 7.87 11.17 7.87 7.31 0 11.84-4.51 11.84-13v-3.19h-.34c-2.18 2.69-6.38 5.04-11.68 5.04-11.09 0-21.25-9.66-21.25-22.09 0-12.52 10.16-22.26 21.25-22.26 5.29 0 9.49 2.35 11.68 4.96h.34v-3.61h9.25zm-8.56 20.92c0-7.81-5.21-13.52-11.84-13.52-6.72 0-12.35 5.71-12.35 13.52 0 7.73 5.63 13.36 12.35 13.36 6.63 0 11.84-5.63 11.84-13.36z" />
+      <path fill="#34A853" d="M225 3v65h-9.5V3h9.5z" />
+      <path fill="#EA4335" d="M262.02 54.48l7.56 5.04c-2.44 3.61-8.32 9.83-18.48 9.83-12.6 0-22.01-9.74-22.01-22.18 0-13.19 9.49-22.18 20.92-22.18 11.51 0 17.14 9.16 18.98 14.11l1.01 2.52-29.65 12.28c2.27 4.45 5.8 6.72 10.75 6.72 4.96 0 8.4-2.44 10.92-6.14zm-23.27-7.98l19.82-8.23c-1.09-2.77-4.37-4.7-8.23-4.7-4.95 0-11.84 4.37-11.59 12.93z" />
+      <path fill="#4285F4" d="M35.29 41.41V32H67c.31 1.64.47 3.58.47 5.68 0 7.06-1.93 15.79-8.15 22.01-6.05 6.3-13.78 9.66-24.02 9.66C16.32 69.35.36 53.89.36 34.91.36 15.93 16.32.47 35.3.47c10.5 0 17.98 4.12 23.6 9.49l-6.64 6.64c-4.03-3.78-9.49-6.72-16.97-6.72-13.86 0-24.7 11.17-24.7 25.03 0 13.86 10.84 25.03 24.7 25.03 8.99 0 14.11-3.61 17.39-6.89 2.66-2.66 4.41-6.46 5.1-11.65l-22.49.01z" />
+    </svg>
+  );
+}
+
+/** Tarjeta de calificación por plataforma. */
+function TarjetaRating({
+  plataforma,
+  puntaje,
+  extra,
+  enlace,
+}: {
+  plataforma: string;
+  puntaje: string;
+  extra: string;
+  enlace?: string | null;
+}) {
+  const contenido = (
+    <>
+      <div
+        style={{
+          fontFamily: SERIF,
+          fontSize: "1.15rem",
+          letterSpacing: "0.02em",
+          color: getPlatformColor(plataforma),
+        }}
+      >
+        {plataforma}
+      </div>
+      <div style={{ fontFamily: SERIF, fontSize: "2.4rem", color: TEXT_DARK, lineHeight: 1 }}>
+        {puntaje}
+      </div>
+      <div style={{ color: STARS_GOLD, fontSize: "1.1rem", letterSpacing: "2px" }}>★★★★★</div>
+      <div
+        style={{
+          fontFamily: SANS,
+          fontSize: "0.85rem",
+          color: "#666",
+          letterSpacing: "0.02em",
+        }}
+      >
+        {extra}
+      </div>
+    </>
+  );
+
+  const estilo = {
+    background: "#fff",
+    padding: "32px 24px",
+    gap: "10px",
+    border: `1px solid ${BORDER_LIGHT}`,
+    boxShadow: "0 6px 20px rgba(53,45,42,0.06)",
+    transition: "transform .25s ease, box-shadow .25s ease",
+  } as const;
+
+  // Google exige enlazar de vuelta a su ficha; las demás no llevan enlace.
+  return enlace ? (
+    <a
+      href={enlace}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-center flex flex-col items-center"
+      style={estilo}
+    >
+      {contenido}
+    </a>
+  ) : (
+    <article className="text-center flex flex-col items-center" style={estilo}>
+      {contenido}
+    </article>
+  );
+}
+
+export async function Reviews({ m, locale = "es" }: { m: Dictionary; locale?: string }) {
   const t = m.reviews as {
     title: string;
     lead: string;
     ratings: Rating[];
-    items: Review[];
+    items: { text: string; author: string; source: string }[];
   };
+
+  // Si Google no responde, `google` queda en null y la sección sigue mostrando
+  // las calificaciones de las otras plataformas. Nunca se cae por esto.
+  const google: DatosGoogle | null = await getResenasGoogle(locale);
+
+  const enIngles = locale === "en";
 
   return (
     <section className="py-20 md:py-28" style={{ backgroundColor: "#e8e6df" }}>
@@ -49,79 +133,49 @@ export function Reviews({ m }: { m: Dictionary }) {
           >
             {t.title}
           </h2>
-          {/* Línea decorativa burgundy */}
           <div className="w-24 h-px mx-auto mb-8" style={{ backgroundColor: QUOTE_BORDER }} />
           <p className="leading-relaxed" style={{ color: TEXT_DARK, fontFamily: SANS }}>
             {t.lead}
           </p>
         </div>
 
-        {/* Cards de ratings (.scores) — max-width 760px */}
+        {/* Calificaciones por plataforma. Google entra primero cuando responde:
+            es la de más reseñas con diferencia. */}
         <div
-          className="score-row grid grid-cols-1 md:grid-cols-2 mx-auto"
-          style={{ gap: "24px", maxWidth: "760px", margin: "24px auto 0" }}
+          className="score-row grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-auto"
+          style={{ gap: "24px", maxWidth: "980px", margin: "24px auto 0" }}
         >
-          {t.ratings.map((rating) => (
-            <article
-              key={rating.platform}
-              className="text-center flex flex-col items-center"
-              style={{
-                background: "#fff",
-                padding: "32px 24px",
-                gap: "10px",
-                border: `1px solid ${BORDER_LIGHT}`,
-                boxShadow: "0 6px 20px rgba(53,45,42,0.06)",
-                transition: "transform .25s ease, box-shadow .25s ease",
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: SERIF,
-                  fontSize: "1.15rem",
-                  letterSpacing: "0.02em",
-                  color: getPlatformColor(rating.platform),
-                }}
-              >
-                {rating.platform}
-              </div>
-              <div
-                data-count={rating.score}
-                data-dec={String((rating.score.split(".")[1] || "").length)}
-                style={{
-                  fontFamily: SERIF,
-                  fontSize: "2.5rem",
-                  lineHeight: 1,
-                  color: TEXT_DARK,
-                  fontWeight: 400,
-                }}
-              >
-                {rating.score}
-              </div>
-              <div style={{ color: STARS_GOLD, fontSize: "1.1rem", letterSpacing: "2px" }}>
-                ★★★★★
-              </div>
-              <div
-                style={{
-                  fontFamily: SANS,
-                  fontSize: "0.85rem",
-                  color: "#666",
-                  letterSpacing: "0.02em",
-                }}
-              >
-                {rating.extra}
-              </div>
-            </article>
+          {google && (
+            <TarjetaRating
+              plataforma="Google"
+              puntaje={google.calificacion.toFixed(1)}
+              extra={
+                enIngles
+                  ? `${google.total} reviews on Google`
+                  : `${google.total} reseñas en Google`
+              }
+              enlace={google.mapsUrl || null}
+            />
+          )}
+          {t.ratings.map((r) => (
+            <TarjetaRating
+              key={r.platform}
+              plataforma={r.platform}
+              puntaje={r.score}
+              extra={r.extra}
+            />
           ))}
         </div>
 
-        {/* Quotes (.quotes) — max-width 980px */}
+        {/* Reseñas. Las de Google traen autor real y enlace a su perfil, que es
+            lo que Google exige para poder mostrarlas. */}
         <div
           className="grid grid-cols-1 md:grid-cols-2"
           style={{ gap: "24px", maxWidth: "980px", margin: "24px auto 0" }}
         >
-          {t.items.map((review, i) => (
+          {(google?.resenas.length ? google.resenas : []).map((r, i) => (
             <article
-              key={i}
+              key={`g-${i}`}
               className="relative flex flex-col"
               style={{
                 background: "#fff",
@@ -131,7 +185,6 @@ export function Reviews({ m }: { m: Dictionary }) {
                 boxShadow: "0 6px 20px rgba(53,45,42,0.05)",
               }}
             >
-              {/* Comilla decorativa Baskervville */}
               <span
                 aria-hidden
                 style={{
@@ -147,7 +200,6 @@ export function Reviews({ m }: { m: Dictionary }) {
                 &ldquo;
               </span>
 
-              {/* Texto del review italic Baskervville */}
               <p
                 style={{
                   fontFamily: SERIF,
@@ -157,60 +209,97 @@ export function Reviews({ m }: { m: Dictionary }) {
                   color: TEXT_DARK,
                   position: "relative",
                   zIndex: 1,
-                  margin: 0,
-                  paddingTop: "24px",
                 }}
               >
-                &quot;{review.text}&quot;
+                {r.texto.length > 320 ? `${r.texto.slice(0, 320)}…` : r.texto}
               </p>
 
-              {/* qmeta: autor+stars izquierda, src derecha */}
-              <div
-                className="flex items-center justify-between"
-                style={{
-                  borderTop: `1px solid ${BORDER_LIGHT}`,
-                  paddingTop: "14px",
-                  gap: "12px",
-                }}
-              >
-                <div>
-                  <div
-                    style={{
-                      fontFamily: SANS,
-                      fontSize: "0.9rem",
-                      color: TEXT_DARK,
-                      fontWeight: 700,
-                      letterSpacing: "0.02em",
-                    }}
-                  >
-                    {review.author}
+              {/* Atribución exigida por Google: foto, nombre y enlace al perfil. */}
+              <div className="flex items-center gap-3 mt-auto pt-2">
+                {r.foto && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={r.foto}
+                    alt=""
+                    width={36}
+                    height={36}
+                    loading="lazy"
+                    style={{ borderRadius: "50%", flexShrink: 0 }}
+                  />
+                )}
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ fontFamily: SANS, fontSize: "0.9rem", color: TEXT_DARK }}>
+                    {r.perfil ? (
+                      <a href={r.perfil} target="_blank" rel="noopener noreferrer">
+                        {r.autor}
+                      </a>
+                    ) : (
+                      r.autor
+                    )}
                   </div>
-                  <div
-                    style={{
-                      color: STARS_GOLD,
-                      fontSize: "0.85rem",
-                      letterSpacing: "2px",
-                      marginTop: "4px",
-                    }}
-                  >
-                    ★★★★★
+                  <div style={{ fontFamily: SANS, fontSize: "0.78rem", color: "#666" }}>
+                    <span style={{ color: STARS_GOLD, letterSpacing: "1px" }}>
+                      {"★".repeat(r.estrellas)}
+                    </span>{" "}
+                    · {r.cuando}
                   </div>
-                </div>
-                <div
-                  style={{
-                    fontFamily: SANS,
-                    fontSize: "0.78rem",
-                    color: "#888",
-                    letterSpacing: "0.04em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {review.source}
                 </div>
               </div>
             </article>
           ))}
+
+          {/* Sin datos de Google se muestran las citas de siempre, para que la
+              sección nunca quede vacía. */}
+          {!google?.resenas.length &&
+            t.items.map((review, i) => (
+              <article
+                key={`f-${i}`}
+                className="relative flex flex-col"
+                style={{
+                  background: "#fff",
+                  padding: "34px 28px",
+                  borderLeft: `3px solid ${QUOTE_BORDER}`,
+                  gap: "16px",
+                  boxShadow: "0 6px 20px rgba(53,45,42,0.05)",
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: SERIF,
+                    fontStyle: "italic",
+                    fontSize: "1.05rem",
+                    lineHeight: 1.55,
+                    color: TEXT_DARK,
+                  }}
+                >
+                  {review.text}
+                </p>
+                <div style={{ fontFamily: SANS, fontSize: "0.85rem", color: "#666" }}>
+                  {review.author} · {review.source}
+                </div>
+              </article>
+            ))}
         </div>
+
+        {/* Logo de Google + enlace a la ficha: ambos exigidos por su licencia. */}
+        {google && (
+          <div
+            className="flex items-center justify-center gap-3 flex-wrap"
+            style={{ margin: "28px auto 0" }}
+          >
+            <LogoGoogle />
+            {google.mapsUrl && (
+              <a
+                href={google.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontFamily: SANS, fontSize: "0.85rem", color: "#666" }}
+              >
+                {enIngles ? "See all reviews on Google" : "Ver todas las reseñas en Google"}
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );
