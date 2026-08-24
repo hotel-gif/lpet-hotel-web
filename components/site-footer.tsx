@@ -1,6 +1,7 @@
 import { SmartLink as Link } from "@/components/smart-link";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import { reservationUrl } from "@/lib/booking";
+import { PLANES } from "@/components/sections/planes-relacionados";
 
 export function SiteFooter({ m, locale }: { m: Dictionary; locale: Locale }) {
   const t = m.footer;
@@ -46,6 +47,27 @@ export function SiteFooter({ m, locale }: { m: Dictionary; locale: Locale }) {
           </ul>
         </div>
       </div>
+
+      {/* Planes: las landings viven fuera del App Router (HTML estático servido
+          por rewrite), así que van con <a> plano — <Link> intentaría resolverlas
+          como ruta React. Solo en español: no hay versión inglesa de ellas. */}
+      {locale === "es" && (
+        <div className="container-wide mt-12 pt-8 border-t border-cream/10">
+          <h4 className="text-paper mb-4 text-sm font-medium">{t.plans_title}</h4>
+          <ul className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
+            {Object.values(PLANES).map((p) => (
+              <li key={p.slug}>
+                <a
+                  href={`/${p.slug}`}
+                  className="text-cream/75 hover:text-cream transition-colors"
+                >
+                  {p.titulo}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="container-wide mt-12 pt-6 border-t border-cream/10 flex justify-between text-xs text-cream/50 flex-wrap gap-3">
         <span>© {new Date().getFullYear()} Coffee and Adventure S.A.S · {t.rights}</span>
