@@ -1,5 +1,5 @@
 import { HeroContacto } from "@/components/sections/contacto/hero-contacto";
-import { ContactoForm } from "@/components/sections/contacto/contacto-form";
+import { BitrixForm } from "@/components/bitrix-form";
 import { AnimateOnScroll } from "@/components/animate-on-scroll";
 import { SOCIAL } from "@/lib/social";
 import type { Dictionary } from "@/lib/i18n";
@@ -55,7 +55,10 @@ export function ContactoContent({ m }: { m: Dictionary }) {
             {/* Form interactivo -> softExit: el atenuado al salir es apenas
                 perceptible sobre los inputs con texto (no se pierde nada). */}
             <AnimateOnScroll softExit>
-              <ContactoForm m={m} />
+              {/* Formulario nativo de Bitrix24 (ID 1, «Contáctenos Pagina Web»).
+                  Los campos y el destino en el CRM se configuran en Bitrix, sin
+                  tocar el sitio. */}
+              <BitrixForm formId={1} securityCode="wmozg5" />
             </AnimateOnScroll>
           </div>
 
