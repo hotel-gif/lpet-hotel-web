@@ -24,9 +24,14 @@ const PAGES: Entry[] = [
 // Landings servidas desde `public/<slug>/` (ver next.config.ts). Van aparte de
 // PAGES porque son solo en español: no tienen versión /en y meterlas ahí
 // generaría URLs inexistentes en el hreflang.
+//
+// Fuera del sitemap a propósito (9-sep-2026): `/bodas-en-finca` y
+// `/eventos-corporativos-finca` duplican a `/matrimonios` y `/eventos`, y
+// declararlas aquí con la misma prioridad las hacía competir entre sí —
+// `/matrimonios` estaba en posición 2,3 y `/bodas-en-finca` en 38,8.
+// Siguen vivas y accesibles porque son landings de Google Ads; su canonical
+// apunta ahora a la página orgánica que gana. No redirigir: rompería los anuncios.
 const LANDINGS: Entry[] = [
-  { path: "/bodas-en-finca", changeFrequency: "monthly", priority: 0.9 },
-  { path: "/eventos-corporativos-finca", changeFrequency: "monthly", priority: 0.9 },
   { path: "/birdwatching", changeFrequency: "monthly", priority: 0.9 },
   { path: "/coffee-tour", changeFrequency: "monthly", priority: 0.9 },
   { path: "/escapada-romantica", changeFrequency: "monthly", priority: 0.9 },
