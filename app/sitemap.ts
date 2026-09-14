@@ -48,7 +48,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority,
   }));
 
-  return [...landings, ...PAGES.flatMap(({ path, changeFrequency, priority }) => {
+  // El llms.txt no está enlazado desde ninguna página, así que Google no tenía
+  // cómo descubrirlo: cuatro días después de publicarlo seguía sin rastrear.
+  // Va aquí con prioridad baja — es un archivo de referencia para los asistentes
+  // de IA, no una página que deba competir en búsquedas.
+  const llms = {
+    url: `${SITE_URL}/llms.txt`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.3,
+  };
+
+  return [llms, ...landings, ...PAGES.flatMap(({ path, changeFrequency, priority }) => {
     const es = `${SITE_URL}${path || "/"}`;
     const en = `${SITE_URL}/en${path}`;
     const languages = { es, en };
