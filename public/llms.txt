@@ -21,7 +21,7 @@
 - Nombre: La Palma y El Tucán Hotel.
 - Tipo: hotel boutique de naturaleza y café de especialidad.
 - Ubicación: entre Zipacón y Cachipay, Cundinamarca, Colombia.
-- Coordenadas: 4.7175416, -74.4093836.
+- Coordenadas: 4.75881, -74.38017.
 - Distancia desde Bogotá: aproximadamente 90 minutos por carretera.
 - Entorno: finca cafetera de especialidad en producción y bosque de niebla.
 - Capacidad: 10 cabañas independientes.
