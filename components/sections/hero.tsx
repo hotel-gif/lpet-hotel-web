@@ -14,6 +14,13 @@ export function Hero({ m, locale }: { m: Dictionary; locale: Locale }) {
     cta_secondary: string;
     book_checkin: string;
     book_checkout: string;
+    book_choose_date: string;
+    book_night: string;
+    book_nights: string;
+    book_close: string;
+    book_prev_month: string;
+    book_next_month: string;
+    book_calendar_label: string;
   };
   return (
     <section className="hero relative min-h-[80svh] md:min-h-screen flex items-end justify-center overflow-hidden">
@@ -58,6 +65,13 @@ export function Hero({ m, locale }: { m: Dictionary; locale: Locale }) {
             labels={{
               checkin: t.book_checkin,
               checkout: t.book_checkout,
+              chooseDate: t.book_choose_date,
+              night: t.book_night,
+              nights: t.book_nights,
+              close: t.book_close,
+              prevMonth: t.book_prev_month,
+              nextMonth: t.book_next_month,
+              calendarLabel: t.book_calendar_label,
               cta: t.cta_primary,
             }}
           />

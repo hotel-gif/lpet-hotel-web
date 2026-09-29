@@ -20,7 +20,14 @@
     "cta_primary": "Reserva Directa",
     "cta_secondary": "",
     "book_checkin": "Llegada",
-    "book_checkout": "Salida"
+    "book_checkout": "Salida",
+    "book_choose_date": "Elegir fecha",
+    "book_night": "noche",
+    "book_nights": "noches",
+    "book_close": "Cerrar",
+    "book_prev_month": "Mes anterior",
+    "book_next_month": "Mes siguiente",
+    "book_calendar_label": "Selector de fechas de llegada y salida"
   },
   "intro": {
     "eyebrow": "",
