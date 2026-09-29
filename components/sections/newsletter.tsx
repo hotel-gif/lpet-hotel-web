@@ -28,9 +28,13 @@ export function Newsletter({ m }: { m: Dictionary }) {
               <strong className="font-bold">{t.title_highlight}</strong>
               {t.title_part2}
             </h2>
-            <p className="text-sm md:text-base text-ink-soft text-center mb-10 leading-relaxed max-w-md mx-auto">
-              {t.lead}
-            </p>
+            {t.lead ? (
+              <p className="text-sm md:text-base text-ink-soft text-center mb-10 leading-relaxed max-w-md mx-auto">
+                {t.lead}
+              </p>
+            ) : (
+              <div className="mb-4" />
+            )}
 
             {/* Formulario nativo de Bitrix24 (ID 19, «Inscripcion Newsletter
                 Pagina Web»). Los campos, el texto del botón y el mensaje de
